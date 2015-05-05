@@ -11,6 +11,7 @@
 
 enum class direction
 {
+  none,
   north,
   east,
   south,
@@ -30,18 +31,8 @@ enum class item
 {
   none,
   bullet,
-  //bomb, //TODO Will need to differentiate between breakable and unbreakable walls
   treasure,
   treasure_gone
-};
-
-enum class exit
-{
-  none,
-  exit_north,
-  exit_east,
-  exit_south,
-  exit_west
 };
 
 #endif

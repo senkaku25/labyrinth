@@ -15,7 +15,7 @@
 // This constructor sets the necessary properties of a Room.
 Room::Room( inhabitant dark_thing,
             item object,
-            exit get_out,
+            direction exit,
             Room* north,
             Room* east,
             Room* south,
@@ -23,7 +23,7 @@ Room::Room( inhabitant dark_thing,
 {
   dark_thing_ = dark_thing;
   object_     = object;
-  get_out_    = get_out;
+  exit_       = exit;
   north_      = north;
   east_       = east;
   south_      = south;
@@ -34,73 +34,31 @@ Room::Room( inhabitant dark_thing,
 // the direction has the exit.
 int Room::DirectionCheck( direction d )
 {
-  if( d == north )
+  if( d == none )
   {
-    if( exit_ == north )
-    {
-      return 2;
-    }
-    else if( north_ == NULL )
-    {
-      return 0;
-    }
-    else
-    {
-      return 1;
-    }
+    std::cout << "Error: DirectionCheck() was given the direction 'none'.\n" ;
+    exit( 1 );
   }
 
-  else if( d == east )
+  if( d == exit_ )
   {
-    if( exit_ == east )
-    {
-      return 2;
-    }
-    else if( east_ == NULL )
-    {
-      return 0;
-    }
-    else
-    {
-      return 1;
-    }
+    return 2;
   }
 
-  else if( d == south )
+  else if( ( d == north && north_ != NULL ) ||
+           ( d == east  && east_  != NULL ) ||
+           ( d == south && south_ != NULL ) ||
+           ( d == west  && west_  != NULL )
   {
-    if( exit_ == south )
-    {
-      return 2;
-    }
-    else if( south_ == NULL )
-    {
-      return 0;
-    }
-    else
-    {
-      return 1;
-    }
+    return 1;
   }
 
-  else if( d == west )
+  else
   {
-    if( exit_ == west )
-    {
-      return 2;
-    }
-    else if( west_ == NULL )
-    {
-      return 0;
-    }
-    else
-    {
-      return 1;
-    }
+    return 0;
   }
 
-}
-
-// This method returns the address of the Room in the given direction.
+// This method returns the address of the Room in the given direction, or NULL if no Room exists.
 // Should not be given an exit; exits should be checked with DirectionCheck and then handled
 // by Labyrinth.
 Room* DirectionEnter( direction d )

@@ -1,9 +1,9 @@
 # Source files
-SOURCES  = room_properties.hpp \
-           room.hpp
+SOURCES  = ../room/room_properties.hpp \
+           ../room/room.hpp
 
 # Header files
-HSOURCES = room.cpp
+HSOURCES = ../room/room.cpp
 
 # Compiler options
 CFLAGS = -std=c++11 -g -Wall

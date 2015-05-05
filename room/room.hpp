@@ -20,7 +20,7 @@ class Room
   public:
     Room( inhabitant dark_thing,
           item object,
-          exit get_out,
+          direction exit,
           Room* north,
           Room* east,
           Room* south,
@@ -33,8 +33,8 @@ class Room
 
   private:
     inhabitant dark_thing_;
-    item  object_;
-    exit  get_out_; // TODO: Why is this asking for an 'enum exit'? The other ones don't. Also, naming.
+    item object_;
+    direction exit_;
     Room* north_;
     Room* east_;
     Room* south_;
