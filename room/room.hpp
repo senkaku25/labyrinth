@@ -1,0 +1,44 @@
+/*
+ *
+ * Author: Jeffrey Leung
+ * Last edited: 2015-05-05
+ *
+ * This header file contains implementations of a Room class, which is the template to create a Labyrinth.
+ *
+ */
+
+#ifndef ROOM_HPP
+#define ROOM_HPP
+
+#include "room_properties.hpp"
+
+// Labyrinth - method to check for errors
+// Rooms: Spawn (1 respawn), treasure, exit
+
+class Room
+{
+  public:
+    Room( inhabitant dark_thing,
+          item object,
+          exit get_out,
+          Room* north,
+          Room* east,
+          Room* south,
+          Room* west );
+
+    int DirectionCheck( direction d );  // Returns 0 if facing a wall, 1 if facing a room,
+                                        // 2 if facing the exit.
+    Room* DirectionEnter( direction d );  // Returns the address of the next room.
+                                          // Will not allow exiting; should be done in Labyrinth.
+
+  private:
+    inhabitant dark_thing_;
+    item  object_;
+    exit  get_out_; // TODO: Why is this asking for an 'enum exit'? The other ones don't. Also, naming.
+    Room* north_;
+    Room* east_;
+    Room* south_;
+    Room* west_;
+};
+
+#endif
