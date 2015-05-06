@@ -3,7 +3,7 @@
  * Author: Jeffrey Leung
  * Last edited: 2015-05-05
  *
- * This program contains implementations of a Room class, which is the template to create a Labyrinth.
+ * This program contains implementations of a basic Room class, the building block of a game.
  *
  */
 

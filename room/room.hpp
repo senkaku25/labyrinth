@@ -3,7 +3,7 @@
  * Author: Jeffrey Leung
  * Last edited: 2015-05-05
  *
- * This header file contains implementations of a Room class, which is the template to create a Labyrinth.
+ * This header file contains implementations of a basic Room class, the building block of a game.
  *
  */
 
@@ -12,16 +12,13 @@
 
 #include "room_properties.hpp"
 
-// Labyrinth - method to check for errors
-// Rooms: Spawn (1 respawn), treasure, exit
-
 class Room
 {
   public:
     Room( inhabitant dark_thing,
           item object,
           direction exit,
-          Room* north,
+          Room* north,  // NULL Room address represents a wall.
           Room* east,
           Room* south,
           Room* west );
