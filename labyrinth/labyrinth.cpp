@@ -67,8 +67,7 @@ Room* Labyrinth::RoomCreate( inhabitant dark_thing,
                              item object,
                              direction exit )
 {
-  Room* r = new Room( dark_thing, object, exit, NULL, NULL, NULL, NULL );
-  return r;
+  return new Room( dark_thing, object, exit, NULL, NULL, NULL, NULL );
 }
 
 // This method connects two Rooms, which have not yet been connected in their directions.
@@ -76,7 +75,7 @@ void Labyrinth::ConnectRooms( Room* a, Room* b, direction a_to_b )
 {
   unsigned int already_connected = 0;  // Flag variable
 
-  if( a_to_b == north )
+  if( a_to_b == direction::north )
   {
     if( a->north_ == NULL && b->south_ == NULL )
     {
@@ -89,7 +88,7 @@ void Labyrinth::ConnectRooms( Room* a, Room* b, direction a_to_b )
     }
   }
 
-  else if( a_to_b == east )
+  else if( a_to_b == direction::east )
   {
     if( a->east_ == NULL && b->west_ == NULL )
     {
@@ -102,7 +101,7 @@ void Labyrinth::ConnectRooms( Room* a, Room* b, direction a_to_b )
     }
   }
 
-  else if( a_to_b == south )
+  else if( a_to_b == direction::south )
   {
     if( a->south_ == NULL && b->north_ == NULL )
     {
@@ -115,7 +114,7 @@ void Labyrinth::ConnectRooms( Room* a, Room* b, direction a_to_b )
     }
   }
 
-  else if( a_to_b == west )
+  else if( a_to_b == direction::west )
   {
     if( a->west_ == NULL && b->west_ == NULL )
     {
@@ -141,11 +140,11 @@ void Labyrinth::ConnectRooms( Room* a, Room* b, direction a_to_b )
 // This method sets the spawn Rooms for a Labyrinth.
 void Labyrinth::SetSpawnLocation( spawn_location s, Room* r )
 {
-  if( s == first )
+  if( s == spawn_location::first )
   {
     spawn1_ = r;
   }
-  else if( s == second )
+  else if( s == spawn_location::second )
   {
     spawn2_ = r;
   }
@@ -156,19 +155,19 @@ void Labyrinth::SetSpawnLocation( spawn_location s, Room* r )
 // This method sets a previous wall to become an exit.
 void Labyrinth::SetExit( Room* r, direction d )
 {
-  if( d == north && r->north_ == NULL )
+  if( d == direction::north && r->north_ == NULL )
   {
     r->exit_ = north;
   }
-  else if( d == east && r->east_ == NULL )
+  else if( d == direction::east && r->east_ == NULL )
   {
     r->exit_ = east;
   }
-  else if( d == south && r->south_ == NULL )
+  else if( d == direction::south && r->south_ == NULL )
   {
     r->exit_ = south;
   }
-  else if( d == west && r->west_ == NULL )
+  else if( d == direction::west && r->west_ == NULL )
   {
     r->exit_ = west;
   }

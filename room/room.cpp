@@ -34,7 +34,7 @@ Room::Room( inhabitant dark_thing,
 // the direction has the exit.
 int Room::DirectionCheck( direction d )
 {
-  if( d == none )
+  if( d == direction::none )
   {
     std::cout << "Error: DirectionCheck() was given the direction 'none'.\n" ;
     exit( 1 );
@@ -45,10 +45,10 @@ int Room::DirectionCheck( direction d )
     return 2;
   }
 
-  else if( ( d == north && north_ != NULL ) ||
-           ( d == east  && east_  != NULL ) ||
-           ( d == south && south_ != NULL ) ||
-           ( d == west  && west_  != NULL )
+  else if( ( d == direction::north && north_ != NULL ) ||
+           ( d == direction::east  && east_  != NULL ) ||
+           ( d == direction::south && south_ != NULL ) ||
+           ( d == direction::west  && west_  != NULL )
   {
     return 1;
   }
@@ -63,30 +63,32 @@ int Room::DirectionCheck( direction d )
 // by Labyrinth.
 Room* DirectionEnter( direction d )
 {
-  if( d == north && exit_ == north ||
-      d == east  && exit_ == east  ||
-      d == south && exit_ == south ||
-      d == west  && exit_ == west  )
+  if( d == direction::none )
+  {
+    std::cout << "Error: DirectionEnter() was given the direction 'none'.\n" ;
+    exit( 1 );
+  }
+  else if( d == exit_ )
   {
     std::cout << "Error: DirectionEnter() was told to go through the exit but cannot.\n" \
                  "This should be done by Labyrinth (detected by DirectionCheck() and " \
-                 "handled accordingly).\n" ;
+                 "handled accordingly prior to calling DirectionEnter()).\n" ;
     exit( 1 );
   }
 
-  if( d == north )
+  if( d == direction::north )
   {
     return north_;
   }
-  else if( d == east )
+  else if( d == direction::east )
   {
     return east_;
   }
-  else if( d == south )
+  else if( d == direction::south )
   {
     return south_;
   }
-  else if( d == west )
+  else if( d == direction::west )
   {
     return west_;
   }

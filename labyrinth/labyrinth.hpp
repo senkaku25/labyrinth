@@ -14,14 +14,6 @@
 #include "../room/room_properties.hpp"
 #include "../room/room.hpp"
 
-// Method to check for errors
-/*
-struct Labyrinth
-{
-  Room* spawn1,
-  Room* spawn2
-}*/
-
 enum class spawn_location
 {
   first,
