@@ -68,9 +68,9 @@ Room* DirectionEnter( direction d )
       d == south && exit_ == south ||
       d == west  && exit_ == west  )
   {
-    std::cout << "Error: DirectionEnter() was told to go through the exit but cannot.\n\
-                  This should be done by Labyrinth (detected by DirectionCheck() and\
-                  handled accordingly).\n" ;
+    std::cout << "Error: DirectionEnter() was told to go through the exit but cannot.\n" \
+                 "This should be done by Labyrinth (detected by DirectionCheck() and " \
+                 "handled accordingly).\n" ;
     exit( 1 );
   }
 
