@@ -1,13 +1,12 @@
 /*
  * Author: Jeffrey Leung
- * Last edited: 2015-05-05
+ * Last edited: 2015-05-20
  *
  * This header files contains enums necessary to create and navigate a Room.
  *
  */
 
-#ifndef ROOM_PROPERTIES_HPP
-#define ROOM_PROPERTIES_HPP
+#pragma once
 
 enum class direction
 {
@@ -34,5 +33,3 @@ enum class item
   treasure,
   treasure_gone
 };
-
-#endif
