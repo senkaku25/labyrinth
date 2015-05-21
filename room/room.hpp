@@ -1,14 +1,13 @@
 /*
  *
  * Author: Jeffrey Leung
- * Last edited: 2015-05-05
+ * Last edited: 2015-05-20
  *
  * This header file contains implementations of a Room class, which is the template to create a Labyrinth.
  *
  */
 
-#ifndef ROOM_HPP
-#define ROOM_HPP
+#pragma once
 
 #include "room_properties.hpp"
 
@@ -40,5 +39,3 @@ class Room
     Room* south_;
     Room* west_;
 };
-
-#endif
