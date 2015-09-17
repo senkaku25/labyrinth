@@ -82,22 +82,19 @@ Room* Room::DirectionEnter( Direction d )
       "the exit but cannot.\n This should be done by Labyrinth (detected by "\
       "DirectionCheck() and handled accordingly).\n" );
   }
-
-  if( d == Direction::kNorth )
+  
+  switch( d )
   {
-    return north_;
+    case( Direction::kNorth ):
+      return north_;
+      break;
+    case( Direction::kEast ):
+      return east_;
+      break;
+    case( Direction::kSouth ):
+      return south_;
+      break;
+    default:
+      return west_;
   }
-  else if( d == Direction::kEast )
-  {
-    return east_;
-  }
-  else if( d == Direction::kSouth )
-  {
-    return south_;
-  }
-  else
-  {
-    return west_;
-  }
-
 }
