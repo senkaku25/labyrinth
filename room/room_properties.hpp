@@ -3,7 +3,7 @@
  * Author: Jeffrey Leung
  * Last edited: 2015-09-17
  *
- * This header files contains enums necessary to create and navigate a Room.
+ * This header file contains enums necessary to create and navigate a Room.
  *
  */
 
