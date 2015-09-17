@@ -18,6 +18,13 @@ enum class Direction
   kWest,
 };
 
+enum class RoomBorder
+{
+  kWall,
+  kRoom,
+  kExit,
+};
+
 enum class Inhabitant
 {
   kNone,

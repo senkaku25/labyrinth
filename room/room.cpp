@@ -33,9 +33,11 @@ Room::Room( Inhabitant dark_thing,
   wall_west_  = wall_west;
 }
 
-// This method returns 0 if the direction has a wall, 1 if the direction has
-// another room, and 2 if the direction has the exit.
-int Room::DirectionCheck( Direction d )
+// This method returns:
+//   RoomBorder::kExit if the direction has the exit,
+//   RoomBorder::kRoom if the direction has another room, or
+//   RoomBorder::kWall if the direction has a wall.
+RoomBorder Room::DirectionCheck( Direction d )
 {
   if( d == Direction::kNone )
   {
@@ -45,7 +47,7 @@ int Room::DirectionCheck( Direction d )
 
   if( d == exit_ )
   {
-    return 2;
+    return RoomBorder::kExit;
   }
 
   else if( ( d == Direction::kNorth && !(wall_north_) ) ||
@@ -53,12 +55,12 @@ int Room::DirectionCheck( Direction d )
            ( d == Direction::kSouth && !(wall_south_) ) ||
            ( d == Direction::kWest  && !(wall_west_)  ) )
   {
-    return 1;
+    return RoomBorder::kRoom;
   }
 
   else
   {
-    return 0;
+    return RoomBorder::kWall;
   }
 }
 

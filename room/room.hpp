@@ -28,9 +28,11 @@ class Room
           bool wall_south,
           bool wall_west );
 
-    // This method returns 0 if the direction has a wall, 1 if the direction has
-    // another room, and 2 if the direction has the exit.
-    int DirectionCheck( Direction d );
+    // This method returns:
+    //   RoomBorder::kExit if the direction has the exit,
+    //   RoomBorder::kRoom if the direction has another room, or
+    //   RoomBorder::kWall if the direction has a wall.
+    RoomBorder DirectionCheck( Direction d );
     
     // This method returns the address of the Room in the given direction, or
     // nullptr if a wall exists.
