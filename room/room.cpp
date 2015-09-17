@@ -37,12 +37,14 @@ Room::Room( Inhabitant dark_thing,
 //   RoomBorder::kExit if the direction has the exit,
 //   RoomBorder::kRoom if the direction has another room, or
 //   RoomBorder::kWall if the direction has a wall.
+// An exception is thrown if:
+//   Direction d is kNone (invalid_argument)
 RoomBorder Room::DirectionCheck( Direction d )
 {
   if( d == Direction::kNone )
   {
-    std::cout << "Error: DirectionCheck() was given the direction 'none'.\n" ;
-    exit( 1 );
+    throw std::invalid_argument( "Error: DirectionCheck() was given the "\
+      "direction kNone.\n" ) ;
   }
 
   if( d == exit_ )

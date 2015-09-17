@@ -32,6 +32,8 @@ class Room
     //   RoomBorder::kExit if the direction has the exit,
     //   RoomBorder::kRoom if the direction has another room, or
     //   RoomBorder::kWall if the direction has a wall.
+    // An exception is thrown if:
+    //   Direction d is kNone (invalid_argument)
     RoomBorder DirectionCheck( Direction d );
 
   private:
