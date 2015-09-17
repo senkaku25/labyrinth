@@ -33,15 +33,6 @@ class Room
     //   RoomBorder::kRoom if the direction has another room, or
     //   RoomBorder::kWall if the direction has a wall.
     RoomBorder DirectionCheck( Direction d );
-    
-    // This method returns the address of the Room in the given direction, or
-    // nullptr if a wall exists.
-    // Cannot handle exits, which should be checked with DirectionCheck and
-    // handled by Labyrinth.
-    // An exception is thrown if:
-    //   Direction d is kNone (invalid_argument)
-    //   Direction d has an exit (logic_error)
-    Room* DirectionEnter( Direction d );
 
   private:
     // Room* containing a nullptr represents a wall.
