@@ -32,8 +32,7 @@ class Room
     // another room, and 2 if the direction has the exit.
     int DirectionCheck( Direction d );
     
-    // This method returns the address of the Room in the given direction, or NULL
-    // if no Room exists.
+    // This method returns the address of the Room in the given direction.
     // Cannot handle exits, which should be checked with DirectionCheck and
     // handled by Labyrinth.
     // An exception is thrown if:

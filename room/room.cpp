@@ -48,10 +48,10 @@ int Room::DirectionCheck( Direction d )
     return 2;
   }
 
-  else if( ( d == Direction::kNorth && north_ != NULL ) ||
-           ( d == Direction::kEast  && east_  != NULL ) ||
-           ( d == Direction::kSouth && south_ != NULL ) ||
-           ( d == Direction::kWest  && west_  != NULL ) )
+  else if( ( d == Direction::kNorth && north_ != nullptr ) ||
+           ( d == Direction::kEast  && east_  != nullptr ) ||
+           ( d == Direction::kSouth && south_ != nullptr ) ||
+           ( d == Direction::kWest  && west_  != nullptr ) )
   {
     return 1;
   }
@@ -62,8 +62,7 @@ int Room::DirectionCheck( Direction d )
   }
 }
 
-// This method returns the address of the Room in the given direction, or NULL
-// if no Room exists.
+// This method returns the address of the Room in the given direction.
 // Cannot handle exits, which should be checked with DirectionCheck and
 // handled by Labyrinth.
 // An exception is thrown if:
