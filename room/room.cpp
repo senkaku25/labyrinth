@@ -76,10 +76,7 @@ Room* Room::DirectionEnter( Direction d )
     throw std::invalid_argument( "Error: DirectionENter() was given a null "\
       "(kNone) direction.\n" );
   }
-  if( ( d == Direction::kNorth && exit_ == Direction::kNorth ) ||
-      ( d == Direction::kEast  && exit_ == Direction::kEast  ) ||
-      ( d == Direction::kSouth && exit_ == Direction::kSouth ) ||
-      ( d == Direction::kWest  && exit_ == Direction::kWest  ) )
+  else if( d == exit_ )
   {
     throw std::logic_error( "Error: DirectionEnter() was told to go through "\
       "the exit but cannot.\n This should be done by Labyrinth (detected by "\
