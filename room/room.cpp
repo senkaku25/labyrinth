@@ -13,9 +13,9 @@
 #include "room.hpp"
 
 // This constructor sets the necessary properties of a Room.
-Room::Room( inhabitant dark_thing,
-            item object,
-            direction exit,
+Room::Room( Inhabitant dark_thing,
+            Item object,
+            Direction exit,
             Room* north,
             Room* east,
             Room* south,
@@ -32,9 +32,9 @@ Room::Room( inhabitant dark_thing,
 
 // This method returns 0 if the direction has a wall, 1 if the direction has another room, and 2 if
 // the direction has the exit.
-int Room::DirectionCheck( direction d )
+int Room::DirectionCheck( Direction d )
 {
-  if( d == direction::none )
+  if( d == Direction::kNone )
   {
     std::cout << "Error: DirectionCheck() was given the direction 'none'.\n" ;
     exit( 1 );
@@ -45,10 +45,10 @@ int Room::DirectionCheck( direction d )
     return 2;
   }
 
-  else if( ( d == direction::north && north_ != NULL ) ||
-           ( d == direction::east  && east_  != NULL ) ||
-           ( d == direction::south && south_ != NULL ) ||
-           ( d == direction::west  && west_  != NULL ) )
+  else if( ( d == Direction::kNorth && north_ != NULL ) ||
+           ( d == Direction::kEast  && east_  != NULL ) ||
+           ( d == Direction::kSouth && south_ != NULL ) ||
+           ( d == Direction::kWest  && west_  != NULL ) )
   {
     return 1;
   }
@@ -62,12 +62,12 @@ int Room::DirectionCheck( direction d )
 // This method returns the address of the Room in the given direction, or NULL if no Room exists.
 // Should not be given an exit; exits should be checked with DirectionCheck and then handled
 // by Labyrinth.
-Room* Room::DirectionEnter( direction d )
+Room* Room::DirectionEnter( Direction d )
 {
-  if( ( d == direction::north && exit_ == direction::north ) ||
-      ( d == direction::east  && exit_ == direction::east  ) ||
-      ( d == direction::south && exit_ == direction::south ) ||
-      ( d == direction::west  && exit_ == direction::west  ) )
+  if( ( d == Direction::kNorth && exit_ == Direction::kNorth ) ||
+      ( d == Direction::kEast  && exit_ == Direction::kEast  ) ||
+      ( d == Direction::kSouth && exit_ == Direction::kSouth ) ||
+      ( d == Direction::kWest  && exit_ == Direction::kWest  ) )
   {
     std::cout << "Error: DirectionEnter() was told to go through the exit but cannot.\n\
                   This should be done by Labyrinth (detected by DirectionCheck() and\
@@ -75,15 +75,15 @@ Room* Room::DirectionEnter( direction d )
     exit( 1 );
   }
 
-  if( d == direction::north )
+  if( d == Direction::kNorth )
   {
     return north_;
   }
-  else if( d == direction::east )
+  else if( d == Direction::kEast )
   {
     return east_;
   }
-  else if( d == direction::south )
+  else if( d == Direction::kSouth )
   {
     return south_;
   }

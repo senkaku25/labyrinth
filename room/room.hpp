@@ -1,7 +1,7 @@
 /*
  *
  * Author: Jeffrey Leung
- * Last edited: 2015-05-20
+ * Last edited: 2015-09-17
  *
  * This header file contains implementations of a Room class, which is the template to create a Labyrinth.
  *
@@ -17,23 +17,23 @@
 class Room
 {
   public:
-    Room( inhabitant dark_thing,
-          item object,
-          direction exit,
+    Room( Inhabitant dark_thing,
+          Item object,
+          Direction exit,
           Room* north,
           Room* east,
           Room* south,
           Room* west );
 
-    int DirectionCheck( direction d );  // Returns 0 if facing a wall, 1 if facing a room,
+    int DirectionCheck( Direction d );  // Returns 0 if facing a wall, 1 if facing a room,
                                         // 2 if facing the exit.
-    Room* DirectionEnter( direction d );  // Returns the address of the next room.
+    Room* DirectionEnter( Direction d );  // Returns the address of the next room.
                                           // Will not allow exiting; should be done in Labyrinth.
 
   private:
-    inhabitant dark_thing_;
-    item object_;
-    direction exit_;
+    Inhabitant dark_thing_;
+    Item object_;
+    Direction exit_;
     Room* north_;
     Room* east_;
     Room* south_;

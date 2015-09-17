@@ -1,7 +1,7 @@
 /*
  *
  * Author: Jeffrey Leung
- * Last edited: 2015-05-20
+ * Last edited: 2015-09-17
  *
  * This header files contains enums necessary to create and navigate a Room.
  *
@@ -9,28 +9,28 @@
 
 #pragma once
 
-enum class direction
+enum class Direction
 {
-  none,
-  north,
-  east,
-  south,
-  west
+  kNone,
+  kNorth,
+  kEast,
+  kSouth,
+  kWest,
 };
 
-enum class inhabitant
+enum class Inhabitant
 {
-  none,
-  minotaur,
-  minotaur_dead,
-  mirror,
-  mirror_cracked
+  kNone,
+  kMinotaur,
+  kMinotaurDead,
+  kMirror,
+  kMirrorCracked,
 };
 
-enum class item
+enum class Item
 {
-  none,
-  bullet,
-  treasure,
-  treasure_gone
+  kNone,
+  kBullet,
+  kTreasure,
+  kTreasureGone,
 };
