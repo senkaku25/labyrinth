@@ -32,7 +32,8 @@ class Room
     // another room, and 2 if the direction has the exit.
     int DirectionCheck( Direction d );
     
-    // This method returns the address of the Room in the given direction.
+    // This method returns the address of the Room in the given direction, or
+    // nullptr if a wall exists.
     // Cannot handle exits, which should be checked with DirectionCheck and
     // handled by Labyrinth.
     // An exception is thrown if:
@@ -41,6 +42,7 @@ class Room
     Room* DirectionEnter( Direction d );
 
   private:
+    // Room* containing a nullptr represents a wall.
     Inhabitant dark_thing_;
     Item object_;
     Direction exit_;

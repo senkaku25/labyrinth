@@ -62,7 +62,8 @@ int Room::DirectionCheck( Direction d )
   }
 }
 
-// This method returns the address of the Room in the given direction.
+// This method returns the address of the Room in the given direction, or
+// nullptr if a wall exists.
 // Cannot handle exits, which should be checked with DirectionCheck and
 // handled by Labyrinth.
 // An exception is thrown if:
