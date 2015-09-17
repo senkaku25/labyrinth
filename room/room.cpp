@@ -9,6 +9,7 @@
  */
 
 #include <iostream>
+#include <stdexcept>
 
 #include "room_properties.hpp"
 #include "room.hpp"
@@ -63,8 +64,10 @@ int Room::DirectionCheck( Direction d )
 
 // This method returns the address of the Room in the given direction, or NULL
 // if no Room exists.
-// Should not be given an exit; exits should be checked with DirectionCheck
-// and then handled by Labyrinth.
+// Cannot handle exits, which should be checked with DirectionCheck and
+// handled by Labyrinth.
+// An exception is thrown if:
+//   Direction d has an exit (logic_error)
 Room* Room::DirectionEnter( Direction d )
 {
   if( ( d == Direction::kNorth && exit_ == Direction::kNorth ) ||
@@ -72,10 +75,9 @@ Room* Room::DirectionEnter( Direction d )
       ( d == Direction::kSouth && exit_ == Direction::kSouth ) ||
       ( d == Direction::kWest  && exit_ == Direction::kWest  ) )
   {
-    std::cout << "Error: DirectionEnter() was told to go through the exit but "\
-                 " cannot.\n This should be done by Labyrinth (detected by "\
-                 "DirectionCheck() and handled accordingly).\n" ;
-    exit( 1 );
+    throw std::logic_error( "Error: DirectionEnter() was told to go through "\
+      "the exit but cannot.\n This should be done by Labyrinth (detected by "\
+      "DirectionCheck() and handled accordingly).\n" );
   }
 
   if( d == Direction::kNorth )
