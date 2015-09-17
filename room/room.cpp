@@ -3,7 +3,8 @@
  * Author: Jeffrey Leung
  * Last edited: 2015-09-17
  *
- * This program contains implementations of a Room class, which is the template to create a Labyrinth.
+ * This program contains implementations of a Room class, which is a template
+ * to create a Labyrinth.
  *
  */
 
@@ -30,8 +31,8 @@ Room::Room( Inhabitant dark_thing,
   west_       = west;
 }
 
-// This method returns 0 if the direction has a wall, 1 if the direction has another room, and 2 if
-// the direction has the exit.
+// This method returns 0 if the direction has a wall, 1 if the direction has
+// another room, and 2 if the direction has the exit.
 int Room::DirectionCheck( Direction d )
 {
   if( d == Direction::kNone )
@@ -59,9 +60,10 @@ int Room::DirectionCheck( Direction d )
   }
 }
 
-// This method returns the address of the Room in the given direction, or NULL if no Room exists.
-// Should not be given an exit; exits should be checked with DirectionCheck and then handled
-// by Labyrinth.
+// This method returns the address of the Room in the given direction, or NULL
+// if no Room exists.
+// Should not be given an exit; exits should be checked with DirectionCheck
+// and then handled by Labyrinth.
 Room* Room::DirectionEnter( Direction d )
 {
   if( ( d == Direction::kNorth && exit_ == Direction::kNorth ) ||
@@ -69,9 +71,9 @@ Room* Room::DirectionEnter( Direction d )
       ( d == Direction::kSouth && exit_ == Direction::kSouth ) ||
       ( d == Direction::kWest  && exit_ == Direction::kWest  ) )
   {
-    std::cout << "Error: DirectionEnter() was told to go through the exit but cannot.\n\
-                  This should be done by Labyrinth (detected by DirectionCheck() and\
-                  handled accordingly).\n" ;
+    std::cout << "Error: DirectionEnter() was told to go through the exit but "\
+                 " cannot.\n This should be done by Labyrinth (detected by "\
+                 "DirectionCheck() and handled accordingly).\n" ;
     exit( 1 );
   }
 

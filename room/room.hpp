@@ -3,7 +3,8 @@
  * Author: Jeffrey Leung
  * Last edited: 2015-09-17
  *
- * This header file contains implementations of a Room class, which is the template to create a Labyrinth.
+ * This header file contains implementations of a Room class, which is a
+ * template to create a Labyrinth.
  *
  */
 
@@ -25,10 +26,15 @@ class Room
           Room* south,
           Room* west );
 
-    int DirectionCheck( Direction d );  // Returns 0 if facing a wall, 1 if facing a room,
-                                        // 2 if facing the exit.
-    Room* DirectionEnter( Direction d );  // Returns the address of the next room.
-                                          // Will not allow exiting; should be done in Labyrinth.
+    // This method returns 0 if the direction has a wall, 1 if the direction has
+    // another room, and 2 if the direction has the exit.
+    int DirectionCheck( Direction d );
+    
+    // This method returns the address of the Room in the given direction, or
+    // NULL if no Room exists.
+    // Should not be given an exit; exits should be checked with DirectionCheck
+    // and then handled by Labyrinth.
+    Room* DirectionEnter( Direction d );
 
   private:
     Inhabitant dark_thing_;
