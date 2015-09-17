@@ -37,6 +37,7 @@ class Room
     RoomBorder DirectionCheck( Direction d );
 
   private:
+    // The exit direction does not count as a wall.
     // Room* containing a nullptr represents a wall.
     Inhabitant dark_thing_;
     Item object_;
