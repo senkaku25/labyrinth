@@ -19,18 +19,18 @@
 Room::Room( Inhabitant dark_thing,
             Item object,
             Direction exit,
-            Room* north,
-            Room* east,
-            Room* south,
-            Room* west )
+            bool wall_north,
+            bool wall_east,
+            bool wall_south,
+            bool wall_west )
 {
   dark_thing_ = dark_thing;
   object_     = object;
   exit_       = exit;
-  north_      = north;
-  east_       = east;
-  south_      = south;
-  west_       = west;
+  wall_north_ = wall_north;
+  wall_east_  = wall_east;
+  wall_south_ = wall_south;
+  wall_west_  = wall_west;
 }
 
 // This method returns 0 if the direction has a wall, 1 if the direction has
@@ -48,10 +48,10 @@ int Room::DirectionCheck( Direction d )
     return 2;
   }
 
-  else if( ( d == Direction::kNorth && north_ != nullptr ) ||
-           ( d == Direction::kEast  && east_  != nullptr ) ||
-           ( d == Direction::kSouth && south_ != nullptr ) ||
-           ( d == Direction::kWest  && west_  != nullptr ) )
+  else if( ( d == Direction::kNorth && !(wall_north_) ) ||
+           ( d == Direction::kEast  && !(wall_east_)  ) ||
+           ( d == Direction::kSouth && !(wall_south_) ) ||
+           ( d == Direction::kWest  && !(wall_west_)  ) )
   {
     return 1;
   }
@@ -62,6 +62,7 @@ int Room::DirectionCheck( Direction d )
   }
 }
 
+/*
 // This method returns the address of the Room in the given direction, or
 // nullptr if a wall exists.
 // Cannot handle exits, which should be checked with DirectionCheck and
@@ -98,3 +99,4 @@ Room* Room::DirectionEnter( Direction d )
       return west_;
   }
 }
+*/

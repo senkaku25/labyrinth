@@ -23,10 +23,10 @@ class Room
     Room( Inhabitant dark_thing,
           Item object,
           Direction exit,
-          Room* north,
-          Room* east,
-          Room* south,
-          Room* west );
+          bool wall_north,
+          bool wall_east,
+          bool wall_south,
+          bool wall_west );
 
     // This method returns 0 if the direction has a wall, 1 if the direction has
     // another room, and 2 if the direction has the exit.
@@ -46,8 +46,8 @@ class Room
     Inhabitant dark_thing_;
     Item object_;
     Direction exit_;
-    Room* north_;
-    Room* east_;
-    Room* south_;
-    Room* west_;
+    bool wall_north_;
+    bool wall_east_;
+    bool wall_south_;
+    bool wall_west_;
 };
