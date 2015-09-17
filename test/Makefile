@@ -1,11 +1,9 @@
 # Source files
 SOURCES  = ../room/room_properties.hpp \
-           ../room/room.hpp \
-           ../labyrinth/labyrinth.hpp
+           ../room/room.hpp
 
 # Header files
-HSOURCES = ../room/room.cpp \
-           ../labyrinth/labyrinth.cpp
+HSOURCES = ../room/room.cpp
 
 # Compiler options
 CFLAGS = -std=c++11 -g -Wall

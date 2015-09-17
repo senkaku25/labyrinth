@@ -3,7 +3,7 @@
  * Author: Jeffrey Leung
  * Last edited: 2015-05-05
  *
- * This program contains implementations of a basic Room class, the building block of a game.
+ * This program contains implementations of a Room class, which is the template to create a Labyrinth.
  *
  */
 
@@ -34,7 +34,7 @@ Room::Room( inhabitant dark_thing,
 // the direction has the exit.
 int Room::DirectionCheck( direction d )
 {
-  if( d == direction::none )
+  if( d == none )
   {
     std::cout << "Error: DirectionCheck() was given the direction 'none'.\n" ;
     exit( 1 );
@@ -45,10 +45,10 @@ int Room::DirectionCheck( direction d )
     return 2;
   }
 
-  else if( ( d == direction::north && north_ != NULL ) ||
-           ( d == direction::east  && east_  != NULL ) ||
-           ( d == direction::south && south_ != NULL ) ||
-           ( d == direction::west  && west_  != NULL )
+  else if( ( d == north && north_ != NULL ) ||
+           ( d == east  && east_  != NULL ) ||
+           ( d == south && south_ != NULL ) ||
+           ( d == west  && west_  != NULL )
   {
     return 1;
   }
@@ -63,32 +63,30 @@ int Room::DirectionCheck( direction d )
 // by Labyrinth.
 Room* DirectionEnter( direction d )
 {
-  if( d == direction::none )
+  if( d == north && exit_ == north ||
+      d == east  && exit_ == east  ||
+      d == south && exit_ == south ||
+      d == west  && exit_ == west  )
   {
-    std::cout << "Error: DirectionEnter() was given the direction 'none'.\n" ;
-    exit( 1 );
-  }
-  else if( d == exit_ )
-  {
-    std::cout << "Error: DirectionEnter() was told to go through the exit but cannot.\n" \
-                 "This should be done by Labyrinth (detected by DirectionCheck() and " \
-                 "handled accordingly prior to calling DirectionEnter()).\n" ;
+    std::cout << "Error: DirectionEnter() was told to go through the exit but cannot.\n\
+                  This should be done by Labyrinth (detected by DirectionCheck() and\
+                  handled accordingly).\n" ;
     exit( 1 );
   }
 
-  if( d == direction::north )
+  if( d == north )
   {
     return north_;
   }
-  else if( d == direction::east )
+  else if( d == east )
   {
     return east_;
   }
-  else if( d == direction::south )
+  else if( d == south )
   {
     return south_;
   }
-  else if( d == direction::west )
+  else if( d == west )
   {
     return west_;
   }
