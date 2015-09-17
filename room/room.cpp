@@ -13,6 +13,7 @@
 #include "room_properties.hpp"
 #include "room.hpp"
 
+// Parameterized constructor
 // This constructor sets the necessary properties of a Room.
 Room::Room( Inhabitant dark_thing,
             Item object,

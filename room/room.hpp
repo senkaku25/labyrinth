@@ -12,12 +12,14 @@
 
 #include "room_properties.hpp"
 
-// Labyrinth - method to check for errors
 // Rooms: Spawn (1 respawn), treasure, exit
 
 class Room
 {
   public:
+  
+    // Parameterized constructor
+    // This constructor sets the necessary properties of a Room.
     Room( Inhabitant dark_thing,
           Item object,
           Direction exit,
