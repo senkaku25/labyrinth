@@ -67,9 +67,15 @@ int Room::DirectionCheck( Direction d )
 // Cannot handle exits, which should be checked with DirectionCheck and
 // handled by Labyrinth.
 // An exception is thrown if:
+//   Direction d is kNone (invalid_argument)
 //   Direction d has an exit (logic_error)
 Room* Room::DirectionEnter( Direction d )
 {
+  if( d == Direction::kNone )
+  {
+    throw std::invalid_argument( "Error: DirectionENter() was given a null "\
+      "(kNone) direction.\n" );
+  }
   if( ( d == Direction::kNorth && exit_ == Direction::kNorth ) ||
       ( d == Direction::kEast  && exit_ == Direction::kEast  ) ||
       ( d == Direction::kSouth && exit_ == Direction::kSouth ) ||
