@@ -1,5 +1,6 @@
-# Source files
-SOURCES  = ../room/room.cpp
+# Room source files
+ROOMSOURCES  = ../room/room.cpp \
+               test_room.cpp
 
 # Header files
 HSOURCES = ../room/room_properties.hpp \
@@ -20,13 +21,13 @@ CFLAGS = -std=c++11 -g -Wall
 # $ 'make' or 'make help'
 help:
 	# INSTRUCTIONS:
-	#   To test, run: make output
-	#   To test memory allocation, run: make output mem_chk
+	#   To test class Room, run: make room
+	#   To test memory allocation of class Room, run: make room mem_chk
 	#   To remove compiled output files, run: make clean
 
-# $ make output
-output: $(SOURCES) $(HSOURCES)
-	g++ $(CFLAGS) $(SOURCES) -o output
+# $ make room
+room: $(ROOMSOURCES) $(HSOURCES)
+	g++ $(CFLAGS) $(ROOMSOURCES) -o output
 	# To execute the program, run: ./output
 
 # $ make mem_chk
