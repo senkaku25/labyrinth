@@ -1,7 +1,7 @@
 /*
  *
  * Author: Jeffrey Leung
- * Last edited: 2015-09-17
+ * Last edited: 2015-09-19
  *
  * This program contains implementations of a Room class, which is a template
  * to create a Labyrinth.
@@ -11,8 +11,8 @@
 #include <iostream>
 #include <stdexcept>
 
-#include "room_properties.hpp"
-#include "room.hpp"
+#include "../include/room_properties.hpp"
+#include "../include/room.hpp"
 
 // Parameterized constructor
 // This constructor sets the necessary properties of a Room.

@@ -1,10 +1,10 @@
 # Room source files
-ROOMSOURCES  = ../room/room.cpp \
+ROOMSOURCES  = ../src/room.cpp \
                test_room.cpp
 
 # Header files
-HSOURCES = ../room/room_properties.hpp \
-           ../room/room.hpp
+HSOURCES = ../include/room_properties.hpp \
+           ../include/room.hpp
 
 # Compiler options
 CFLAGS = -std=c++11 -g -Wall

@@ -1,7 +1,7 @@
 /*
  *
  * Author: Jeffrey Leung
- * Last edited: 2015-09-18
+ * Last edited: 2015-09-19
  *
  * This C++ file tests the functionality of room.cpp.
  *
@@ -9,8 +9,8 @@
 
 #include <iostream>
 
-#include "../room/room_properties.hpp"
-#include "../room/room.hpp"
+#include "../include/room_properties.hpp"
+#include "../include/room.hpp"
 
 // This function returns the given type of room border as a string.
 std::string RoomBorderPrint( RoomBorder r )
