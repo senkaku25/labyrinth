@@ -3,7 +3,7 @@
  * Author: Jeffrey Leung
  * Last edited: 2015-09-19
  *
- * This header file contains implementations of a Room class, which is a
+ * This C++ header file contains implementations of a Room class, which is a
  * template to create a Labyrinth.
  *
  */
@@ -33,26 +33,22 @@ class Room
     // This method returns the current inhabitant of the Room.
     Inhabitant GetInhabitant();
     
-    // This method changes the current inhabitant of the Room.
+    // This method sets the current inhabitant of the Room.
     void SetInhabitant( Inhabitant inh );
     
     // This method returns the current item in the Room.
     Item GetItem();
     
-    // This method changes the current item in the Room.
+    // This method sets the current item in the Room.
     void SetItem( Item itm );
 
-    // This method returns:
-    //   RoomBorder::kExit if the direction has the exit,
-    //   RoomBorder::kRoom if the direction has another room, or
-    //   RoomBorder::kWall if the direction has a wall.
+    // This method returns the type of RoomBorder in the given direction.
     // An exception is thrown if:
     //   Direction d is kNone (invalid_argument)
     RoomBorder DirectionCheck( Direction d );
 
   private:
     // The exit direction does not count as a wall.
-    // Room* containing a nullptr represents a wall.
     Inhabitant dark_thing_;
     Item object_;
     Direction exit_;
