@@ -33,6 +33,32 @@ Room::Room( Inhabitant dark_thing,
   wall_west_  = wall_west;
 }
 
+// This method returns the current inhabitant of the Room.
+Inhabitant Room::GetInhabitant()
+{
+  return dark_thing_;
+}
+
+// This method changes the current inhabitant of the Room.
+void Room::SetInhabitant( Inhabitant inh )
+{
+  dark_thing_ = inh;
+  return;
+}
+    
+// This method returns the current item in the Room.
+Item Room::GetItem()
+{
+  return object_;
+}
+    
+// This method changes the current item in the Room.
+void Room::SetItem( Item itm )
+{
+  object_ = itm;
+  return;
+}
+
 // This method returns:
 //   RoomBorder::kExit if the direction has the exit,
 //   RoomBorder::kRoom if the direction has another room, or
