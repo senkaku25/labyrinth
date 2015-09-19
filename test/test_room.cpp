@@ -24,8 +24,8 @@ std::string RoomBorderPrint( RoomBorder r )
     case( RoomBorder::kExit ):
       return "Exit";
   }
-  return "Error: RoomBorderPrint() was given a RoomBorder which could not "\
-         "be detected.";
+  return "Error: RoomBorderPrint() was given a type of RoomBorder which "\
+         "could not be detected.";
 }
 
 int main()
