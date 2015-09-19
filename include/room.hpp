@@ -12,8 +12,6 @@
 
 #include "room_properties.hpp"
 
-// Rooms: Spawn (1 respawn), treasure, exit
-
 class Room
 {
   public:
