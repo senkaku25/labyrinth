@@ -1,10 +1,13 @@
 # Room source files
 ROOMSOURCES  = ../src/room.cpp \
-               test_room.cpp
+
+# Labyrinth source files
+LABYRINTHSOURCES = ../src/labyrinth.cpp \
 
 # Header files
 HSOURCES = ../include/room_properties.hpp \
-           ../include/room.hpp
+           ../include/room.hpp \
+           ../include/labyrinth.hpp
 
 # Compiler options
 CFLAGS = -std=c++11 -g -Wall
@@ -22,12 +25,18 @@ CFLAGS = -std=c++11 -g -Wall
 help:
 	# INSTRUCTIONS:
 	#   To test class Room, run: make room
-	#   To test memory allocation of class Room, run: make room mem_chk
+	#   To test class Labyrinth, run: make laby
+	#   To test memory allocation of class Labyrinth, run: make laby mem_chk
 	#   To remove compiled output files, run: make clean
 
 # $ make room
 room: $(ROOMSOURCES) $(HSOURCES)
-	g++ $(CFLAGS) $(ROOMSOURCES) -o output
+	g++ $(CFLAGS) $(ROOMSOURCES) test_room.cpp -o output
+	# To execute the program, run: ./output
+	
+# $ make laby
+laby: $(ROOMSOURCES) $(LABYRINTHSOURCES) $(HSOURCES)
+	g++ $(CFLAGS) $(ROOMSOURCES) $(LABYRINTHSOURCES) test_laby.cpp -o output
 	# To execute the program, run: ./output
 
 # $ make mem_chk
