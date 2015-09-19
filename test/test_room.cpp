@@ -48,6 +48,24 @@ std::string InhabitantPrint( Inhabitant inh )
          "could not be detected.";
 }
 
+// This function returns the given type of item as a string.
+std::string ItemPrint( Item itm )
+{
+  switch( itm )
+  {
+    case( Item::kNone ):
+      return "nothing";
+    case( Item::kBullet ):
+      return "a bullet";
+    case( Item::kTreasure ):
+      return "the treasure";
+    case( Item::kTreasureGone ):
+      return "a missing treasure";
+  }
+  return "Error: ItemPrint() was given a type of Item which "\
+         "could not be detected.";
+}
+
 int main()
 {
   std::cout << std::endl;
