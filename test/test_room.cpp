@@ -34,15 +34,15 @@ std::string InhabitantPrint( Inhabitant inh )
   switch( inh )
   {
     case( Inhabitant::kNone ):
-      return "none";
+      return "nothing";
     case( Inhabitant::kMinotaur ):
-      return "Minotaur";
+      return "a Minotaur";
     case( Inhabitant::kMinotaurDead ):
-      return "dead Minotaur";
+      return "a dead Minotaur";
     case( Inhabitant::kMirror ):
-      return "mirror";
+      return "a mirror";
     case( Inhabitant::kMirrorCracked ):
-      return "cracked mirror";
+      return "a cracked mirror";
   }
   return "Error: InhabitantPrint() was given a type of Inhabitant which "\
          "could not be detected.";
