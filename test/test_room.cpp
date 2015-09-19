@@ -15,18 +15,17 @@
 // This function returns the given type of room border as a string.
 std::string RoomBorderPrint( RoomBorder r )
 {
-  if( r == RoomBorder::kWall )
+  switch( r )
   {
-    return "Wall";
+    case( RoomBorder::kWall ):
+      return "Wall";
+    case( RoomBorder::kRoom ):
+      return "Room";
+    case( RoomBorder::kExit ):
+      return "Exit";
   }
-  else if( r == RoomBorder::kRoom )
-  {
-    return "Room";
-  }
-  else
-  {
-    return "Exit";
-  }
+  return "Error: RoomBorderPrint() was given a RoomBorder which could not "\
+         "be detected.";
 }
 
 int main()
