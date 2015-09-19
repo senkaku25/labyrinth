@@ -29,13 +29,13 @@ class Room
           bool wall_west );
           
     // This method returns the current inhabitant of the Room.
-    Inhabitant GetInhabitant();
+    Inhabitant GetInhabitant() const;
     
     // This method changes the current inhabitant of the Room.
     void SetInhabitant( Inhabitant inh );
     
     // This method returns the current item in the Room.
-    Item GetItem();
+    Item GetItem() const;
     
     // This method changes the current item in the Room.
     void SetItem( Item itm );
@@ -46,7 +46,7 @@ class Room
     //   RoomBorder::kWall if the direction has a wall.
     // An exception is thrown if:
     //   Direction d is kNone (invalid_argument)
-    RoomBorder DirectionCheck( Direction d );
+    RoomBorder DirectionCheck( Direction d ) const;
 
   private:
     // The exit direction does not count as a wall.

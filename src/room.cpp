@@ -34,7 +34,7 @@ Room::Room( Inhabitant dark_thing,
 }
 
 // This method returns the current inhabitant of the Room.
-Inhabitant Room::GetInhabitant()
+Inhabitant Room::GetInhabitant() const
 {
   return dark_thing_;
 }
@@ -47,7 +47,7 @@ void Room::SetInhabitant( Inhabitant inh )
 }
     
 // This method returns the current item in the Room.
-Item Room::GetItem()
+Item Room::GetItem() const
 {
   return object_;
 }
@@ -65,7 +65,7 @@ void Room::SetItem( Item itm )
 //   RoomBorder::kWall if the direction has a wall.
 // An exception is thrown if:
 //   Direction d is kNone (invalid_argument)
-RoomBorder Room::DirectionCheck( Direction d )
+RoomBorder Room::DirectionCheck( Direction d ) const
 {
   if( d == Direction::kNone )
   {
