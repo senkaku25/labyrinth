@@ -28,6 +28,26 @@ std::string RoomBorderPrint( RoomBorder r )
          "could not be detected.";
 }
 
+// This function returns the given type of inhabitant as a string.
+std::string InhabitantPrint( Inhabitant inh )
+{
+  switch( inh )
+  {
+    case( Inhabitant::kNone ):
+      return "none";
+    case( Inhabitant::kMinotaur ):
+      return "Minotaur";
+    case( Inhabitant::kMinotaurDead ):
+      return "dead Minotaur";
+    case( Inhabitant::kMirror ):
+      return "mirror";
+    case( Inhabitant::kMirrorCracked ):
+      return "cracked mirror";
+  }
+  return "Error: InhabitantPrint() was given a type of Inhabitant which "\
+         "could not be detected.";
+}
+
 int main()
 {
   std::cout << std::endl;
