@@ -27,6 +27,18 @@ class Room
           bool wall_east,
           bool wall_south,
           bool wall_west );
+          
+    // This method returns the current inhabitant of the Room.
+    Inhabitant GetInhabitant();
+    
+    // This method changes the current inhabitant of the Room.
+    void SetInhabitant( Inhabitant inh );
+    
+    // This method returns the current item in the Room.
+    Item GetItem();
+    
+    // This method changes the current item in the Room.
+    void SetItem( Item itm );
 
     // This method returns:
     //   RoomBorder::kExit if the direction has the exit,
