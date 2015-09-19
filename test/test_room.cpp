@@ -1,7 +1,7 @@
 /*
  *
  * Author: Jeffrey Leung
- * Last edited: 2015-09-17
+ * Last edited: 2015-09-18
  *
  * This C++ file tests the functionality of room.cpp.
  *
@@ -73,6 +73,8 @@ int main()
   std::cout << "________________________________________________" << std::endl;
   std::cout << std::endl;
   
+  
+  
   std::cout << "Creating a room with:" << std::endl;
   std::cout << "  A minotaur" << std::endl;
   std::cout << "  A bullet" << std::endl;
@@ -89,7 +91,44 @@ int main()
   std::cout << "________________________________________________" << std::endl;
   std::cout << std::endl;
   
+  
+  
+  std::cout << "Testing GetInhabitant() and SetInhabitant():" << std::endl;
+  
+  std::cout << "  The current inhabitant of the room is "
+            << InhabitantPrint( rm_1.GetInhabitant() )
+            << "." << std::endl;
+            
+  rm_1.SetInhabitant( Inhabitant::kMirrorCracked );
+  std::cout << "  After changing the inhabitant to a cracked mirror, the "
+            << "new inhabitant is (by GetInhabitant()) "
+            << InhabitantPrint( rm_1.GetInhabitant() )
+            << "." << std::endl;
+            
+  std::cout << "________________________________________________" << std::endl;
+  std::cout << std::endl;
+  
+  
+  
+  std::cout << "Testing GetItem() and SetItem():" << std::endl;
+  
+  std::cout << "  The current item in the room is "
+            << ItemPrint( rm_1.GetItem() )
+            << "." << std::endl;
+  
+  rm_1.SetItem( Item::kTreasureGone );
+  std::cout << "  After changing the item to a missing treasure, the "
+            << "new inhabitant is (by GetItem()) "
+            << ItemPrint( rm_1.GetItem() )
+            << "." << std::endl;
+            
+  std::cout << "________________________________________________" << std::endl;
+  std::cout << std::endl;
+    
+  
+  
   std::cout << "Testing DirectionCheck():" << std::endl;
+  
   std::cout << "  To the north of the room is a "
             << RoomBorderPrint( rm_1.DirectionCheck(Direction::kNorth) )
             << "." << std::endl;
@@ -102,6 +141,8 @@ int main()
   std::cout << "  To the west of the room is a "
             << RoomBorderPrint( rm_1.DirectionCheck(Direction::kWest) )
             << "." << std::endl;
+            
+            
             
   std::cout << "________________________________________________" << std::endl;
   std::cout << std::endl;
