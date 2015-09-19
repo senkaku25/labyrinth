@@ -12,22 +12,19 @@
 #include "../room/room_properties.hpp"
 #include "../room/room.hpp"
 
-// This function prints the given type of room border.
+// This function returns the given type of room border as a string.
 std::string RoomBorderPrint( RoomBorder r )
 {
   if( r == RoomBorder::kWall )
   {
-//    std::cout << "Wall";
     return "Wall";
   }
   else if( r == RoomBorder::kRoom )
   {
-//    std::cout << "Room";
     return "Room";
   }
   else
   {
-//    std::cout << "Exit";
     return "Exit";
   }
 }
