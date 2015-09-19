@@ -1,7 +1,7 @@
 /*
  *
  * Author: Jeffrey Leung
- * Last edited: 2015-09-17
+ * Last edited: 2015-09-19
  *
  * This header file contains implementations of a Room class, which is a
  * template to create a Labyrinth.
@@ -17,6 +17,10 @@
 class Room
 {
   public:
+  
+    // Default constructor
+    // This constructor sets a basic, walled, empty Room.
+    Room();
   
     // Parameterized constructor
     // This constructor sets the necessary properties of a Room.

@@ -14,6 +14,19 @@
 #include "../include/room_properties.hpp"
 #include "../include/room.hpp"
 
+// Default constructor
+// This constructor sets a basic, walled, empty Room.
+Room::Room()
+{
+  dark_thing_ = Inhabitant::kNone;
+  object_     = Item::kNone;
+  exit_       = Direction::kNone;
+  wall_north_ = true;
+  wall_east_  = true;
+  wall_south_ = true;
+  wall_west_ = true;
+}
+
 // Parameterized constructor
 // This constructor sets the necessary properties of a Room.
 Room::Room( Inhabitant dark_thing,
