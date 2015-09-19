@@ -6,3 +6,5 @@ The Labyrinth class contains a template for creating and playing a maze accordin
 
 ###TODO:
 1. Branch out and implement the Labyrinth class, using a 2-d array to store the rooms.
+1. Implement the Player class with inventory and location.
+1. Implement the PlayLabyrinth class to execute the game.
