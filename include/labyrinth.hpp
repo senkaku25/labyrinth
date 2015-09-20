@@ -140,6 +140,7 @@ class Labyrinth
     // false otherwise.
     // An exception is thrown if:
     //   One or both Rooms are outside the Labyrinth (invalid_argument)
+    //   The same Room is given twice (logic_error)
     bool IsAdjacent( Coordinate rm_1, Coordinate rm_2 );
     
 };
