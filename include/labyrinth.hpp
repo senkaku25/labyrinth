@@ -133,6 +133,12 @@ class Labyrinth
     bool exit_set_ = false;
     bool treasure_set_ = false;  // Changed to false when the treasure is held
                                  // by a Player
+                                 
+    // This private method returns a reference to the Room at the given
+    // coordinate.
+    // An exception is thrown if:
+    //   The Room is outside the Labyrinth (invalid_argument)
+    Room& RoomAt( Coordinate rm );
     
     // This private method returns true if the Room is within the bounds of
     // the Labyrinth, and false otherwise.

@@ -80,6 +80,20 @@ Labyrinth::~Labyrinth()
 
 // PRIVATE METHODS:
 
+// This private method returns a reference to the Room at the given
+// coordinate.
+// An exception is thrown if:
+//   The Room is outside the Labyrinth (invalid_argument)
+Room& Labyrinth::RoomAt( Coordinate rm )
+{
+  if( !WithinBounds(rm) )
+  {
+    throw std::invalid_argument( "Error: RoomAt() was given an invalid "\
+      "coordinate for rm." );
+  }
+  return rooms_[rm.x][rm.y];
+}
+
 // This private method returns true if the Room is within the bounds of
 // the Labyrinth, and false otherwise.
 bool Labyrinth::WithinBounds( Coordinate rm )
