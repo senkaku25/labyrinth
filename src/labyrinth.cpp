@@ -17,6 +17,8 @@
 #include "../include/coordinate.hpp"
 #include "../include/labyrinth.hpp"
 
+// CONSTRUCTOR/DESTRUCTOR:
+
 // Parameterized constructor
 // An exception is thrown if:
 //   A size of 0 is given (invalid_argument)
@@ -76,6 +78,96 @@ Labyrinth::~Labyrinth()
     delete [] rooms_[i];
   }
   delete [] rooms_;
+}
+
+// SETUP:
+
+// This method connects two Rooms by breaking their walls.
+// An exception is thrown if:
+//   The Rooms are already connected (logic_error)
+//   The Rooms are the same (logic_error)
+//   The Rooms are not adjacent (logic_error)
+//   One or both Rooms are outside the Labyrinth (invalid_argument)
+void Labyrinth::ConnectRooms( Coordinate rm_1, Coordinate rm_2 )
+{
+  if( rm_1 == rm_2 )
+  {
+    throw std::logic_error( "Error: ConnectRooms() was given the same "\
+      "coordinate for the two Rooms." );
+  }
+  
+  else if( !WithinBounds(rm_1) || !WithinBounds(rm_2) )
+  {
+    if( !WithinBounds(rm_1) )
+    {
+      if( !WithinBounds(rm_2) )
+      {
+        throw std::invalid_argument( "Error: ConnectRooms() was given invalid "\
+          "coordinates for both rm_1 and rm_2." );
+      }
+      else
+      {
+        throw std::invalid_argument( "Error: ConnectRooms() was given "\
+          "an invalid coordinate for rm_1." );
+      }
+    }
+    
+    else
+    {
+      throw std::invalid_argument( "Error: ConnectRooms() was given an "\
+        "invalid coordinate for rm_2." );
+    }
+  }
+  
+  else if( !IsAdjacent(rm_1, rm_2) )
+  {
+    throw std::logic_error( "Error: ConnectRooms() was given two coordinates "\
+      "which are not adjacent, and therefore cannot be connected." );
+  }
+  
+  unsigned int x_distance = rm_2.x - rm_1.x;
+  unsigned int y_distance = rm_2.y - rm_1.y;
+  
+  Direction break_wall_1;
+  Direction break_wall_2;
+  
+  if( x_distance == 0 )
+  {
+    if( y_distance > 0 )  // rm_1 is north of rm_2
+    {
+      break_wall_1 = Direction::kSouth;
+      break_wall_2 = Direction::kNorth;
+    }
+    else  // rm_1 is south of rm_2
+    {
+      break_wall_1 = Direction::kNorth;
+      break_wall_2 = Direction::kSouth;
+    }
+  }
+  
+  else if( y_distance == 0 )
+  {
+    if( x_distance > 0 )  // rm_1 is west of rm_2
+    {
+      break_wall_1 = Direction::kEast;
+      break_wall_2 = Direction::kWest;
+    }
+    else  // rm_1 is east of rm_2
+    {
+      break_wall_1 = Direction::kWest;
+      break_wall_2 = Direction::kEast;
+    }
+  }
+  
+  else
+  {
+    throw std::logic_error( "Error: ConnectRooms() called IsAdjacent(), "\
+      "which should have evaluated to false, but did not." );
+  }
+  
+  RoomAt(rm_1).BreakWall(break_wall_1);
+  RoomAt(rm_2).BreakWall(break_wall_2);
+  return;
 }
 
 // PRIVATE METHODS:
