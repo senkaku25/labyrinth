@@ -14,3 +14,15 @@
 #include "../include/room.hpp"
 #include "../include/labyrinth.hpp"
 
+// Parameterized constructor
+Labyrinth::Labyrinth( unsigned int x_size, unsigned int y_size )
+{
+  rooms_ = new Room*[ y_size ];
+  for( unsigned int i = 0; i < x_size; ++i )
+  {
+    rooms_[i] = new Room[ x_size ];
+  }
+  
+  x_size_ = x_size;
+  y_size_ = y_size;
+}
