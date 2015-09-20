@@ -14,4 +14,15 @@ struct Coordinate
 {
   unsigned int x;
   unsigned int y;
+  
+  // Operator overload for ==
+  bool operator==( const Coordinate& c ) const
+  {
+    if( x == c.x &&
+        y == c.y )
+    {
+      return true;
+    }
+    return false;
+  }
 };
