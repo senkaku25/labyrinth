@@ -72,6 +72,58 @@ void Room::SetItem( Item itm )
   return;
 }
 
+// This method removes the Wall in the given direction so that the Room
+// may be connected to another, or to set the exit.
+// An exception is thrown if:
+//   The Wall has already been removed (logic_error)
+//   Direction d is null (i.e. Direction::kNone) (invalid_argument)
+void Room::BreakWall( Direction d )
+{
+  switch( d )
+  {
+    case( Direction::kNone ):
+      throw std::invalid_argument( "Error: BreakWall() was given an "\
+        "invalid Direction (kNone). ");
+  
+    case( Direction::kNorth ):
+      if( !wall_north_ )  // Wall already removed
+      {
+        throw std::logic_error( "Error: BreakWall() was given an "\
+          "already-removed Wall." );
+      }
+      wall_north_ = false;
+      break;
+
+    case( Direction::kEast ):
+      if( !wall_east_ )
+      {
+        throw std::logic_error( "Error: BreakWall() was given an "\
+          "already-removed Wall." );
+      }
+      wall_east_ = false;
+      break;
+
+    case( Direction::kSouth ):
+      if( !wall_south_ )
+      {
+        throw std::logic_error( "Error: BreakWall() was given an "\
+          "already-removed Wall." );
+      }
+      wall_south_ = false;
+      break;
+
+    case( Direction::kWest ):
+      if( !wall_west_ )
+      {
+        throw std::logic_error( "Error: BreakWall() was given an "\
+          "already-removed Wall." );
+      }
+      wall_west_ = false;
+      break;
+  }
+  return;
+}
+
 // This method returns:
 //   RoomBorder::kExit if the direction has the exit,
 //   RoomBorder::kRoom if the direction has another room, or

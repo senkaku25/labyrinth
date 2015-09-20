@@ -41,6 +41,13 @@ class Room
     
     // This method sets the current item in the Room.
     void SetItem( Item itm );
+    
+    // This method removes the Wall in the given direction so that the Room
+    // may be connected to another, or to set the exit.
+    // An exception is thrown if:
+    //   The Wall has already been removed (logic_error)
+    //   Direction d is null (i.e. Direction::kNone) (invalid_argument)
+    void BreakWall( Direction d );
 
     // This method returns the type of RoomBorder in the given direction.
     // An exception is thrown if:
