@@ -7,6 +7,7 @@ LABYRINTHSOURCES = ../src/labyrinth.cpp \
 # Header files
 HSOURCES = ../include/room_properties.hpp \
            ../include/room.hpp \
+           ../include/coordinate.hpp \
            ../include/labyrinth.hpp
 
 # Compiler options
