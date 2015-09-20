@@ -118,7 +118,7 @@ class Labyrinth
     
   private:
   
-    Room* rooms_;
+    Room** rooms_;
     unsigned int x_size_;
     unsigned int y_size_;
     
@@ -126,9 +126,9 @@ class Labyrinth
     //   Must be set before the game begins
     Coordinate spawn_1_;
     Coordinate spawn_2_;
-    bool exit_set_;
-    bool treasure_set_;  // Changed to false when the treasure is held by
-                         // a Player
+    bool exit_set_ = false;
+    bool treasure_set_ = false;  // Changed to false when the treasure is held
+                                 // by a Player
     
     // This private method returns true if the two Rooms are adjacent, and
     // false otherwise.
