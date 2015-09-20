@@ -24,6 +24,8 @@ class Labyrinth
     // CONSTRUCTOR/DESTRUCTOR:
   
       // Parameterized constructor
+      // An exception is thrown if:
+      //   A size of 0 is given (invalid_argument)
       Labyrinth( unsigned int x_size, unsigned int y_size );
     
       // Destructor
