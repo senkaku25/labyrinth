@@ -18,7 +18,7 @@
 Labyrinth::Labyrinth( unsigned int x_size, unsigned int y_size )
 {
   rooms_ = new Room*[ y_size ];
-  for( unsigned int i = 0; i < x_size; ++i )
+  for( unsigned int i = 0; i < y_size; ++i )
   {
     rooms_[i] = new Room[ x_size ];
   }
