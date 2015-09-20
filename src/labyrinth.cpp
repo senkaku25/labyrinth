@@ -76,3 +76,19 @@ Labyrinth::~Labyrinth()
   }
   delete [] rooms_;
 }
+
+// PRIVATE METHODS:
+
+// This private method returns true if the Room is within the bounds of
+// the Labyrinth, and false otherwise.
+bool Labyrinth::WithinBounds( Coordinate rm )
+{
+  if(    0 < rm.x    &&
+      rm.x < x_size_ &&
+         0 < rm.y    &&
+      rm.y < y_size_ )
+  {
+    return true;
+  }
+  return false;
+}
