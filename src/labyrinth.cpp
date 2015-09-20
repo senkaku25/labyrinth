@@ -119,7 +119,7 @@ bool Labyrinth::IsAdjacent( Coordinate rm_1, Coordinate rm_2 )
   if( rm_1 == rm_2 )
   {
     throw std::logic_error( "Error: IsAdjacent() was given the same "\
-      "coordinate for the Rooms to connect." );
+      "coordinate for the Rooms." );
   }
   
   unsigned int x_distance = abs( rm_1.x - rm_2.x );
