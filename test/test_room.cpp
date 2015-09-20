@@ -79,14 +79,14 @@ int main()
   std::cout << "  A minotaur" << std::endl;
   std::cout << "  A bullet" << std::endl;
   std::cout << "  An exit north of the room" << std::endl;
-  std::cout << "  A wall to the south of the room" << std::endl;
-  std::cout << "  Entrances to other rooms to the east and west of the room "
+  std::cout << "  Walls to the south and west of the room" << std::endl;
+  std::cout << "  Entrances to other rooms to the east of the room "
             << std::endl;
   
   Room rm_1( Inhabitant::kMinotaur,
              Item::kBullet,
              Direction::kNorth,
-             false, false, true, false );
+             false, false, true, true );
   std::cout << "Completed." << std::endl;
   std::cout << "________________________________________________" << std::endl;
   std::cout << std::endl;
@@ -124,7 +124,19 @@ int main()
             
   std::cout << "________________________________________________" << std::endl;
   std::cout << std::endl;
-    
+  
+  
+  
+  std::cout << "Testing BreakWall():" << std::endl;
+  
+  std::cout << "  Breaking the west wall... ";
+  rm_1.BreakWall( Direction::kWest );
+  std::cout << "Completed."
+            << std::endl;
+  
+  std::cout << "________________________________________________" << std::endl;
+  std::cout << std::endl;
+  
   
   
   std::cout << "Testing DirectionCheck():" << std::endl;
