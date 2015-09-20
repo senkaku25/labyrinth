@@ -130,6 +130,10 @@ class Labyrinth
     bool treasure_set_ = false;  // Changed to false when the treasure is held
                                  // by a Player
     
+    // This private method returns true if the Room is within the bounds of
+    // the Labyrinth, and false otherwise.
+    bool WithinBounds( Coordinate rm );
+    
     // This private method returns true if the two Rooms are adjacent, and
     // false otherwise.
     // An exception is thrown if:
