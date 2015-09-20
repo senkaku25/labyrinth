@@ -26,3 +26,13 @@ Labyrinth::Labyrinth( unsigned int x_size, unsigned int y_size )
   x_size_ = x_size;
   y_size_ = y_size;
 }
+
+// Destructor
+Labyrinth::~Labyrinth()
+{
+  for( unsigned int i = 0; i < y_size_; ++i )
+  {
+    delete [] rooms_[i];
+  }
+  delete [] rooms_;
+}
