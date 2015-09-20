@@ -8,6 +8,7 @@
  *
  */
  
+#include <cmath>
 #include <iostream>
 #include <stdexcept>
 
@@ -91,4 +92,47 @@ bool Labyrinth::WithinBounds( Coordinate rm )
     return true;
   }
   return false;
+}
+
+// This private method returns true if the two Rooms are adjacent, and
+// false otherwise.
+// An exception is thrown if:
+//   One or both Rooms are outside the Labyrinth (invalid_argument)
+//   The same Room is given twice (logic_error)
+bool Labyrinth::IsAdjacent( Coordinate rm_1, Coordinate rm_2 )
+{
+  if( !WithinBounds(rm_1) )
+  {
+    if( !WithinBounds(rm_2) )
+    {
+      throw std::invalid_argument( "Error: IsAdjacent() was given invalid "\
+      "coordinates for both rm_1 and rm_2." );
+    }
+    else
+    {
+      throw std::invalid_argument( "Error: IsAdjacent() was given an invalid "\
+      "coordinate for rm_1." );
+    }
+  }
+  else if( !WithinBounds(rm_2) )
+  {
+    throw std::invalid_argument( "Error: IsAdjacent() was given an invalid "\
+      "coordinate for rm_2." );
+  }
+  
+  if( rm_1 == rm_2 )
+  {
+    throw std::logic_error( "Error: IsAdjacent() was given the same "\
+      "coordinate for the Rooms to connect." );
+  }
+  
+  unsigned int x_distance = abs( rm_1.x - rm_2.x );
+  unsigned int y_distance = abs( rm_1.y - rm_2.y );
+  
+  if( ( x_distance == 0 && y_distance == 1 ) ||
+      ( x_distance == 1 && y_distance == 0 ) )
+  {
+    return true;
+  }
+  return false; 
 }
