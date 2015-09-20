@@ -36,6 +36,7 @@ class Labyrinth
       // This method connects two Rooms by breaking their walls.
       // An exception is thrown if:
       //   The Rooms are already connected (logic_error)
+      //   The Rooms are the same (logic_error)
       //   One or both Rooms are outside the Labyrinth (invalid_argument)
       void ConnectRooms( Coordinate rm_1, Coordinate rm_2 );
     
