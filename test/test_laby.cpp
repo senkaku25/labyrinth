@@ -28,7 +28,7 @@ int main()
             << "  x size = 3" << std::endl
             << "  y size = 5" << std::endl;
   
-  Labyrinth( 3, 5 );
+  Labyrinth l1( 3, 5 );
   std::cout << "Completed." << std::endl;
   std::cout << std::endl;
   
@@ -54,7 +54,7 @@ int main()
       case( '1' ):
         try
         {
-          Labyrinth( 0, 10 );
+          Labyrinth l_empty( 0, 10 );
         }
         catch( std::exception& e )
         {
@@ -65,7 +65,7 @@ int main()
       case( '2' ):
         try
         {
-          Labyrinth( 10, 0 );
+          Labyrinth l_empty( 10, 0 );
         }
         catch( std::exception& e )
         {
@@ -76,7 +76,7 @@ int main()
       case( '3' ):
         try
         {
-          Labyrinth( 0, 0 );
+          Labyrinth l_empty( 0, 0 );
         }
         catch( std::exception& e )
         {
