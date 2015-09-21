@@ -4,7 +4,7 @@
  * Last edited: 2015-09-19
  *
  * This C++ header file contains the implementation of a Coordinate struct
- * used by the Labyrinth class
+ * used by the Labyrinth class.
  *
  */
  

@@ -12,7 +12,6 @@
 #include <stdexcept>
 
 #include "../include/room_properties.hpp"
-#include "../include/room.hpp"
 #include "../include/coordinate.hpp"
 #include "../include/labyrinth.hpp"
 
