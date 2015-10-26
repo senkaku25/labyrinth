@@ -24,37 +24,20 @@
 //   A size of 0 is given (invalid_argument)
 Labyrinth::Labyrinth( unsigned int x_size, unsigned int y_size )
 {
-  bool x_empty;
   if( x_size == 0 )
   {
-    x_empty = true;
+    if( y_size == 0 )
+    {
+      throw std::invalid_argument( "Error: Labyrinth() was given empty x and "\
+        "y sizes." );  
+    }
+    else
+    {
+      throw std::invalid_argument( "Error: Labyrinth() was given an empty "\
+        "x size." );
+    }
   }
-  else
-  {
-    x_empty = false;
-  }
-  
-  bool y_empty;
-  if( y_size == 0 )
-  {
-    y_empty = true;
-  }
-  else
-  {
-    y_empty = false;
-  }
-  
-  if( x_empty && y_empty )
-  {
-    throw std::invalid_argument( "Error: Labyrinth() was given empty x and "\
-      "y sizes." );  
-  }
-  else if( x_empty )
-  {
-    throw std::invalid_argument( "Error: Labyrinth() was given an empty "\
-      "x size." );
-  }
-  else if( y_empty )
+  else if( y_size == 0 )
   {
     throw std::invalid_argument( "Error: Labyrinth() was given an empty "\
       "y size." );
