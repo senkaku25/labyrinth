@@ -25,24 +25,23 @@ class LabyrinthMapCoordinate
 
 // This class contains necessary information about a given Border coordinate,
 // so that a map can be displayed.
-// Borders are false by default to avoid working explicitly with:
+// Borders/Walls are true by default to avoid working explicitly with:
 //   The outer wall
-//   The Borders directly North/East/South/West of a Room
 class LabyrinthMapCoordinateBorder : LabyrinthMapCoordinate
 {
   public:
   
-    // This method creates the Wall of a given Wall coordinate.
-    // May be used to set a Wall which has already been set.
+    // This method removes the Wall of a given Wall coordinate.
+    // May be used to remove a Wall which has already been removed.
     // An exception is thrown if:
     //   d is kNone (invalid_argument)
     void SetWall( Direction d );
   
   private:
-    bool wall_north_ = false;
-    bool wall_east_  = false;
-    bool wall_south_ = false;
-    bool wall_west_  = false;
+    bool wall_north_ = true;
+    bool wall_east_  = true;
+    bool wall_south_ = true;
+    bool wall_west_  = true;
     
     bool exit_       = false;
 };
