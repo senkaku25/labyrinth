@@ -3,12 +3,14 @@ ROOMSOURCES  = ../src/room.cpp \
 
 # Labyrinth source files
 LABYRINTHSOURCES = ../src/labyrinth.cpp \
+                   ../src/labyrinth_map.cpp \
 
 # Header files
 HSOURCES = ../include/room_properties.hpp \
            ../include/room.hpp \
            ../include/coordinate.hpp \
-           ../include/labyrinth.hpp
+           ../include/labyrinth.hpp \
+           ../include/labyrinth_map.hpp \
 
 # Compiler options
 CFLAGS = -std=c++11 -g -Wall
