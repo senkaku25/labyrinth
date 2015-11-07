@@ -11,7 +11,6 @@
 #pragma once
 
 #include <iostream>
-#include <stdexcept>
 
 #include "room_properties.hpp"
 #include "labyrinth.hpp"
