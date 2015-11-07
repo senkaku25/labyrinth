@@ -39,4 +39,12 @@ void LabyrinthMapCoordinateBorder::SetWall( Direction d )
   return;
 }
 
+// This method sets the current inhabitant of the map's Room.
+// May be used to set the inhabitant to the same inhabitant, or to
+// no inhabitant.
+void LabyrinthMapCoordinateRoom::SetInhabitant( Inhabitant inh )
+{
+  i_ = inh;
+}
+
 //TODO Implementation of labyrinth_map.hpp
