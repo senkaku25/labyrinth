@@ -11,3 +11,4 @@ The Labyrinth class contains a template for creating and playing a maze accordin
 1. Branch out and implement the Labyrinth class, using a 2-d array to store the rooms.
 1. Implement the Player class with inventory and location.
 1. Implement the PlayLabyrinth class to execute the game.
+1. Use [NCurses](http://hughm.cs.ukzn.ac.za/~murrellh/os/notes/ncurses.html) to play the game in an isolated terminal.
