@@ -1,7 +1,7 @@
 /*
  *
  * Author: Jeffrey Leung
- * Last edited: 2015-11-06
+ * Last edited: 2015-12-05
  *
  * This C++ header file contains the LabyrinthMap class which creates, updates,
  * and displays a map of a given Labyrinth.
@@ -52,6 +52,13 @@ void LabyrinthMapCoordinateRoom::SetInhabitant( Inhabitant inh )
 void LabyrinthMapCoordinateRoom::SetTreasure()
 {
   treasure_ = true;
+}
+
+// This method removes the treasure from the Room.
+// May be used when there is no treasure in the map's Room.
+void LabyrinthMapCoordinateRoom::RemoveTreasure()
+{
+  treasure_ = false;
 }
 
 //TODO Implementation of labyrinth_map.hpp
