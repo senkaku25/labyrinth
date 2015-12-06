@@ -1,7 +1,7 @@
 /*
  *
  * Author: Jeffrey Leung
- * Last edited: 2015-11-02
+ * Last edited: 2015-12-05
  *
  * This C++ header file contains classes related to creating a LabyrinthMap
  * which creates, updates, and displays a map of a given Labyrinth.
@@ -76,6 +76,8 @@ class LabyrinthMap
   public:
 
     // Parameterized constructor
+    // An exception is thrown if:
+    //   l is null (invalid_argument)
     LabyrinthMap( Labyrinth* l,
                   unsigned int x_size,
                   unsigned int y_size );
@@ -88,7 +90,7 @@ class LabyrinthMap
 
   private:
 
-    Labyrinth* l;
+    Labyrinth* l_;
 
     unsigned int x_size_;
     unsigned int y_size_;
