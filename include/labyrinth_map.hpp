@@ -61,8 +61,7 @@ class LabyrinthMapCoordinateRoom : LabyrinthMapCoordinate
     void SetTreasure();
 
     // This method removes the treasure from the Room.
-    // An exception is thrown if:
-    //   The treasure is not in the map's Room (logic_error)
+    // May be used when there is no treasure in the map's Room.
     void RemoveTreasure();
 
   private:
