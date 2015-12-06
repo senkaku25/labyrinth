@@ -93,10 +93,10 @@ class LabyrinthMap
     unsigned int x_size_;
     unsigned int y_size_;
 
+    // 2-d array of LabyrinthMapCoordinate pointers
+    LabyrinthMapCoordinate*** map_;
     unsigned int map_x_size_;
     unsigned int map_y_size_;
-
-    LabyrinthMapCoordinate** map_;
 
     // This method returns true if x and y in the map array designate a Room,
     // and false if they designate a Border.
