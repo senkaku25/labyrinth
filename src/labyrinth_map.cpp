@@ -47,4 +47,11 @@ void LabyrinthMapCoordinateRoom::SetInhabitant( Inhabitant inh )
   i_ = inh;
 }
 
+// This method places the treasure in the map's Room.
+// May be used when there is already a treasure in the map's Room.
+void LabyrinthMapCoordinateRoom::SetTreasure()
+{
+  treasure_ = true;
+}
+
 //TODO Implementation of labyrinth_map.hpp
