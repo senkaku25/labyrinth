@@ -26,7 +26,7 @@ class LabyrinthMapCoordinate
 // so that a map can be displayed.
 // Borders/Walls are true by default to avoid working explicitly with:
 //   The outer wall
-class LabyrinthMapCoordinateBorder : LabyrinthMapCoordinate
+class LabyrinthMapCoordinateBorder : public LabyrinthMapCoordinate
 {
   public:
 
@@ -47,7 +47,7 @@ class LabyrinthMapCoordinateBorder : LabyrinthMapCoordinate
 
 // This class contains necessary information about a given Room coordinate,
 // so that a map can be displayed.
-class LabyrinthMapCoordinateRoom : LabyrinthMapCoordinate
+class LabyrinthMapCoordinateRoom : public LabyrinthMapCoordinate
 {
   public:
 
@@ -90,7 +90,6 @@ class LabyrinthMap
   private:
 
     Labyrinth* l_;
-
     unsigned int x_size_;
     unsigned int y_size_;
 
