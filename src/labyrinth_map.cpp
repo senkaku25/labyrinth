@@ -160,8 +160,8 @@ LabyrinthMap::LabyrinthMap( Labyrinth* l,
 // of the Map, and false otherwise.
 bool LabyrinthMap::WithinBoundsOfMap( const Coordinate c ) const
 {
-  return ( -1 < c.x && c.x < map_x_size_ &&
-           -1 < c.y && c.y < map_y_size_ );
+  return ( c.x < map_x_size_ &&
+           c.y < map_y_size_ );
 }
 
 // This private method returns true if the coordinate designates a Room in
