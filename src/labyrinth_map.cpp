@@ -95,18 +95,12 @@ bool LabyrinthMapCoordinateRoom::HasTreasure() const
   return treasure_;
 }
 
-// This method places the treasure in the map's Room.
-// May be used when there is already a treasure in the map's Room.
-void LabyrinthMapCoordinateRoom::SetTreasure()
+// This method sets whether or not the treasure is in the given map's Room.
+// May be used to set the treasure when there is already a treasure in
+// the Room, or to remove the treasure when there is no treasure already.
+void LabyrinthMapCoordinateRoom::SetTreasure( bool b )
 {
-  treasure_ = true;
-}
-
-// This method removes the treasure from the Room.
-// May be used when there is no treasure in the map's Room.
-void LabyrinthMapCoordinateRoom::RemoveTreasure()
-{
-  treasure_ = false;
+  treasure_ = b;
 }
 
 //TODO Implementation of labyrinth_map.hpp

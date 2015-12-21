@@ -79,13 +79,10 @@ class LabyrinthMapCoordinateRoom : public LabyrinthMapCoordinate
     // This method returns whether the treasure is in a given Room.
     bool HasTreasure() const;
 
-    // This method places the treasure in the map's Room.
-    // May be used when there is already a treasure in the map's Room.
-    void SetTreasure();
-
-    // This method removes the treasure from the Room.
-    // May be used when there is no treasure in the map's Room.
-    void RemoveTreasure();
+    // This method sets whether or not the treasure is in the given map's Room.
+    // May be used to set the treasure when there is already a treasure in
+    // the Room, or to remove the treasure when there is no treasure already.
+    void SetTreasure( bool b );
 
   private:
     Inhabitant i_ = Inhabitant::kNone;
