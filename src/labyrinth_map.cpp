@@ -61,6 +61,20 @@ void LabyrinthMapCoordinateBorder::RemoveWall( Direction d )
   return;
 }
 
+// This method returns whether a given Wall coordinate has the exit.
+bool LabyrinthMapCoordinateBorder::IsExit() const
+{
+  return exit_;
+}
+
+// This method sets whether or not a given Wall coordinate has the exit.
+// May be used to set an exit where the exit already exists, or to remove
+// an exit where none exists.
+void LabyrinthMapCoordinateBorder::SetExit( bool b )
+{
+  exit_ = b;
+}
+
 // This method sets the current inhabitant of the map's Room.
 // May be used to set the inhabitant to the same inhabitant, or to
 // no inhabitant.
