@@ -125,6 +125,18 @@ class LabyrinthMap
     //   The Coordinate is outside of the Map (domain_error)
     bool IsRoom( const Coordinate c ) const;
 
+    // This method converts a Labyrinth Coordinate to the same location in
+    // the Map.
+    // An exception is thrown if:
+    //   The Coordinate is outside of the Labyrinth (invalid_argument)
+    Coordinate& LabyrinthToMap( const Coordinate c );
+
+    // This method converts a Map Room Coordinate to the same location in
+    // An exception is thrown if:
+    //   The Coordinate is outside of the Labyrinth (domain_error)
+    //   The Coordinate designates a border (logic_error)
+    Coordinate& MapToLabyrinth( const Coordinate c );
+
     // This method updates the map by checking the contents of the Labyrinth.
     void Update();
 };
