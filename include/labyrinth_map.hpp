@@ -119,10 +119,10 @@ class LabyrinthMap
     unsigned int map_x_size_;
     unsigned int map_y_size_;
 
-    // This method returns true if the coordinate designates a Room in the map,
+    // This method returns true if the Coordinate designates a Room in the map,
     // and false if it designates a Border.
     // An exception is thrown if:
-    //   The coordinate is outside of the Map (invalid_argument)
+    //   The Coordinate is outside of the Map (domain_error)
     bool IsRoom( const Coordinate c ) const;
 
     // This method updates the map by checking the contents of the Labyrinth.
