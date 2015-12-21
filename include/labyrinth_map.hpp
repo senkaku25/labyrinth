@@ -33,11 +33,25 @@ class LabyrinthMapCoordinateBorder : public LabyrinthMapCoordinate
 {
   public:
 
+    // This method returns whether a given Wall coordinate has a wall in the
+    // given direction.
+    // An exception is thrown if:
+    //   d is kNone (invalid_argument)
+    bool IsWall( Direction d ) const;
+
     // This method removes the Wall of a given Wall coordinate.
     // May be used to remove a Wall which has already been removed.
     // An exception is thrown if:
     //   d is kNone (invalid_argument)
     void RemoveWall( Direction d );
+
+    // This method returns whether a given Wall coordinate has the exit.
+    bool IsExit() const;
+
+    // This method sets whether or not a given Wall coordinate has the exit.
+    // May be used to set an exit where the exit already exists, or to remove
+    // an exit where none exists.
+    void SetExit( bool b );
 
   private:
     bool wall_north_ = true;
@@ -54,10 +68,16 @@ class LabyrinthMapCoordinateRoom : public LabyrinthMapCoordinate
 {
   public:
 
+    // This method returns the inhabitant of the current Room.
+    Inhabitant HasInhabitant() const;
+
     // This method sets the current inhabitant of the map's Room.
     // May be used to set the inhabitant to the same inhabitant, or to
     // no inhabitant.
     void SetInhabitant( Inhabitant inh );
+
+    // This method returns whether the treasure is in a given Room.
+    bool HasTreasure() const;
 
     // This method places the treasure in the map's Room.
     // May be used when there is already a treasure in the map's Room.
@@ -68,7 +88,7 @@ class LabyrinthMapCoordinateRoom : public LabyrinthMapCoordinate
     void RemoveTreasure();
 
   private:
-    Inhabitant i_   = Inhabitant::kNone;
+    Inhabitant i_ = Inhabitant::kNone;
     bool treasure_ = false;
 };
 
