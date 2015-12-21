@@ -119,6 +119,10 @@ class LabyrinthMap
     unsigned int map_x_size_;
     unsigned int map_y_size_;
 
+    // This method returns true if the Coordinate is within the bounds
+    // of the Map, and false otherwise.
+    bool WithinBoundsOfMap( const Coordinate c ) const;
+
     // This method returns true if the Coordinate designates a Room in the map,
     // and false if it designates a Border.
     // An exception is thrown if:
