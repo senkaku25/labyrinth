@@ -12,6 +12,7 @@
 
 #include <iostream>
 
+#include "coordinate.hpp"
 #include "room_properties.hpp"
 #include "labyrinth.hpp"
 
@@ -118,9 +119,11 @@ class LabyrinthMap
     unsigned int map_x_size_;
     unsigned int map_y_size_;
 
-    // This method returns true if x and y in the map array designate a Room,
-    // and false if they designate a Border.
-    bool IsRoom( unsigned int x, unsigned int y ) const;
+    // This method returns true if the coordinate designates a Room in the map,
+    // and false if it designates a Border.
+    // An exception is thrown if:
+    //   The coordinate is outside of the Map (invalid_argument)
+    bool IsRoom( const Coordinate c ) const;
 
     // This method updates the map by checking the contents of the Labyrinth.
     void Update();

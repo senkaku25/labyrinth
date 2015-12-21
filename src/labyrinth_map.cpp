@@ -103,4 +103,24 @@ void LabyrinthMapCoordinateRoom::SetTreasure( bool b )
   treasure_ = b;
 }
 
+// This private method returns true if the coordinate designates a Room in
+// the map, and false if it designates a Border.
+// An exception is thrown if:
+//   The coordinate is outside of the Map (invalid_argument)
+bool LabyrinthMap::IsRoom( const Coordinate c ) const
+{
+  if( 0 < c.x &&
+      c.x < map_x_size_ &&
+      0 < c.y &&
+      c.y < map_y_size_ )
+  {
+    return c.x % 2 == 1 && c.y % 2 == 1;
+  }
+  else
+  {
+    throw std::invalid_argument( "Error: IsRoom() was given a Coordinate "\
+      "outside of the Map." );
+  }
+}
+
 //TODO Implementation of labyrinth_map.hpp
