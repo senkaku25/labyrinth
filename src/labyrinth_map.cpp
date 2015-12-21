@@ -75,12 +75,24 @@ void LabyrinthMapCoordinateBorder::SetExit( bool b )
   exit_ = b;
 }
 
+// This method returns the inhabitant of the current Room.
+Inhabitant LabyrinthMapCoordinateRoom::HasInhabitant() const
+{
+  return i_;
+}
+
 // This method sets the current inhabitant of the map's Room.
 // May be used to set the inhabitant to the same inhabitant, or to
 // no inhabitant.
 void LabyrinthMapCoordinateRoom::SetInhabitant( Inhabitant inh )
 {
   i_ = inh;
+}
+
+// This method returns whether the treasure is in a given Room.
+bool LabyrinthMapCoordinateRoom::HasTreasure() const
+{
+  return treasure_;
 }
 
 // This method places the treasure in the map's Room.
