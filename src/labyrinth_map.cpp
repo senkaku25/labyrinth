@@ -131,11 +131,14 @@ LabyrinthMap::LabyrinthMap( Labyrinth* l,
   }
 
   // Creation of the individual map rooms/borders
+  Coordinate c;
   for( unsigned int y = 0; y < map_y_size_; ++y )
   {
     for( unsigned int x = 0; x < map_x_size_; ++x )
     {
-      if( IsRoom( x, y ) )
+      c.x = x;
+      c.y = y;
+      if( IsRoom(c) )
       {
         map_[x][y] = new LabyrinthMapCoordinateRoom;
       }
@@ -155,7 +158,7 @@ LabyrinthMap::LabyrinthMap( Labyrinth* l,
 
 // This method returns true if the Coordinate is within the bounds
 // of the Map, and false otherwise.
-bool WithinBoundsOfMap( const Coordinate c ) const
+bool LabyrinthMap::WithinBoundsOfMap( const Coordinate c ) const
 {
   return ( -1 < c.x && c.x < map_x_size_ &&
            -1 < c.y && c.y < map_y_size_ );
