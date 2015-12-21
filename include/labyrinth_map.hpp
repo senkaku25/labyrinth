@@ -1,7 +1,7 @@
 /*
  *
  * Author: Jeffrey Leung
- * Last edited: 2015-12-05
+ * Last edited: 2015-12-12
  *
  * This C++ header file contains classes related to creating a LabyrinthMap
  * which creates, updates, and displays a map of a given Labyrinth.
@@ -24,6 +24,9 @@ class LabyrinthMapCoordinate
 
 // This class contains necessary information about a given Border coordinate,
 // so that a map can be displayed.
+//
+// A Border is the boundary between 2 Rooms, the corner between
+// 4 Rooms, or a coordinate of the outermost wall.
 // Borders/Walls are true by default to avoid working explicitly with:
 //   The outer wall
 class LabyrinthMapCoordinateBorder : public LabyrinthMapCoordinate
@@ -34,7 +37,7 @@ class LabyrinthMapCoordinateBorder : public LabyrinthMapCoordinate
     // May be used to remove a Wall which has already been removed.
     // An exception is thrown if:
     //   d is kNone (invalid_argument)
-    void SetWall( Direction d );
+    void RemoveWall( Direction d );
 
   private:
     bool wall_north_ = true;

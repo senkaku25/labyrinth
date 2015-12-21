@@ -1,7 +1,7 @@
 /*
  *
  * Author: Jeffrey Leung
- * Last edited: 2015-12-05
+ * Last edited: 2015-12-21
  *
  * This C++ header file contains the LabyrinthMap class which creates, updates,
  * and displays a map of a given Labyrinth.
@@ -16,7 +16,7 @@
 // May be used to set a Wall which has already been set.
 // An exception is thrown if:
 //   d is kNone (invalid_argument)
-void LabyrinthMapCoordinateBorder::SetWall( Direction d )
+void LabyrinthMapCoordinateBorder::RemoveWall( Direction d )
 {
   switch( d )
   {
