@@ -153,16 +153,21 @@ LabyrinthMap::LabyrinthMap( Labyrinth* l,
   //Update();  //TODO Uncomment when Update() is implemented
 }
 
+// This method returns true if the Coordinate is within the bounds
+// of the Map, and false otherwise.
+bool WithinBoundsOfMap( const Coordinate c ) const
+{
+  return ( -1 < c.x && c.x < map_x_size_ &&
+           -1 < c.y && c.y < map_y_size_ );
+}
+
 // This private method returns true if the coordinate designates a Room in
 // the map, and false if it designates a Border.
 // An exception is thrown if:
 //   The coordinate is outside of the Map (domain_error)
 bool LabyrinthMap::IsRoom( const Coordinate c ) const
 {
-  if( 0 < c.x &&
-      c.x < map_x_size_ &&
-      0 < c.y &&
-      c.y < map_y_size_ )
+  if( WithinBoundsOfMap(c) )
   {
     return c.x % 2 == 1 && c.y % 2 == 1;
   }
