@@ -103,6 +103,56 @@ void LabyrinthMapCoordinateRoom::SetTreasure( bool b )
   treasure_ = b;
 }
 
+// Parameterized constructor
+// An exception is thrown if:
+//   l is null (invalid_argument)
+LabyrinthMap::LabyrinthMap( Labyrinth* l,
+                            unsigned int x_size,
+                            unsigned int y_size )
+{
+  if( l == nullptr )
+  {
+    throw std::invalid_argument( "Error: LabyrinthMap() was given an "\
+      "invalid (null) pointer for the Labyrinth." );
+  }
+
+  l_ = l;
+  x_size_ = x_size;
+  y_size_ = y_size;
+
+  map_x_size_ = x_size * 2 + 1;
+  map_y_size_ = y_size * 2 + 1;
+
+  // Creation of the map array
+  map_ = new LabyrinthMapCoordinate**[ map_y_size_ ];
+  for( unsigned int i = 0; i < map_y_size_; ++i )
+  {
+    map_[i] = new LabyrinthMapCoordinate*[ map_x_size_ ];
+  }
+
+  // Creation of the individual map rooms/borders
+  for( unsigned int y = 0; y < map_y_size_; ++y )
+  {
+    for( unsigned int x = 0; x < map_x_size_; ++x )
+    {
+      if( IsRoom( x, y ) )
+      {
+        map_[x][y] = new LabyrinthMapCoordinateRoom;
+      }
+      else
+      {
+        map_[x][y] = new LabyrinthMapCoordinateBorder;
+      }
+    }
+  }
+
+  //TODO Remove excess bounds on the exterior of the Labyrinth
+  //TODO Initialization of the border coordinates
+
+
+  //Update();  //TODO Uncomment when Update() is implemented
+}
+
 // This private method returns true if the coordinate designates a Room in
 // the map, and false if it designates a Border.
 // An exception is thrown if:
