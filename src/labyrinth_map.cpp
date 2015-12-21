@@ -12,6 +12,28 @@
 
 #include "../include/labyrinth_map.hpp"
 
+// This method returns whether a given Wall coordinate has a wall in the
+// given direction.
+// An exception is thrown if:
+//   d is kNone (invalid_argument)
+bool LabyrinthMapCoordinateBorder::IsWall( Direction d ) const
+{
+  switch( d )
+  {
+    case Direction::kNorth:
+      return wall_north_;
+    case Direction::kEast:
+      return wall_east_;
+    case Direction::kSouth:
+      return wall_south_;
+    case Direction::kWest:
+      return wall_west_;
+    default:
+      throw std::invalid_argument( "Error: IsWall() was given an invalid " \
+        "direction (kNone)." );
+  }
+}
+
 // This method creates the Wall of a given Wall coordinate.
 // May be used to set a Wall which has already been set.
 // An exception is thrown if:
