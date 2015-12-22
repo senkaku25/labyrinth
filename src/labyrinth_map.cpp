@@ -200,4 +200,27 @@ void LabyrinthMap::LabyrinthToMap( Coordinate c )
   }
 }
 
+// This method converts a Map Room Coordinate to the same location in
+// An exception is thrown if:
+//   The Coordinate is outside of the Labyrinth (domain_error)
+//   The Coordinate designates a border (logic_error)
+void LabyrinthMap::MapToLabyrinth( Coordinate c )
+{
+  if( !WithinBoundsOfMap(c) )
+  {
+    throw std::domain_error( "Error: MapToLabyrinth() was given a "\
+      "Coordinate outside of the LabyrinthMap." );
+  }
+  else if( !IsRoom(c) )
+  {
+    throw std::logic_error( "Error: MapToLabyrinth() was given a "\
+      "Coordinate designating a Border, not a Room." );
+  }
+  else
+  {
+    c.x = (c.x - 1) / 2;
+    c.y = (c.y - 1) / 2;
+  }
+}
+
 //TODO Implementation of labyrinth_map.hpp
