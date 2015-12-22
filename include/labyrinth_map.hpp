@@ -119,28 +119,30 @@ class LabyrinthMap
     unsigned int map_x_size_;
     unsigned int map_y_size_;
 
-    // This method returns true if the Coordinate is within the bounds
+    // This private method returns true if the Coordinate is within the bounds
     // of the Map, and false otherwise.
     bool WithinBoundsOfMap( const Coordinate c ) const;
 
-    // This method returns true if the Coordinate designates a Room in the map,
-    // and false if it designates a Border.
+    // This private method returns true if the Coordinate designates a Room
+    // in the map, and false if it designates a Border.
     // An exception is thrown if:
     //   The Coordinate is outside of the Map (domain_error)
     bool IsRoom( const Coordinate c ) const;
 
-    // This method converts a Labyrinth Coordinate to the same location in
-    // the Map.
+    // This private method converts a Labyrinth Coordinate to the same
+    // location in the Map.
     // An exception is thrown if:
     //   The Coordinate is outside of the Labyrinth (invalid_argument)
     void LabyrinthToMap( Coordinate c );
 
-    // This method converts a Map Room Coordinate to the same location in
+    // This private method converts a Map Room Coordinate to the same
+    // Room in the Labyrinth.
     // An exception is thrown if:
     //   The Coordinate is outside of the Labyrinth (domain_error)
     //   The Coordinate designates a border (logic_error)
     void MapToLabyrinth( Coordinate c );
 
-    // This method updates the map by checking the contents of the Labyrinth.
+    // This private method updates the map by checking the contents
+    // of the Labyrinth.
     void Update();
 };

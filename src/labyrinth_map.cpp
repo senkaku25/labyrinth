@@ -156,7 +156,7 @@ LabyrinthMap::LabyrinthMap( Labyrinth* l,
   //Update();  //TODO Uncomment when Update() is implemented
 }
 
-// This method returns true if the Coordinate is within the bounds
+// This private method returns true if the Coordinate is within the bounds
 // of the Map, and false otherwise.
 bool LabyrinthMap::WithinBoundsOfMap( const Coordinate c ) const
 {
@@ -164,10 +164,10 @@ bool LabyrinthMap::WithinBoundsOfMap( const Coordinate c ) const
            c.y < map_y_size_ );
 }
 
-// This private method returns true if the coordinate designates a Room in
-// the map, and false if it designates a Border.
+// This private method returns true if the Coordinate designates a Room
+// in the map, and false if it designates a Border.
 // An exception is thrown if:
-//   The coordinate is outside of the Map (domain_error)
+//   The Coordinate is outside of the Map (domain_error)
 bool LabyrinthMap::IsRoom( const Coordinate c ) const
 {
   if( WithinBoundsOfMap(c) )
@@ -181,8 +181,8 @@ bool LabyrinthMap::IsRoom( const Coordinate c ) const
   }
 }
 
-// This method converts a Labyrinth Coordinate to the same location in
-// the Map.
+// This private method converts a Labyrinth Coordinate to the same
+// location in the Map.
 // An exception is thrown if:
 //   The Coordinate is outside of the Labyrinth (invalid_argument)
 void LabyrinthMap::LabyrinthToMap( Coordinate c )
@@ -200,7 +200,8 @@ void LabyrinthMap::LabyrinthToMap( Coordinate c )
   }
 }
 
-// This method converts a Map Room Coordinate to the same location in
+// This private method converts a Map Room Coordinate to the same
+// Room in the Labyrinth.
 // An exception is thrown if:
 //   The Coordinate is outside of the Labyrinth (domain_error)
 //   The Coordinate designates a border (logic_error)
