@@ -133,13 +133,13 @@ class LabyrinthMap
     // the Map.
     // An exception is thrown if:
     //   The Coordinate is outside of the Labyrinth (invalid_argument)
-    Coordinate& LabyrinthToMap( const Coordinate c );
+    void LabyrinthToMap( Coordinate c );
 
     // This method converts a Map Room Coordinate to the same location in
     // An exception is thrown if:
     //   The Coordinate is outside of the Labyrinth (domain_error)
     //   The Coordinate designates a border (logic_error)
-    Coordinate& MapToLabyrinth( const Coordinate c );
+    void MapToLabyrinth( Coordinate c );
 
     // This method updates the map by checking the contents of the Labyrinth.
     void Update();
