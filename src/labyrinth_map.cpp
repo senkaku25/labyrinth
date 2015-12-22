@@ -181,4 +181,23 @@ bool LabyrinthMap::IsRoom( const Coordinate c ) const
   }
 }
 
+// This method converts a Labyrinth Coordinate to the same location in
+// the Map.
+// An exception is thrown if:
+//   The Coordinate is outside of the Labyrinth (invalid_argument)
+void LabyrinthMap::LabyrinthToMap( Coordinate c )
+{
+  if( c.x < x_size_ &&
+      c.y < y_size_ )
+  {
+    c.x = c.x * 2 + 1;
+    c.y = c.y * 2 + 1;
+  }
+  else
+  {
+    throw std::invalid_argument( "Error: LabyrinthToMap() was given a "\
+      "Coordinate outside of the Labyrinth." );
+  }
+}
+
 //TODO Implementation of labyrinth_map.hpp
