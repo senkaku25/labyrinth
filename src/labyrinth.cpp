@@ -159,7 +159,7 @@ void Labyrinth::ConnectRooms( Coordinate rm_1, Coordinate rm_2 )
 // coordinate.
 // An exception is thrown if:
 //   The Room is outside the Labyrinth (invalid_argument)
-Room& Labyrinth::RoomAt( Coordinate rm )
+Room& Labyrinth::RoomAt( Coordinate rm ) const
 {
   if( !WithinBounds(rm) )
   {
@@ -171,7 +171,7 @@ Room& Labyrinth::RoomAt( Coordinate rm )
 
 // This private method returns true if the Room is within the bounds of
 // the Labyrinth, and false otherwise.
-bool Labyrinth::WithinBounds( Coordinate rm )
+bool Labyrinth::WithinBounds( Coordinate rm ) const
 {
   return(    0 < rm.x    &&
           rm.x < x_size_ &&
@@ -184,7 +184,7 @@ bool Labyrinth::WithinBounds( Coordinate rm )
 // An exception is thrown if:
 //   One or both Rooms are outside the Labyrinth (invalid_argument)
 //   The same Room is given twice (logic_error)
-bool Labyrinth::IsAdjacent( Coordinate rm_1, Coordinate rm_2 )
+bool Labyrinth::IsAdjacent( Coordinate rm_1, Coordinate rm_2 ) const
 {
   if( !WithinBounds(rm_1) )
   {
