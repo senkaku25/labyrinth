@@ -153,6 +153,28 @@ void Labyrinth::ConnectRooms( Coordinate rm_1, Coordinate rm_2 )
   return;
 }
 
+// PLAY:
+
+// This method returns the type of RoomBorder in the given direction.
+// An exception is thrown if:
+//   The Room is outside the Labyrinth (invalid_argument)
+//   Direction d is kNone (invalid_argument)
+RoomBorder Labyrinth::DirectionCheck( Coordinate rm, Direction d ) const
+{
+  if( !WithinBounds(rm) )
+  {
+    throw std::invalid_argument( "Error: DirectionCheck() was given a "\
+      "Coordinate outside of the Labyrinth." );
+  }
+  else if( d == Direction::kNone )
+  {
+    throw std::invalid_argument( "Error: DirectionCheck() was given an "\
+      "invalid direction (kNone)." );
+  }
+
+  return RoomAt(rm).DirectionCheck(d);
+}
+
 // PRIVATE METHODS:
 
 // This private method returns a reference to the Room at the given
