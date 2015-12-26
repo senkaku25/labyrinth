@@ -15,6 +15,21 @@ struct Coordinate
   unsigned int x;
   unsigned int y;
 
+  // Default constructor
+  Coordinate()
+  {
+    x = 0;
+    y = 0;
+  }
+
+  // Parameterized constructor
+  Coordinate( unsigned int x_coordinate,
+              unsigned int y_coordinate )
+  {
+    x = x_coordinate;
+    y = y_coordinate;
+  }
+
   // Operator overload for ==
   bool operator==( const Coordinate& c ) const
   {
