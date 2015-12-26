@@ -181,6 +181,22 @@ bool LabyrinthMap::IsRoom( const Coordinate c ) const
   }
 }
 
+// This private method returns a reference to the Map Coordinate at
+// the given Coordinate.
+// An exception is thrown if:
+//   The Coordinate is outside of the Map (domain_error)
+LabyrinthMapCoordinate&
+LabyrinthMap::MapCoordinateAt( const Coordinate c ) const
+{
+  if( !WithinBoundsOfMap(c) )
+  {
+    throw std::domain_error( "Error: MapCoordinateAt() was given a "\
+      "Coordinate outside of the Map." );
+  }
+
+  return *(map_[c.x][c.y]);
+}
+
 // This private method converts a Labyrinth Coordinate to the same
 // location in the Map.
 // An exception is thrown if:
