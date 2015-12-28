@@ -188,7 +188,7 @@ Room& Labyrinth::RoomAt( Coordinate rm ) const
     throw std::invalid_argument( "Error: RoomAt() was given an invalid "\
       "coordinate for rm.\n" );
   }
-  return rooms_[rm.x][rm.y];
+  return rooms_[rm.y][rm.x];
 }
 
 // This private method returns true if the Room is within the bounds of
