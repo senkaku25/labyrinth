@@ -126,16 +126,10 @@ LabyrinthMap::LabyrinthMap( Labyrinth* l,
   map_y_size_ = y_size * 2 + 1;
 
   // Creation of the map array
-  map_ = new LabyrinthMapCoordinate**[ map_y_size_ ];
-  for( unsigned int i = 0; i < map_y_size_; ++i )
-  {
-    map_[i] = new LabyrinthMapCoordinate*[ map_x_size_ ];
-  }
-
-  // Creation of the individual map rooms/borders
   Coordinate c;
   for( unsigned int y = 0; y < map_y_size_; ++y )
   {
+    map_[y] = new LabyrinthMapCoordinate*[ map_x_size_ ];
     for( unsigned int x = 0; x < map_x_size_; ++x )
     {
       c.x = x;
