@@ -34,7 +34,7 @@ bool LabyrinthMapCoordinateBorder::IsWall( Direction d ) const
       return wall_west_;
     default:
       throw std::invalid_argument( "Error: IsWall() was given an invalid " \
-        "direction (kNone)." );
+        "direction (kNone).\n" );
   }
 }
 
@@ -60,7 +60,7 @@ void LabyrinthMapCoordinateBorder::RemoveWall( Direction d )
       return;
     default:
       throw std::invalid_argument( "Error: SetWall() was given an invalid "\
-        "direction (kNone)." );
+        "direction (kNone).\n" );
   }
   return;
 }
@@ -117,7 +117,7 @@ LabyrinthMap::LabyrinthMap( Labyrinth* l,
   if( l == nullptr )
   {
     throw std::invalid_argument( "Error: LabyrinthMap() was given an "\
-      "invalid (null) pointer for the Labyrinth." );
+      "invalid (null) pointer for the Labyrinth.\n" );
   }
 
   l_ = l;
@@ -297,7 +297,7 @@ bool LabyrinthMap::IsRoom( const Coordinate c ) const
   else
   {
     throw std::domain_error( "Error: IsRoom() was given a Coordinate "\
-      "outside of the Map." );
+      "outside of the Map.\n" );
   }
 }
 
@@ -311,7 +311,7 @@ LabyrinthMap::MapCoordinateAt( const Coordinate c ) const
   if( !WithinBoundsOfMap(c) )
   {
     throw std::domain_error( "Error: MapCoordinateAt() was given a "\
-      "Coordinate outside of the Map." );
+      "Coordinate outside of the Map.\n" );
   }
 
   return *(map_[c.y][c.x]);
@@ -332,7 +332,7 @@ void LabyrinthMap::LabyrinthToMap( Coordinate c ) const
   else
   {
     throw std::invalid_argument( "Error: LabyrinthToMap() was given a "\
-      "Coordinate outside of the Labyrinth." );
+      "Coordinate outside of the Labyrinth.\n" );
   }
 }
 
@@ -346,12 +346,12 @@ void LabyrinthMap::MapToLabyrinth( Coordinate c ) const
   if( !WithinBoundsOfMap(c) )
   {
     throw std::domain_error( "Error: MapToLabyrinth() was given a "\
-      "Coordinate outside of the LabyrinthMap." );
+      "Coordinate outside of the LabyrinthMap.\n" );
   }
   else if( !IsRoom(c) )
   {
     throw std::logic_error( "Error: MapToLabyrinth() was given a "\
-      "Coordinate designating a Border, not a Room." );
+      "Coordinate designating a Border, not a Room.\n" );
   }
   else
   {
@@ -370,12 +370,12 @@ std::string LabyrinthMap::DisplayBorder( const Coordinate c ) const
   if( !WithinBoundsOfMap(c) )
   {
     throw std::domain_error( "Error: DisplayBorder() was given an invalid "\
-      "Coordinate." );
+      "Coordinate.\n" );
   }
   else if( IsRoom(c) )
   {
     throw std::logic_error( "Error: DisplayBorder() was given a "\
-      "Room Coordinate." );
+      "Room Coordinate.\n" );
   }
 
   RoomBorder rb_n;
@@ -446,7 +446,7 @@ std::string LabyrinthMap::DisplayBorder( const Coordinate c ) const
   else
   {
     throw std::logic_error( "Error: DisplayBorder()'s check for "\
-      "NESW values missed a possible value." );
+      "NESW values missed a possible value.\n" );
   }
 }
 //TODO Implementation of labyrinth_map.hpp
