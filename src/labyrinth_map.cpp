@@ -168,7 +168,7 @@ LabyrinthMap::LabyrinthMap( Labyrinth* l,
   // Loops through the labyrinth
   for( unsigned int y = 0; y < y_size_; ++y )
   {
-    for( unsigned int x = 0; x < x_size_; ++y )
+    for( unsigned int x = 0; x < x_size_; ++x )
     {
       c_laby.x = x;
       c_laby.y = y;
