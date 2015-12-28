@@ -195,10 +195,7 @@ Room& Labyrinth::RoomAt( Coordinate rm ) const
 // the Labyrinth, and false otherwise.
 bool Labyrinth::WithinBounds( Coordinate rm ) const
 {
-  return(    0 < rm.x    &&
-          rm.x < x_size_ &&
-             0 < rm.y    &&
-          rm.y < y_size_ );
+  return( rm.x < x_size_ && rm.y < y_size_ );
 }
 
 // This private method returns true if the two Rooms are adjacent, and
