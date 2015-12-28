@@ -31,6 +31,12 @@ class LabyrinthMapCoordinate
 {
   public:
 
+    // Destructor
+    // Prevents error messages about non-virtual destructors
+    virtual ~LabyrinthMapCoordinate()
+    {
+    }
+
     // Border-only methods:
 
     virtual bool IsWall( Direction d ) const
