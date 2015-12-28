@@ -1,7 +1,7 @@
 /*
  *
  * Author: Jeffrey Leung
- * Last edited: 2015-09-19
+ * Last edited: 2015-12-28
  *
  * This program contains implementations of a Room class, which is a template
  * to create a Labyrinth.
@@ -45,13 +45,13 @@ void Room::SetInhabitant( Inhabitant inh )
   dark_thing_ = inh;
   return;
 }
-    
+
 // This method returns the current item in the Room.
 Item Room::GetItem() const
 {
   return object_;
 }
-    
+
 // This method changes the current item in the Room.
 void Room::SetItem( Item itm )
 {
@@ -70,13 +70,13 @@ void Room::BreakWall( Direction d )
   {
     case( Direction::kNone ):
       throw std::invalid_argument( "Error: BreakWall() was given an "\
-        "invalid Direction (kNone). ");
-  
+        "invalid Direction (kNone).\n");
+
     case( Direction::kNorth ):
       if( !wall_north_ )  // Wall already removed
       {
         throw std::logic_error( "Error: BreakWall() was given an "\
-          "already-removed Wall." );
+          "already-removed Wall.\n" );
       }
       wall_north_ = false;
       break;
@@ -85,7 +85,7 @@ void Room::BreakWall( Direction d )
       if( !wall_east_ )
       {
         throw std::logic_error( "Error: BreakWall() was given an "\
-          "already-removed Wall." );
+          "already-removed Wall.\n" );
       }
       wall_east_ = false;
       break;
@@ -94,7 +94,7 @@ void Room::BreakWall( Direction d )
       if( !wall_south_ )
       {
         throw std::logic_error( "Error: BreakWall() was given an "\
-          "already-removed Wall." );
+          "already-removed Wall.\n" );
       }
       wall_south_ = false;
       break;
@@ -103,7 +103,7 @@ void Room::BreakWall( Direction d )
       if( !wall_west_ )
       {
         throw std::logic_error( "Error: BreakWall() was given an "\
-          "already-removed Wall." );
+          "already-removed Wall.\n" );
       }
       wall_west_ = false;
       break;
