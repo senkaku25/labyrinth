@@ -421,26 +421,26 @@ std::string LabyrinthMap::DisplayBorder( const Coordinate c ) const
   // Characters taken from the Unicode section of:
   // https://en.wikipedia.org/wiki/Box-drawing_character
 
-  if( strcmp(borders_nesw, "0000") ) return " ";
+  if( strcmp(borders_nesw, "0000") == 0 ) return " ";
 
-  else if( strcmp(borders_nesw, "1000") ) return u8"╵";
-  else if( strcmp(borders_nesw, "0100") ) return u8"╶";
-  else if( strcmp(borders_nesw, "0010") ) return u8"╷";
-  else if( strcmp(borders_nesw, "0001") ) return u8"╴";
+  else if( strcmp(borders_nesw, "1000") == 0 ) return u8"╵";
+  else if( strcmp(borders_nesw, "0100") == 0 ) return u8"╶";
+  else if( strcmp(borders_nesw, "0010") == 0 ) return u8"╷";
+  else if( strcmp(borders_nesw, "0001") == 0 ) return u8"╴";
 
-  else if( strcmp(borders_nesw, "1100") ) return u8"└";
-  else if( strcmp(borders_nesw, "1010") ) return u8"│";
-  else if( strcmp(borders_nesw, "1001") ) return u8"┘";
-  else if( strcmp(borders_nesw, "0110") ) return u8"┌";
-  else if( strcmp(borders_nesw, "0101") ) return u8"─";
-  else if( strcmp(borders_nesw, "0011") ) return u8"┐";
+  else if( strcmp(borders_nesw, "1100") == 0 ) return u8"└";
+  else if( strcmp(borders_nesw, "1010") == 0 ) return u8"│";
+  else if( strcmp(borders_nesw, "1001") == 0 ) return u8"┘";
+  else if( strcmp(borders_nesw, "0110") == 0 ) return u8"┌";
+  else if( strcmp(borders_nesw, "0101") == 0 ) return u8"─";
+  else if( strcmp(borders_nesw, "0011") == 0 ) return u8"┐";
 
-  else if( strcmp(borders_nesw, "1110") ) return u8"├";
-  else if( strcmp(borders_nesw, "1101") ) return u8"┴";
-  else if( strcmp(borders_nesw, "1011") ) return u8"┤";
-  else if( strcmp(borders_nesw, "0111") ) return u8"┬";
+  else if( strcmp(borders_nesw, "1110") == 0 ) return u8"├";
+  else if( strcmp(borders_nesw, "1101") == 0 ) return u8"┴";
+  else if( strcmp(borders_nesw, "1011") == 0 ) return u8"┤";
+  else if( strcmp(borders_nesw, "0111") == 0 ) return u8"┬";
 
-  else if( strcmp(borders_nesw, "1111") ) return u8"┼";
+  else if( strcmp(borders_nesw, "1111") == 0 ) return u8"┼";
 
   else
   {
