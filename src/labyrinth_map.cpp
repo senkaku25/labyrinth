@@ -8,6 +8,7 @@
  *
  */
 
+#include <cstring>
 #include <stdexcept>
 
 #include "../include/room_properties.hpp"
@@ -332,4 +333,92 @@ void LabyrinthMap::MapToLabyrinth( Coordinate c ) const
   }
 }
 
+// This private method returns a character representing the given
+// Border Coordinate.
+// An exception is thrown if:
+//   The Coordinate is outside of the Labyrinth (domain_error)
+//   The Coordinate designates a Room (logic_error)
+std::string LabyrinthMap::DisplayBorder( const Coordinate c ) const
+{
+  if( !WithinBoundsOfMap(c) )
+  {
+    throw std::domain_error( "Error: DisplayBorder() was given an invalid "\
+      "Coordinate." );
+  }
+  else if( IsRoom(c) )
+  {
+    throw std::logic_error( "Error: DisplayBorder() was given a "\
+      "Room Coordinate." );
+  }
+
+  RoomBorder rb_n;
+  RoomBorder rb_e;
+  RoomBorder rb_s;
+  RoomBorder rb_w;
+
+  try
+  {
+    rb_n = l_->DirectionCheck( c, Direction::kNorth );
+    rb_e = l_->DirectionCheck( c, Direction::kEast );
+    rb_s = l_->DirectionCheck( c, Direction::kSouth );
+    rb_w = l_->DirectionCheck( c, Direction::kWest );
+  }
+  catch( std::exception& e )
+  {
+    std::cout << e.what();
+  }
+
+  char borders_nesw[5] = "0000";
+
+  if( rb_n != RoomBorder::kRoom )
+  {
+    borders_nesw[0] = '1';
+  }
+  if( rb_e != RoomBorder::kRoom )
+  {
+    borders_nesw[1] = '1';
+  }
+  if( rb_s != RoomBorder::kRoom )
+  {
+    borders_nesw[2] = '1';
+  }
+  if( rb_w != RoomBorder::kRoom )
+  {
+    borders_nesw[3] = '1';
+  }
+
+  // A true abomination lies ahead.
+  // Please let me know if you have any alternative ideas so I can put this
+  // out of its misery.
+  //
+  // Characters taken from the Unicode section of:
+  // https://en.wikipedia.org/wiki/Box-drawing_character
+
+  if( strcmp(borders_nesw, "0000") ) return " ";
+
+  else if( strcmp(borders_nesw, "1000") ) return u8"╵";
+  else if( strcmp(borders_nesw, "0100") ) return u8"╶";
+  else if( strcmp(borders_nesw, "0010") ) return u8"╷";
+  else if( strcmp(borders_nesw, "0001") ) return u8"╴";
+
+  else if( strcmp(borders_nesw, "1100") ) return u8"└";
+  else if( strcmp(borders_nesw, "1010") ) return u8"│";
+  else if( strcmp(borders_nesw, "1001") ) return u8"┘";
+  else if( strcmp(borders_nesw, "0110") ) return u8"┌";
+  else if( strcmp(borders_nesw, "0101") ) return u8"─";
+  else if( strcmp(borders_nesw, "0011") ) return u8"┐";
+
+  else if( strcmp(borders_nesw, "1110") ) return u8"├";
+  else if( strcmp(borders_nesw, "1101") ) return u8"┴";
+  else if( strcmp(borders_nesw, "1011") ) return u8"┤";
+  else if( strcmp(borders_nesw, "0111") ) return u8"┬";
+
+  else if( strcmp(borders_nesw, "1111") ) return u8"┼";
+
+  else
+  {
+    throw std::logic_error( "Error: DisplayBorder()'s check for "\
+      "NESW values missed a possible value." );
+  }
+}
 //TODO Implementation of labyrinth_map.hpp
