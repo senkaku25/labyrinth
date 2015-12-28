@@ -160,6 +160,29 @@ LabyrinthMap::LabyrinthMap( Labyrinth* l,
     map_[y][map_x_size_-1]->RemoveWall( Direction::kEast );
   }
 
+  // Removing excess bounds directly adjacent to Rooms
+  for( unsigned int y = 0; y < map_y_size_; ++y )
+  {
+    for( unsigned int x = 0; x < map_x_size_; ++x )
+    {
+      c.x = x;
+      c.y = y;
+      if( !IsRoom(c) )
+      {
+        if( x % 2 == 1 )
+        {
+          map_[y][x]->RemoveWall( Direction::kNorth );
+          map_[y][x]->RemoveWall( Direction::kSouth );
+        }
+        else if( y % 2 == 1 )
+        {
+          map_[y][x]->RemoveWall( Direction::kWest );
+          map_[y][x]->RemoveWall( Direction::kEast );
+        }
+      }
+    }
+  }
+
   // Sets the Borders to emulate the Labyrinth
   Coordinate c_laby;
   Coordinate c_map;
