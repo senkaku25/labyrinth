@@ -1,7 +1,7 @@
 /*
  *
  * Author: Jeffrey Leung
- * Last edited: 2015-09-19
+ * Last edited: 2015-12-28
  *
  * This C++ header file contains the implementation of the Labyrinth class,
  * which uses the Room class to create a 2-d mapping for a game.
@@ -14,6 +14,7 @@
 #include "room.hpp"
 #include "coordinate.hpp"
 
+// Rooms are indexed first with the y-coordinate, then with the x-coordinate.
 class Labyrinth
 {
   public:
