@@ -1,7 +1,7 @@
 /*
  *
  * Author: Jeffrey Leung
- * Last edited: 2015-12-12
+ * Last edited: 2015-12-27
  *
  * This C++ header file contains classes related to creating a LabyrinthMap
  * which creates, updates, and displays a map of a given Labyrinth.
@@ -169,6 +169,7 @@ class LabyrinthMapCoordinateRoom : public LabyrinthMapCoordinate
 };
 
 // This class contains a map of a Labyrinth.
+// Rooms are indexed first with the y-coordinate, then with the x-coordinate.
 class LabyrinthMap
 {
   public:

@@ -142,11 +142,11 @@ LabyrinthMap::LabyrinthMap( Labyrinth* l,
       c.y = y;
       if( IsRoom(c) )
       {
-        map_[x][y] = new LabyrinthMapCoordinateRoom;
+        map_[y][x] = new LabyrinthMapCoordinateRoom;
       }
       else
       {
-        map_[x][y] = new LabyrinthMapCoordinateBorder;
+        map_[y][x] = new LabyrinthMapCoordinateBorder;
       }
     }
   }
@@ -154,13 +154,13 @@ LabyrinthMap::LabyrinthMap( Labyrinth* l,
   // Removing excess bounds on the exterior of the Labyrinth
   for( unsigned int x = 0; x < map_x_size_; ++x )
   {
-    map_[x][0]->RemoveWall( Direction::kNorth );
-    map_[x][map_y_size_-1]->RemoveWall( Direction::kSouth );
+    map_[0][x]->RemoveWall( Direction::kNorth );
+    map_[map_y_size_-1][x]->RemoveWall( Direction::kSouth );
   }
   for( unsigned int y = 0; y < map_y_size_; ++y )
   {
-    map_[0][y]->RemoveWall( Direction::kWest );
-    map_[map_x_size_-1][y]->RemoveWall( Direction::kEast );
+    map_[y][0]->RemoveWall( Direction::kWest );
+    map_[y][map_x_size_-1]->RemoveWall( Direction::kEast );
   }
 
   // Sets the Borders to emulate the Labyrinth
@@ -278,7 +278,7 @@ LabyrinthMap::MapCoordinateAt( const Coordinate c ) const
       "Coordinate outside of the Map." );
   }
 
-  return *(map_[c.x][c.y]);
+  return *(map_[c.y][c.x]);
 }
 
 // This private method converts a Labyrinth Coordinate to the same
