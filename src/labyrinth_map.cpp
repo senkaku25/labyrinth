@@ -128,6 +128,7 @@ LabyrinthMap::LabyrinthMap( Labyrinth* l,
   map_y_size_ = y_size * 2 + 1;
 
   // Creation of the map array
+  map_ = new LabyrinthMapCoordinate**[ map_y_size_ ];
   Coordinate c;
   for( unsigned int y = 0; y < map_y_size_; ++y )
   {
