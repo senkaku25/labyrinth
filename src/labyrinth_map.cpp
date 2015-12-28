@@ -1,7 +1,7 @@
 /*
  *
  * Author: Jeffrey Leung
- * Last edited: 2015-12-27
+ * Last edited: 2015-12-28
  *
  * This C++ header file contains the LabyrinthMap class which creates, updates,
  * and displays a map of a given Labyrinth.
@@ -245,9 +245,9 @@ LabyrinthMap::~LabyrinthMap()
     {
       delete map_[y][x];
     }
-    delete map_[y];
+    delete [] map_[y];
   }
-  delete map_;
+  delete [] map_;
 }
 
 // This method displays a map of the current Labyrinth.
