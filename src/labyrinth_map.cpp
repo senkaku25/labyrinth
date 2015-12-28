@@ -9,6 +9,7 @@
  */
 
 #include <cstring>
+#include <iostream>
 #include <stdexcept>
 
 #include "../include/room_properties.hpp"
@@ -247,6 +248,31 @@ LabyrinthMap::~LabyrinthMap()
     delete map_[y];
   }
   delete map_;
+}
+
+// This method displays a map of the current Labyrinth.
+void LabyrinthMap::Display()
+{
+  Coordinate c;
+  for( unsigned int y = 0; y < map_y_size_; ++y )
+  {
+    for( unsigned int x = 0; x < map_x_size_; ++x )
+    {
+      c.x = x;
+      c.y = y;
+      if( IsRoom(c) )
+      {
+        std::cout << " ";
+      }
+      else
+      {
+        DisplayBorder(c);
+      }
+    }
+    std::cout << std::endl;
+  }
+
+  return;
 }
 
 // This private method returns true if the Coordinate is within the bounds
