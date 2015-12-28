@@ -344,7 +344,7 @@ LabyrinthMap::MapCoordinateAt( const Coordinate c ) const
 // location in the Map.
 // An exception is thrown if:
 //   The Coordinate is outside of the Labyrinth (invalid_argument)
-void LabyrinthMap::LabyrinthToMap( Coordinate c ) const
+void LabyrinthMap::LabyrinthToMap( Coordinate& c ) const
 {
   if( c.x < x_size_ &&
       c.y < y_size_ )
@@ -364,7 +364,7 @@ void LabyrinthMap::LabyrinthToMap( Coordinate c ) const
 // An exception is thrown if:
 //   The Coordinate is outside of the Labyrinth (domain_error)
 //   The Coordinate designates a border (logic_error)
-void LabyrinthMap::MapToLabyrinth( Coordinate c ) const
+void LabyrinthMap::MapToLabyrinth( Coordinate& c ) const
 {
   if( !WithinBoundsOfMap(c) )
   {

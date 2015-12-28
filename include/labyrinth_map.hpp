@@ -225,14 +225,14 @@ class LabyrinthMap
     // location in the Map.
     // An exception is thrown if:
     //   The Coordinate is outside of the Labyrinth (invalid_argument)
-    void LabyrinthToMap( Coordinate c ) const;
+    void LabyrinthToMap( Coordinate& c ) const;
 
     // This private method converts a Map Room Coordinate to the same
     // Room in the Labyrinth.
     // An exception is thrown if:
     //   The Coordinate is outside of the Labyrinth (domain_error)
     //   The Coordinate designates a border (logic_error)
-    void MapToLabyrinth( Coordinate c ) const;
+    void MapToLabyrinth( Coordinate& c ) const;
 
     // This private method updates the map by checking the contents
     // of the Labyrinth.
