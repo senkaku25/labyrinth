@@ -1,7 +1,7 @@
 /*
  *
  * Author: Jeffrey Leung
- * Last edited: 2015-09-19
+ * Last edited: 2015-12-27
  *
  * This C++ file contains the implementation of the Labyrinth class, which uses
  * the Room class to create a 2-d mapping for a game.
@@ -233,8 +233,25 @@ bool Labyrinth::IsAdjacent( Coordinate rm_1, Coordinate rm_2 ) const
       "coordinate for the Rooms." );
   }
 
-  unsigned int x_distance = abs( rm_1.x - rm_2.x );
-  unsigned int y_distance = abs( rm_1.y - rm_2.y );
+  unsigned int x_distance;
+  if( rm_1.x > rm_2.x )
+  {
+    x_distance = rm_1.x - rm_2.x;
+  }
+  else
+  {
+    x_distance = rm_2.x - rm_1.x;
+  }
+
+  unsigned int y_distance;
+  if( rm_1.y > rm_2.y )
+  {
+    y_distance = rm_1.y - rm_2.y;
+  }
+  else
+  {
+    y_distance = rm_2.y - rm_1.y;
+  }
 
   if( ( x_distance == 0 && y_distance == 1 ) ||
       ( x_distance == 1 && y_distance == 0 ) )
