@@ -378,18 +378,17 @@ std::string LabyrinthMap::DisplayBorder( const Coordinate c ) const
       "Room Coordinate.\n" );
   }
 
-  RoomBorder rb_n;
-  RoomBorder rb_e;
-  RoomBorder rb_s;
-  RoomBorder rb_w;
+  bool n;
+  bool e;
+  bool s;
+  bool w;
 
   try
   {
-    MapToLabyrinth( c );
-    rb_n = l_->DirectionCheck( c, Direction::kNorth );
-    rb_e = l_->DirectionCheck( c, Direction::kEast );
-    rb_s = l_->DirectionCheck( c, Direction::kSouth );
-    rb_w = l_->DirectionCheck( c, Direction::kWest );
+    n = MapCoordinateAt(c).IsWall( Direction::kNorth );
+    e = MapCoordinateAt(c).IsWall( Direction::kEast );
+    s = MapCoordinateAt(c).IsWall( Direction::kSouth );
+    w = MapCoordinateAt(c).IsWall( Direction::kWest );
   }
   catch( std::exception& e )
   {
@@ -398,19 +397,19 @@ std::string LabyrinthMap::DisplayBorder( const Coordinate c ) const
 
   char borders_nesw[5] = "0000";
 
-  if( rb_n != RoomBorder::kRoom )
+  if( n )
   {
     borders_nesw[0] = '1';
   }
-  if( rb_e != RoomBorder::kRoom )
+  if( e )
   {
     borders_nesw[1] = '1';
   }
-  if( rb_s != RoomBorder::kRoom )
+  if( s )
   {
     borders_nesw[2] = '1';
   }
-  if( rb_w != RoomBorder::kRoom )
+  if( w )
   {
     borders_nesw[3] = '1';
   }
