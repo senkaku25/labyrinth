@@ -10,6 +10,7 @@
 
 #pragma once
 
+#include <cstring>
 #include <iostream>
 
 #include "coordinate.hpp"
@@ -236,4 +237,11 @@ class LabyrinthMap
     // This private method updates the map by checking the contents
     // of the Labyrinth.
     void Update();
+
+    // This private method returns a character representing the given
+    // Border Coordinate.
+    // An exception is thrown if:
+    //   The Coordinate is outside of the Labyrinth (domain_error)
+    //   The Coordinate designates a Room (logic_error)
+    std::string DisplayBorder( const Coordinate c ) const;
 };
