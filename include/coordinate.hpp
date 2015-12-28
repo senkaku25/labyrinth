@@ -1,10 +1,10 @@
 /*
  *
  * Author: Jeffrey Leung
- * Last edited: 2015-12-25
+ * Last edited: 2015-12-27
  *
  * This C++ header file contains the implementation of a Coordinate struct
- * used by the Labyrinth class.
+ * used by the Labyrinth and LabyrinthMap classes.
  *
  */
 
