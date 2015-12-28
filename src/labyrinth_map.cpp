@@ -1,7 +1,7 @@
 /*
  *
  * Author: Jeffrey Leung
- * Last edited: 2015-12-21
+ * Last edited: 2015-12-27
  *
  * This C++ header file contains the LabyrinthMap class which creates, updates,
  * and displays a map of a given Labyrinth.
@@ -238,6 +238,20 @@ LabyrinthMap::LabyrinthMap( Labyrinth* l,
   }
 
   //Update();  //TODO Uncomment when Update() is implemented
+}
+
+// Destructor
+LabyrinthMap::~LabyrinthMap()
+{
+  for( unsigned int y = 0; y < map_y_size_; ++y )
+  {
+    for( unsigned int x = 0; x < map_x_size_; ++x )
+    {
+      delete map_[y][x];
+    }
+    delete map_[y];
+  }
+  delete map_;
 }
 
 // This private method returns true if the Coordinate is within the bounds
