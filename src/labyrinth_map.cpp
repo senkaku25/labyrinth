@@ -267,7 +267,7 @@ void LabyrinthMap::Display()
       }
       else
       {
-        DisplayBorder(c);
+        std::cout << DisplayBorder(c);
       }
     }
     std::cout << std::endl;
