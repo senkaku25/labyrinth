@@ -29,18 +29,18 @@ Labyrinth::Labyrinth( unsigned int x_size, unsigned int y_size )
     if( y_size == 0 )
     {
       throw std::invalid_argument( "Error: Labyrinth() was given empty x and "\
-        "y sizes." );
+        "y sizes.\n" );
     }
     else
     {
       throw std::invalid_argument( "Error: Labyrinth() was given an empty "\
-        "x size." );
+        "x size.\n" );
     }
   }
   else if( y_size == 0 )
   {
     throw std::invalid_argument( "Error: Labyrinth() was given an empty "\
-      "y size." );
+      "y size.\n" );
   }
 
   rooms_ = new Room*[ y_size ];
@@ -76,7 +76,7 @@ void Labyrinth::ConnectRooms( Coordinate rm_1, Coordinate rm_2 )
   if( rm_1 == rm_2 )
   {
     throw std::logic_error( "Error: ConnectRooms() was given the same "\
-      "coordinate for the two Rooms." );
+      "coordinate for the two Rooms.\n" );
   }
 
   else if( !WithinBounds(rm_1) || !WithinBounds(rm_2) )
@@ -86,26 +86,26 @@ void Labyrinth::ConnectRooms( Coordinate rm_1, Coordinate rm_2 )
       if( !WithinBounds(rm_2) )
       {
         throw std::invalid_argument( "Error: ConnectRooms() was given invalid "\
-          "coordinates for both rm_1 and rm_2." );
+          "coordinates for both rm_1 and rm_2.\n" );
       }
       else
       {
         throw std::invalid_argument( "Error: ConnectRooms() was given "\
-          "an invalid coordinate for rm_1." );
+          "an invalid coordinate for rm_1.\n" );
       }
     }
 
     else
     {
       throw std::invalid_argument( "Error: ConnectRooms() was given an "\
-        "invalid coordinate for rm_2." );
+        "invalid coordinate for rm_2.\n" );
     }
   }
 
   else if( !IsAdjacent(rm_1, rm_2) )
   {
     throw std::logic_error( "Error: ConnectRooms() was given two coordinates "\
-      "which are not adjacent, and therefore cannot be connected." );
+      "which are not adjacent, and therefore cannot be connected.\n" );
   }
 
   unsigned int x_distance = rm_2.x - rm_1.x;
@@ -145,7 +145,7 @@ void Labyrinth::ConnectRooms( Coordinate rm_1, Coordinate rm_2 )
   else
   {
     throw std::logic_error( "Error: ConnectRooms() called IsAdjacent(), "\
-      "which should have evaluated to false, but did not." );
+      "which should have evaluated to false, but did not.\n" );
   }
 
   RoomAt(rm_1).BreakWall(break_wall_1);
@@ -164,12 +164,12 @@ RoomBorder Labyrinth::DirectionCheck( Coordinate rm, Direction d ) const
   if( !WithinBounds(rm) )
   {
     throw std::invalid_argument( "Error: DirectionCheck() was given a "\
-      "Coordinate outside of the Labyrinth." );
+      "Coordinate outside of the Labyrinth.\n" );
   }
   else if( d == Direction::kNone )
   {
     throw std::invalid_argument( "Error: DirectionCheck() was given an "\
-      "invalid direction (kNone)." );
+      "invalid direction (kNone).\n" );
   }
 
   return RoomAt(rm).DirectionCheck(d);
@@ -186,7 +186,7 @@ Room& Labyrinth::RoomAt( Coordinate rm ) const
   if( !WithinBounds(rm) )
   {
     throw std::invalid_argument( "Error: RoomAt() was given an invalid "\
-      "coordinate for rm." );
+      "coordinate for rm.\n" );
   }
   return rooms_[rm.x][rm.y];
 }
@@ -213,24 +213,24 @@ bool Labyrinth::IsAdjacent( Coordinate rm_1, Coordinate rm_2 ) const
     if( !WithinBounds(rm_2) )
     {
       throw std::invalid_argument( "Error: IsAdjacent() was given invalid "\
-      "coordinates for both rm_1 and rm_2." );
+      "coordinates for both rm_1 and rm_2.\n" );
     }
     else
     {
       throw std::invalid_argument( "Error: IsAdjacent() was given an invalid "\
-      "coordinate for rm_1." );
+      "coordinate for rm_1.\n" );
     }
   }
   else if( !WithinBounds(rm_2) )
   {
     throw std::invalid_argument( "Error: IsAdjacent() was given an invalid "\
-      "coordinate for rm_2." );
+      "coordinate for rm_2.\n" );
   }
 
   if( rm_1 == rm_2 )
   {
     throw std::logic_error( "Error: IsAdjacent() was given the same "\
-      "coordinate for the Rooms." );
+      "coordinate for the Rooms.\n" );
   }
 
   unsigned int x_distance;
