@@ -384,6 +384,7 @@ std::string LabyrinthMap::DisplayBorder( const Coordinate c ) const
 
   try
   {
+    MapToLabyrinth( c );
     rb_n = l_->DirectionCheck( c, Direction::kNorth );
     rb_e = l_->DirectionCheck( c, Direction::kEast );
     rb_s = l_->DirectionCheck( c, Direction::kSouth );
