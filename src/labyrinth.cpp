@@ -108,8 +108,8 @@ void Labyrinth::ConnectRooms( Coordinate rm_1, Coordinate rm_2 )
       "which are not adjacent, and therefore cannot be connected.\n" );
   }
 
-  unsigned int x_distance = rm_2.x - rm_1.x;
-  unsigned int y_distance = rm_2.y - rm_1.y;
+  int x_distance = (int)(rm_2.x) - (int)(rm_1.x);
+  int y_distance = (int)(rm_2.y) - (int)(rm_1.y);
 
   Direction break_wall_1;
   Direction break_wall_2;
