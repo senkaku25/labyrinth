@@ -1,7 +1,7 @@
 /*
  *
  * Author: Jeffrey Leung
- * Last edited: 2015-12-27
+ * Last edited: 2015-12-30
  *
  * This C++ header file contains classes related to creating a LabyrinthMap
  * which creates, updates, and displays a map of a given Labyrinth.
@@ -234,9 +234,9 @@ class LabyrinthMap
     //   The Coordinate designates a border (logic_error)
     void MapToLabyrinth( Coordinate& c ) const;
 
-    // This private method updates the map by checking the contents
+    // This private method updates the Map Rooms by checking the contents
     // of the Labyrinth.
-    void Update();
+    void UpdateRooms();
 
     // This private method returns a character representing the given
     // Border Coordinate.
