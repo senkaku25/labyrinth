@@ -472,7 +472,6 @@ void LabyrinthMap::LabelYAxis( const unsigned int y ) const
 {
   // Y-axis label position
   const unsigned int kYMiddle = (y_size_)/2 + 1;
-  unsigned int laby_y_coord = 0;
 
   // Y label
   if( y == kYMiddle )
@@ -491,8 +490,9 @@ void LabyrinthMap::LabelYAxis( const unsigned int y ) const
     {
       std::cout << " ";
     }
-    std::cout << " " << laby_y_coord << " ";
-    ++laby_y_coord;
+    Coordinate c(1, y);
+    MapToLabyrinth(c);
+    std::cout << " " << c.y << " ";
   }
   else
   {
