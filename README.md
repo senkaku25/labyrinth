@@ -6,11 +6,11 @@ The Labyrinth class contains a template for creating and playing a maze accordin
 
 ### LabyrinthMap TODO:
 1. Implement displaying of Room contents.
-    1. Set a maximum Labyrinth size.
 1. Implement UpdateRooms().
 1. Test UpdateRooms().
 
 ### Labyrinth TODO:
+1. Set a maximum Labyrinth size.
 1. Test ConnectRooms().
 
 ###TODO:
