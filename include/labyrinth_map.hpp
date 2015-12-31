@@ -236,6 +236,19 @@ class LabyrinthMap
     //   The Coordinate designates a border (logic_error)
     void MapToLabyrinth( Coordinate& c ) const;
 
+    // This private method cleans excess Map Borders.
+    // i.e.:
+    //   Borders on the exterior of the Labyrinth
+    //     ┼┴┼
+    //     ┼┬┼
+    //   Borders directly adjacent to a Room
+    //     ┌┬┐
+    //     ├ ┤
+    //     └┴┘
+    // Borders are NOT matched to the Labyrinth's layout; use UpdateBorders()
+    // for that.
+    void CleanBorders();
+
     // This private method updates the Map Borders by checking the contents
     // of the Labyrinth.
     // Borders in the Map but not in the Labyrinth will be removed from
