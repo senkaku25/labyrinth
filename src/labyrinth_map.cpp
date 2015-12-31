@@ -1,7 +1,7 @@
 /*
  *
  * Author: Jeffrey Leung
- * Last edited: 2015-12-28
+ * Last edited: 2015-12-30
  *
  * This C++ header file contains the LabyrinthMap class which creates, updates,
  * and displays a map of a given Labyrinth.
@@ -286,11 +286,18 @@ void LabyrinthMap::Display()
       c.y = y;
       if( IsRoom(c) )
       {
-        std::cout << " ";
+        std::cout << "  ";
       }
       else
       {
         std::cout << DisplayBorder(c);
+
+        // Doubles the horizontal draw distance of a Map Room (and the Borders
+        // directly above/below a Map Room) from 1 to 2 characters
+        if( x % 2 == 1 )
+        {
+          std::cout << DisplayBorder(c);
+        }
       }
     }
     std::cout << std::endl;
