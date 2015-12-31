@@ -151,41 +151,7 @@ LabyrinthMap::LabyrinthMap( Labyrinth* l,
     }
   }
 
-  // Removing excess bounds on the exterior of the Labyrinth
-  for( unsigned int x = 0; x < map_x_size_; ++x )
-  {
-    map_[0][x]->SetWall( Direction::kNorth, false );
-    map_[map_y_size_-1][x]->SetWall( Direction::kSouth, false );
-  }
-  for( unsigned int y = 0; y < map_y_size_; ++y )
-  {
-    map_[y][0]->SetWall( Direction::kWest, false );
-    map_[y][map_x_size_-1]->SetWall( Direction::kEast, false );
-  }
-
-  // Removing excess bounds directly adjacent to Rooms
-  for( unsigned int y = 0; y < map_y_size_; ++y )
-  {
-    for( unsigned int x = 0; x < map_x_size_; ++x )
-    {
-      c.x = x;
-      c.y = y;
-      if( !IsRoom(c) )
-      {
-        if( x % 2 == 1 )
-        {
-          map_[y][x]->SetWall( Direction::kNorth, false );
-          map_[y][x]->SetWall( Direction::kSouth, false );
-        }
-        else if( y % 2 == 1 )
-        {
-          map_[y][x]->SetWall( Direction::kWest, false );
-          map_[y][x]->SetWall( Direction::kEast, false );
-        }
-      }
-    }
-  }
-
+  CleanBorders();
   UpdateBorders();
   //UpdateRooms();  //TODO Uncomment when UpdateRooms() is implemented
 }
@@ -318,6 +284,55 @@ void LabyrinthMap::MapToLabyrinth( Coordinate& c ) const
     c.x = (c.x - 1) / 2;
     c.y = (c.y - 1) / 2;
   }
+}
+
+// This private method cleans excess Map Borders.
+// i.e.:
+//   Borders on the exterior of the Labyrinth
+//     ┼┴┼
+//     ┼┬┼
+//   Borders directly adjacent to a Room
+//     ┌┬┐
+//     ├ ┤
+//     └┴┘
+// Borders are NOT matched to the Labyrinth's layout; use UpdateBorders()
+// for that.
+void LabyrinthMap::CleanBorders()
+{
+  // Removing excess bounds on the exterior of the Labyrinth
+  for( unsigned int x = 0; x < map_x_size_; ++x )
+  {
+    map_[0][x]->SetWall( Direction::kNorth, false );
+    map_[map_y_size_-1][x]->SetWall( Direction::kSouth, false );
+  }
+  for( unsigned int y = 0; y < map_y_size_; ++y )
+  {
+    map_[y][0]->SetWall( Direction::kWest, false );
+    map_[y][map_x_size_-1]->SetWall( Direction::kEast, false );
+  }
+
+  // Removing excess bounds directly adjacent to Rooms
+  for( unsigned int y = 0; y < map_y_size_; ++y )
+  {
+    for( unsigned int x = 0; x < map_x_size_; ++x )
+    {
+      Coordinate c(x, y);
+      if( !IsRoom(c) )
+      {
+        if( x % 2 == 1 )
+        {
+          map_[y][x]->SetWall( Direction::kNorth, false );
+          map_[y][x]->SetWall( Direction::kSouth, false );
+        }
+        else if( y % 2 == 1 )
+        {
+          map_[y][x]->SetWall( Direction::kWest, false );
+          map_[y][x]->SetWall( Direction::kEast, false );
+        }
+      }
+    }
+  }
+
 }
 
 // This private method updates the Map Borders by checking the contents
