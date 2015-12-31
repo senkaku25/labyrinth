@@ -48,10 +48,10 @@ class LabyrinthMapCoordinate
         "Border or Room." );
     }
 
-    virtual void RemoveWall( Direction d )
+    virtual void SetWall( Direction d, bool exists )
     {
       throw std::logic_error( "Error: A LabyrinthMapCoordinateRoom "\
-        "attempted to call RemoveWall(), which is a Border-only method.\n"\
+        "attempted to call SetWall(), which is a Border-only method.\n"\
         "Consider using IsRoom() to check whether the Coordinate is a" \
         "Border or Room." );
     }
@@ -125,11 +125,13 @@ class LabyrinthMapCoordinateBorder : public LabyrinthMapCoordinate
     //   d is kNone (invalid_argument)
     bool IsWall( Direction d ) const;
 
-    // This method removes the Wall of a given Wall coordinate.
-    // May be used to remove a Wall which has already been removed.
+    // This method sets the Wall of a given Wall coordinate to either
+    // exist or not exist.
+    // May be used to set a wall which already exists, or remove a Wall
+    // which has already been removed.
     // An exception is thrown if:
     //   d is kNone (invalid_argument)
-    void RemoveWall( Direction d );
+    void SetWall( Direction d, bool exists );
 
     // This method returns whether a given Wall coordinate has the exit.
     bool IsExit() const;

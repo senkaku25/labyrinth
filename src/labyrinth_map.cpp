@@ -38,25 +38,27 @@ bool LabyrinthMapCoordinateBorder::IsWall( Direction d ) const
   }
 }
 
-// This method creates the Wall of a given Wall coordinate.
-// May be used to set a Wall which has already been set.
+// This method sets the Wall of a given Wall coordinate to either
+// exist or not exist.
+// May be used to set a wall which already exists, or remove a Wall
+// which has already been removed.
 // An exception is thrown if:
 //   d is kNone (invalid_argument)
-void LabyrinthMapCoordinateBorder::RemoveWall( Direction d )
+void LabyrinthMapCoordinateBorder::SetWall( Direction d, bool exists )
 {
   switch( d )
   {
     case Direction::kNorth:
-      wall_north_ = false;
+      wall_north_ = exists;
       return;
     case Direction::kEast:
-      wall_east_ = false;
+      wall_east_ = exists;
       return;
     case Direction::kSouth:
-      wall_south_ = false;
+      wall_south_ = exists;
       return;
     case Direction::kWest:
-      wall_west_ = false;
+      wall_west_ = exists;
       return;
     default:
       throw std::invalid_argument( "Error: SetWall() was given an invalid "\
@@ -151,13 +153,13 @@ LabyrinthMap::LabyrinthMap( Labyrinth* l,
   // Removing excess bounds on the exterior of the Labyrinth
   for( unsigned int x = 0; x < map_x_size_; ++x )
   {
-    map_[0][x]->RemoveWall( Direction::kNorth );
-    map_[map_y_size_-1][x]->RemoveWall( Direction::kSouth );
+    map_[0][x]->SetWall( Direction::kNorth, false );
+    map_[map_y_size_-1][x]->SetWall( Direction::kSouth, false );
   }
   for( unsigned int y = 0; y < map_y_size_; ++y )
   {
-    map_[y][0]->RemoveWall( Direction::kWest );
-    map_[y][map_x_size_-1]->RemoveWall( Direction::kEast );
+    map_[y][0]->SetWall( Direction::kWest, false );
+    map_[y][map_x_size_-1]->SetWall( Direction::kEast, false );
   }
 
   // Removing excess bounds directly adjacent to Rooms
@@ -171,13 +173,13 @@ LabyrinthMap::LabyrinthMap( Labyrinth* l,
       {
         if( x % 2 == 1 )
         {
-          map_[y][x]->RemoveWall( Direction::kNorth );
-          map_[y][x]->RemoveWall( Direction::kSouth );
+          map_[y][x]->SetWall( Direction::kNorth, false );
+          map_[y][x]->SetWall( Direction::kSouth, false );
         }
         else if( y % 2 == 1 )
         {
-          map_[y][x]->RemoveWall( Direction::kWest );
-          map_[y][x]->RemoveWall( Direction::kEast );
+          map_[y][x]->SetWall( Direction::kWest, false );
+          map_[y][x]->SetWall( Direction::kEast, false );
         }
       }
     }
@@ -361,14 +363,14 @@ void LabyrinthMap::UpdateBorders()
         (c_mapborder_remove.x)++;
 
         (c_mapborder_remove.y)--;
-        (MapCoordinateAt(c_mapborder_remove)).RemoveWall( Direction::kSouth );
+        (MapCoordinateAt(c_mapborder_remove)).SetWall( Direction::kSouth, false );
 
         (c_mapborder_remove.y)++;
-        (MapCoordinateAt(c_mapborder_remove)).RemoveWall( Direction::kNorth );
-        (MapCoordinateAt(c_mapborder_remove)).RemoveWall( Direction::kSouth );
+        (MapCoordinateAt(c_mapborder_remove)).SetWall( Direction::kNorth, false );
+        (MapCoordinateAt(c_mapborder_remove)).SetWall( Direction::kSouth, false );
 
         (c_mapborder_remove.y)++;
-        (MapCoordinateAt(c_mapborder_remove)).RemoveWall( Direction::kNorth );
+        (MapCoordinateAt(c_mapborder_remove)).SetWall( Direction::kNorth, false );
       }
 
       // Removes the south border of the relevant Map coordinate if necessary
@@ -386,14 +388,14 @@ void LabyrinthMap::UpdateBorders()
         (c_mapborder_remove.y)++;
 
         (c_mapborder_remove.x)--;
-        (MapCoordinateAt(c_mapborder_remove)).RemoveWall( Direction::kEast );
+        (MapCoordinateAt(c_mapborder_remove)).SetWall( Direction::kEast, false );
 
         (c_mapborder_remove.x)++;
-        (MapCoordinateAt(c_mapborder_remove)).RemoveWall( Direction::kWest );
-        (MapCoordinateAt(c_mapborder_remove)).RemoveWall( Direction::kEast );
+        (MapCoordinateAt(c_mapborder_remove)).SetWall( Direction::kWest, false );
+        (MapCoordinateAt(c_mapborder_remove)).SetWall( Direction::kEast, false );
 
         (c_mapborder_remove.x)++;
-        (MapCoordinateAt(c_mapborder_remove)).RemoveWall( Direction::kWest );
+        (MapCoordinateAt(c_mapborder_remove)).SetWall( Direction::kWest, false );
       }
 
     }  // For loop
