@@ -260,6 +260,18 @@ class LabyrinthMap
     // of the Labyrinth.
     void UpdateRooms();
 
+    // This private method displays the x-axis label as well as numbering
+    // of the x-coordinates of Rooms.
+    // Only to be used by Display().
+    void LabelXAxis();
+
+    // This private method displays numbering of the y-coordinates of Rooms
+    // as well as the y-axis label (if in the correct position), or padding
+    // if the row has no Rooms.
+    // Only to be used by Display().
+    // Should be called every time a row of the Map is printed.
+    void LabelYAxis();
+
     // This private method returns a character representing the given
     // Border Coordinate.
     // An exception is thrown if:
