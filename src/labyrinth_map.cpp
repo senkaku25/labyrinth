@@ -183,81 +183,8 @@ LabyrinthMap::LabyrinthMap( Labyrinth* l,
     }
   }
 
-  // Sets the Borders to emulate the Labyrinth
-  Coordinate c_laby;
-  Coordinate c_map;
-  Coordinate c_mapborder_remove;
-  RoomBorder rb;
-  // Loops through the labyrinth
-  for( unsigned int y = 0; y < y_size_; ++y )
-  {
-    for( unsigned int x = 0; x < x_size_; ++x )
-    {
-      c_laby.x = x;
-      c_laby.y = y;
-      c_map = c_laby;
-      try
-      {
-        LabyrinthToMap(c_map);
-      }
-      catch( const std::exception& e )
-      {
-        std::cout << e.what();
-      }
-
-      // Removes the east border of the relevant Map coordinate if necessary
-      try
-      {
-        rb = l_->DirectionCheck(c_laby, Direction::kEast);
-      }
-      catch( const std::exception& e )
-      {
-        std::cout << e.what();
-      }
-      if( rb == RoomBorder::kRoom )
-      {
-        c_mapborder_remove = c_map;
-        (c_mapborder_remove.x)++;
-
-        (c_mapborder_remove.y)--;
-        (MapCoordinateAt(c_mapborder_remove)).RemoveWall( Direction::kSouth );
-
-        (c_mapborder_remove.y)++;
-        (MapCoordinateAt(c_mapborder_remove)).RemoveWall( Direction::kNorth );
-        (MapCoordinateAt(c_mapborder_remove)).RemoveWall( Direction::kSouth );
-
-        (c_mapborder_remove.y)++;
-        (MapCoordinateAt(c_mapborder_remove)).RemoveWall( Direction::kNorth );
-      }
-
-      // Removes the south border of the relevant Map coordinate if necessary
-      try
-      {
-        rb = l_->DirectionCheck(c_laby, Direction::kSouth);
-      }
-      catch( const std::exception& e )
-      {
-        std::cout << e.what();
-      }
-      if( rb == RoomBorder::kRoom )
-      {
-        c_mapborder_remove = c_map;
-        (c_mapborder_remove.y)++;
-
-        (c_mapborder_remove.x)--;
-        (MapCoordinateAt(c_mapborder_remove)).RemoveWall( Direction::kEast );
-
-        (c_mapborder_remove.x)++;
-        (MapCoordinateAt(c_mapborder_remove)).RemoveWall( Direction::kWest );
-        (MapCoordinateAt(c_mapborder_remove)).RemoveWall( Direction::kEast );
-
-        (c_mapborder_remove.x)++;
-        (MapCoordinateAt(c_mapborder_remove)).RemoveWall( Direction::kWest );
-      }
-    }
-  }
-
-  //Update();  //TODO Uncomment when Update() is implemented
+  UpdateBorders();
+  //UpdateRooms();  //TODO Uncomment when UpdateRooms() is implemented
 }
 
 // Destructor
@@ -388,6 +315,90 @@ void LabyrinthMap::MapToLabyrinth( Coordinate& c ) const
     c.x = (c.x - 1) / 2;
     c.y = (c.y - 1) / 2;
   }
+}
+
+// This private method updates the Map Borders by checking the contents
+// of the Labyrinth.
+// Borders in the Map but not in the Labyrinth will be removed from
+// the Map; borders in the Labyrinth but not in the Map will not
+// be added to the Map.
+void LabyrinthMap::UpdateBorders()
+{
+  Coordinate c_laby;
+  Coordinate c_map;
+  Coordinate c_mapborder_remove;
+  RoomBorder rb;
+
+  // Loops through the Labyrinth, not the Map
+  for( unsigned int y = 0; y < y_size_; ++y )
+  {
+    for( unsigned int x = 0; x < x_size_; ++x )
+    {
+      c_laby.x = x;
+      c_laby.y = y;
+      c_map = c_laby;
+      try
+      {
+        LabyrinthToMap(c_map);
+      }
+      catch( const std::exception& e )
+      {
+        std::cout << e.what();
+      }
+
+      // Removes the east border of the relevant Map coordinate if necessary
+      try
+      {
+        rb = l_->DirectionCheck(c_laby, Direction::kEast);
+      }
+      catch( const std::exception& e )
+      {
+        std::cout << e.what();
+      }
+      if( rb == RoomBorder::kRoom )
+      {
+        c_mapborder_remove = c_map;
+        (c_mapborder_remove.x)++;
+
+        (c_mapborder_remove.y)--;
+        (MapCoordinateAt(c_mapborder_remove)).RemoveWall( Direction::kSouth );
+
+        (c_mapborder_remove.y)++;
+        (MapCoordinateAt(c_mapborder_remove)).RemoveWall( Direction::kNorth );
+        (MapCoordinateAt(c_mapborder_remove)).RemoveWall( Direction::kSouth );
+
+        (c_mapborder_remove.y)++;
+        (MapCoordinateAt(c_mapborder_remove)).RemoveWall( Direction::kNorth );
+      }
+
+      // Removes the south border of the relevant Map coordinate if necessary
+      try
+      {
+        rb = l_->DirectionCheck(c_laby, Direction::kSouth);
+      }
+      catch( const std::exception& e )
+      {
+        std::cout << e.what();
+      }
+      if( rb == RoomBorder::kRoom )
+      {
+        c_mapborder_remove = c_map;
+        (c_mapborder_remove.y)++;
+
+        (c_mapborder_remove.x)--;
+        (MapCoordinateAt(c_mapborder_remove)).RemoveWall( Direction::kEast );
+
+        (c_mapborder_remove.x)++;
+        (MapCoordinateAt(c_mapborder_remove)).RemoveWall( Direction::kWest );
+        (MapCoordinateAt(c_mapborder_remove)).RemoveWall( Direction::kEast );
+
+        (c_mapborder_remove.x)++;
+        (MapCoordinateAt(c_mapborder_remove)).RemoveWall( Direction::kWest );
+      }
+
+    }  // For loop
+  }  // For loop
+
 }
 
 // This private method returns a character representing the given

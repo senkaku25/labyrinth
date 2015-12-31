@@ -234,6 +234,13 @@ class LabyrinthMap
     //   The Coordinate designates a border (logic_error)
     void MapToLabyrinth( Coordinate& c ) const;
 
+    // This private method updates the Map Borders by checking the contents
+    // of the Labyrinth.
+    // Borders in the Map but not in the Labyrinth will be removed from
+    // the Map; borders in the Labyrinth but not in the Map will not
+    // be added to the Map.
+    void UpdateBorders();
+
     // This private method updates the Map Rooms by checking the contents
     // of the Labyrinth.
     void UpdateRooms();
