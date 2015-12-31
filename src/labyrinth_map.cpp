@@ -173,13 +173,66 @@ LabyrinthMap::~LabyrinthMap()
 // This method displays a map of the current Labyrinth.
 void LabyrinthMap::Display()
 {
-  Coordinate c;
+  // Creates the x-axis label
+  //
+  // Magic number explanation:
+  // Final length of the displayed map is around 3 times the labyrinth length
+  // because the final map consists of Rooms which have 1 Border character
+  // and 2 space characters.
+  const unsigned int kXMiddle = (x_size_ * 3)/2 + 1;
+  for( unsigned int i = 0; i < kXMiddle; ++i )
+  {
+    std::cout << " ";
+  }
+  std::cout << "     ";  // Alignment with y-axis label
+  std::cout << "X" << std::endl << std::endl;
+
+  // Creates x-axis marks
+  std::cout << "     ";  // Alignment with y-axis label
+  for( unsigned int i = 0; i < x_size_; ++i )
+  {
+    if( i < 10 )  // Correcting for digit positions
+    {
+      std::cout << " ";
+    }
+    std::cout << " " << i;
+  }
+  std::cout << std::endl;
+
+  // Y-axis label position
+  const unsigned int kYMiddle = (y_size_)/2 + 1;
+
+  unsigned int laby_y_coord = 0;
   for( unsigned int y = 0; y < map_y_size_; ++y )
   {
+    // Creates the y-axis label
+    if( y == kYMiddle )
+    {
+      std::cout << "Y";
+    }
+    else
+    {
+      std::cout << " ";
+    }
+
+    // Numbers rows with Rooms
+    if( y % 2 == 1 )
+    {
+      if( y < 10 )  // Correcting for digit positions
+      {
+        std::cout << " ";
+      }
+      std::cout << " " << laby_y_coord << " ";
+      ++laby_y_coord;
+    }
+    else
+    {
+      std::cout << "    ";  // Alignment
+    }
+
     for( unsigned int x = 0; x < map_x_size_; ++x )
     {
-      c.x = x;
-      c.y = y;
+      Coordinate c(x, y);
       if( IsRoom(c) )
       {
         std::cout << "  ";
