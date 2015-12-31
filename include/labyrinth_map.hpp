@@ -40,7 +40,7 @@ class LabyrinthMapCoordinate
 
     // Border-only methods:
 
-    virtual bool IsWall( Direction d ) const
+    virtual bool IsWall( const Direction d ) const
     {
       throw std::logic_error( "Error: A LabyrinthMapCoordinateRoom "\
         "attempted to call IsWall(), which is a Border-only method.\n"\
@@ -48,7 +48,7 @@ class LabyrinthMapCoordinate
         "Border or Room." );
     }
 
-    virtual void SetWall( Direction d, bool exists )
+    virtual void SetWall( const Direction d, const bool exists )
     {
       throw std::logic_error( "Error: A LabyrinthMapCoordinateRoom "\
         "attempted to call SetWall(), which is a Border-only method.\n"\
@@ -64,7 +64,7 @@ class LabyrinthMapCoordinate
         "Border or Room." );
     }
 
-    virtual void SetExit( bool b )
+    virtual void SetExit( const bool b )
     {
       throw std::logic_error( "Error: A LabyrinthMapCoordinateRoom "\
         "attempted to call SetExit(), which is a Border-only method.\n"\
@@ -82,7 +82,7 @@ class LabyrinthMapCoordinate
         "Border or Room." );
     }
 
-    virtual void SetInhabitant( Inhabitant inh )
+    virtual void SetInhabitant( const Inhabitant inh )
     {
       throw std::logic_error( "Error: A LabyrinthMapCoordinateBorder "\
         "attempted to call SetInhabitant(), which is a Room-only method.\n"\
@@ -98,7 +98,7 @@ class LabyrinthMapCoordinate
         "Border or Room." );
     }
 
-    virtual void SetTreasure( bool b )
+    virtual void SetTreasure( const bool b )
     {
       throw std::logic_error( "Error: A LabyrinthMapCoordinateBorder "\
         "attempted to call SetInhabitant(), which is a Room-only method.\n"\
@@ -123,7 +123,7 @@ class LabyrinthMapCoordinateBorder : public LabyrinthMapCoordinate
     // given direction.
     // An exception is thrown if:
     //   d is kNone (invalid_argument)
-    bool IsWall( Direction d ) const;
+    bool IsWall( const Direction d ) const;
 
     // This method sets the Wall of a given Wall coordinate to either
     // exist or not exist.
@@ -131,7 +131,7 @@ class LabyrinthMapCoordinateBorder : public LabyrinthMapCoordinate
     // which has already been removed.
     // An exception is thrown if:
     //   d is kNone (invalid_argument)
-    void SetWall( Direction d, bool exists );
+    void SetWall( const Direction d, const bool exists );
 
     // This method returns whether a given Wall coordinate has the exit.
     bool IsExit() const;
@@ -139,7 +139,7 @@ class LabyrinthMapCoordinateBorder : public LabyrinthMapCoordinate
     // This method sets whether or not a given Wall coordinate has the exit.
     // May be used to set an exit where the exit already exists, or to remove
     // an exit where none exists.
-    void SetExit( bool b );
+    void SetExit( const bool b );
 
   private:
     bool wall_north_ = true;
@@ -162,7 +162,7 @@ class LabyrinthMapCoordinateRoom : public LabyrinthMapCoordinate
     // This method sets the current inhabitant of the map's Room.
     // May be used to set the inhabitant to the same inhabitant, or to
     // no inhabitant.
-    void SetInhabitant( Inhabitant inh );
+    void SetInhabitant( const Inhabitant inh );
 
     // This method returns whether the treasure is in a given Room.
     bool HasTreasure() const;
@@ -170,7 +170,7 @@ class LabyrinthMapCoordinateRoom : public LabyrinthMapCoordinate
     // This method sets whether or not the treasure is in the given map's Room.
     // May be used to set the treasure when there is already a treasure in
     // the Room, or to remove the treasure when there is no treasure already.
-    void SetTreasure( bool b );
+    void SetTreasure( const bool b );
 
   private:
     Inhabitant i_ = Inhabitant::kNone;
@@ -187,8 +187,8 @@ class LabyrinthMap
     // An exception is thrown if:
     //   l is null (invalid_argument)
     LabyrinthMap( Labyrinth* l,
-                  unsigned int x_size,
-                  unsigned int y_size );
+                  const unsigned int x_size,
+                  const unsigned int y_size );
 
     // Destructor
     ~LabyrinthMap();

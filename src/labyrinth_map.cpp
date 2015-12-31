@@ -20,7 +20,7 @@
 // given direction.
 // An exception is thrown if:
 //   d is kNone (invalid_argument)
-bool LabyrinthMapCoordinateBorder::IsWall( Direction d ) const
+bool LabyrinthMapCoordinateBorder::IsWall( const Direction d ) const
 {
   switch( d )
   {
@@ -44,7 +44,8 @@ bool LabyrinthMapCoordinateBorder::IsWall( Direction d ) const
 // which has already been removed.
 // An exception is thrown if:
 //   d is kNone (invalid_argument)
-void LabyrinthMapCoordinateBorder::SetWall( Direction d, bool exists )
+void LabyrinthMapCoordinateBorder::SetWall( const Direction d,
+                                            const bool exists )
 {
   switch( d )
   {
@@ -76,7 +77,7 @@ bool LabyrinthMapCoordinateBorder::IsExit() const
 // This method sets whether or not a given Wall coordinate has the exit.
 // May be used to set an exit where the exit already exists, or to remove
 // an exit where none exists.
-void LabyrinthMapCoordinateBorder::SetExit( bool b )
+void LabyrinthMapCoordinateBorder::SetExit( const bool b )
 {
   exit_ = b;
 }
@@ -90,7 +91,7 @@ Inhabitant LabyrinthMapCoordinateRoom::HasInhabitant() const
 // This method sets the current inhabitant of the map's Room.
 // May be used to set the inhabitant to the same inhabitant, or to
 // no inhabitant.
-void LabyrinthMapCoordinateRoom::SetInhabitant( Inhabitant inh )
+void LabyrinthMapCoordinateRoom::SetInhabitant( const Inhabitant inh )
 {
   i_ = inh;
 }
@@ -104,7 +105,7 @@ bool LabyrinthMapCoordinateRoom::HasTreasure() const
 // This method sets whether or not the treasure is in the given map's Room.
 // May be used to set the treasure when there is already a treasure in
 // the Room, or to remove the treasure when there is no treasure already.
-void LabyrinthMapCoordinateRoom::SetTreasure( bool b )
+void LabyrinthMapCoordinateRoom::SetTreasure( const bool b )
 {
   treasure_ = b;
 }
@@ -113,8 +114,8 @@ void LabyrinthMapCoordinateRoom::SetTreasure( bool b )
 // An exception is thrown if:
 //   l is null (invalid_argument)
 LabyrinthMap::LabyrinthMap( Labyrinth* l,
-                            unsigned int x_size,
-                            unsigned int y_size )
+                            const unsigned int x_size,
+                            const unsigned int y_size )
 {
   if( l == nullptr )
   {
