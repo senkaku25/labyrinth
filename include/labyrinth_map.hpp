@@ -45,7 +45,7 @@ class LabyrinthMapCoordinate
       throw std::logic_error( "Error: A LabyrinthMapCoordinateRoom "\
         "attempted to call IsWall(), which is a Border-only method.\n"\
         "Consider using IsRoom() to check whether the Coordinate is a" \
-        "Border or Room." );
+        "Border or Room.\n" );
     }
 
     virtual void SetWall( const Direction d, const bool exists )
@@ -53,7 +53,7 @@ class LabyrinthMapCoordinate
       throw std::logic_error( "Error: A LabyrinthMapCoordinateRoom "\
         "attempted to call SetWall(), which is a Border-only method.\n"\
         "Consider using IsRoom() to check whether the Coordinate is a" \
-        "Border or Room." );
+        "Border or Room.\n" );
     }
 
     virtual bool IsExit() const
@@ -61,7 +61,7 @@ class LabyrinthMapCoordinate
       throw std::logic_error( "Error: A LabyrinthMapCoordinateRoom "\
         "attempted to call IsExit(), which is a Border-only method.\n"\
         "Consider using IsRoom() to check whether the Coordinate is a" \
-        "Border or Room." );
+        "Border or Room.\n" );
     }
 
     virtual void SetExit( const bool b )
@@ -69,7 +69,7 @@ class LabyrinthMapCoordinate
       throw std::logic_error( "Error: A LabyrinthMapCoordinateRoom "\
         "attempted to call SetExit(), which is a Border-only method.\n"\
         "Consider using IsRoom() to check whether the Coordinate is a" \
-        "Border or Room." );
+        "Border or Room.\n" );
     }
 
     // Room-only methods:
@@ -79,7 +79,7 @@ class LabyrinthMapCoordinate
       throw std::logic_error( "Error: A LabyrinthMapCoordinateBorder "\
         "attempted to call HasInhabitant(), which is a Room-only method.\n"\
         "Consider using IsRoom() to check whether the Coordinate is a" \
-        "Border or Room." );
+        "Border or Room.\n" );
     }
 
     virtual void SetInhabitant( const Inhabitant inh )
@@ -87,7 +87,7 @@ class LabyrinthMapCoordinate
       throw std::logic_error( "Error: A LabyrinthMapCoordinateBorder "\
         "attempted to call SetInhabitant(), which is a Room-only method.\n"\
         "Consider using IsRoom() to check whether the Coordinate is a" \
-        "Border or Room." );
+        "Border or Room.\n" );
     }
 
     virtual bool HasTreasure() const
@@ -95,7 +95,7 @@ class LabyrinthMapCoordinate
       throw std::logic_error( "Error: A LabyrinthMapCoordinateBorder "\
         "attempted to call HasTreasure(), which is a Room-only method.\n"\
         "Consider using IsRoom() to check whether the Coordinate is a" \
-        "Border or Room." );
+        "Border or Room.\n" );
     }
 
     virtual void SetTreasure( const bool b )
@@ -103,7 +103,7 @@ class LabyrinthMapCoordinate
       throw std::logic_error( "Error: A LabyrinthMapCoordinateBorder "\
         "attempted to call SetInhabitant(), which is a Room-only method.\n"\
         "Consider using IsRoom() to check whether the Coordinate is a" \
-        "Border or Room." );
+        "Border or Room.\n" );
     }
 
 };
