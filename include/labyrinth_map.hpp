@@ -1,7 +1,7 @@
 /*
  *
  * Author: Jeffrey Leung
- * Last edited: 2015-12-30
+ * Last edited: 2015-12-31
  *
  * This C++ header file contains classes related to creating a LabyrinthMap
  * which creates, updates, and displays a map of a given Labyrinth.
@@ -263,14 +263,14 @@ class LabyrinthMap
     // This private method displays the x-axis label as well as numbering
     // of the x-coordinates of Rooms.
     // Only to be used by Display().
-    void LabelXAxis();
+    void LabelXAxis() const;
 
-    // This private method displays numbering of the y-coordinates of Rooms
+    // This private method displays numbering of the y-coordinates of a Room
     // as well as the y-axis label (if in the correct position), or padding
     // if the row has no Rooms.
     // Only to be used by Display().
     // Should be called every time a row of the Map is printed.
-    void LabelYAxis();
+    void LabelYAxis( const unsigned int y ) const;
 
     // This private method returns a character representing the given
     // Border Coordinate.
