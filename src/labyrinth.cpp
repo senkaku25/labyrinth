@@ -168,6 +168,20 @@ Inhabitant Labyrinth::GetInhabitant( Coordinate rm ) const
   return RoomAt(rm).GetInhabitant();
 }
 
+// This method returns the current Item in the room, but does not
+// change it.
+// An exception is thrown if:
+//   The Room is outside the Labyrinth (invalid_argument)
+Item Labyrinth::GetItem( Coordinate rm ) const
+{
+  if( !WithinBounds(rm) )
+  {
+    throw std::invalid_argument( "Error: GetItem() was given a "\
+      "Coordinate outside of the Labyrinth.\n" );
+  }
+  return RoomAt(rm).GetItem();
+}
+
 // This method returns the type of RoomBorder in the given direction.
 // An exception is thrown if:
 //   The Room is outside the Labyrinth (invalid_argument)
