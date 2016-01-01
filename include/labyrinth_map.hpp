@@ -274,6 +274,17 @@ class LabyrinthMap
 
     // This private method returns characters with the contents of the
     // given Room Coordinate.
+    // Legend of symbols:
+    //   Inhabitants:
+    //     None:
+    //     Minotaur (live):  M
+    //     Minotaur (dead):  m
+    //     Mirror (intact):  O
+    //     Mirror (cracked): 0
+    //   Items:
+    //     None:
+    //     Bullet:   •
+    //     Treasure: T
     // An exception is thrown if:
     //   The Coordinate is outside of the Labyrinth (domain_error)
     //   The Coordinate designates a Border (logic_error)
