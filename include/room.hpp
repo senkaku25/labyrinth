@@ -17,7 +17,7 @@
 class Room
 {
   public:
-  
+
     // Parameterized constructor
     // This constructor sets the necessary properties of a Room.
     Room( Inhabitant dark_thing,
@@ -27,19 +27,19 @@ class Room
           bool wall_east,
           bool wall_south,
           bool wall_west );
-          
+
     // This method returns the current inhabitant of the Room.
     Inhabitant GetInhabitant() const;
-    
+
     // This method changes the current inhabitant of the Room.
     void SetInhabitant( Inhabitant inh );
-    
+
     // This method returns the current item in the Room.
     Item GetItem() const;
-    
+
     // This method changes the current item in the Room.
     void SetItem( Item itm );
-    
+
     // This method removes the Wall in the given direction so that the Room
     // may be connected to another, or to set the exit.
     // An exception is thrown if:
