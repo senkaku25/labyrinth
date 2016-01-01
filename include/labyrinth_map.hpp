@@ -295,4 +295,7 @@ class LabyrinthMap
     //   The Coordinate is outside of the Labyrinth (domain_error)
     //   The Coordinate designates a Room (logic_error)
     std::string DisplayBorder( const Coordinate c ) const;
+
+    // This private method displays a legend for the Map symbols.
+    void DisplayLegend() const;
 };

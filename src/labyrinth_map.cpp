@@ -199,6 +199,8 @@ void LabyrinthMap::Display()
     std::cout << std::endl;
   }
 
+  std::cout << std::endl << std::endl;
+  DisplayLegend();
   return;
 }
 
@@ -713,4 +715,26 @@ std::string LabyrinthMap::DisplayBorder( const Coordinate c ) const
       "NESW values missed a possible value.\n" );
   }
 }
+
+// This private method displays a legend for the Map symbols.
+void LabyrinthMap::DisplayLegend() const
+{
+  std::cout << "        LEGEND" << std::endl;
+  std::cout << "┌─────────────────────┐" << std::endl;
+
+  std::cout << "│ INHABITANTS         │" << std::endl;
+  std::cout << "│ Minotaur (live):  M │" << std::endl;
+  std::cout << "│ Minotaur (dead):  m │" << std::endl;
+  std::cout << "│ Mirror (intact):  O │" << std::endl;
+  std::cout << "│ Mirror (cracked): 0 │" << std::endl;
+
+  std::cout << "│                     │" << std::endl;
+
+  std::cout << "│ ITEMS               │" << std::endl;
+  std::cout << "│ Bullet:           • │" << std::endl;
+  std::cout << "│ Treasure:         T │" << std::endl;
+
+  std::cout << "└─────────────────────┘" << std::endl;
+}
+
 //TODO Implementation of labyrinth_map.hpp
