@@ -22,7 +22,7 @@
 // Parameterized constructor
 // An exception is thrown if:
 //   A size of 0 is given (invalid_argument)
-Labyrinth::Labyrinth( size_t x_size, size_t y_size )
+Labyrinth::Labyrinth( const size_t x_size, const size_t y_size )
 {
   if( x_size == 0 )
   {
@@ -71,7 +71,7 @@ Labyrinth::~Labyrinth()
 //   The Rooms are the same (logic_error)
 //   The Rooms are not adjacent (logic_error)
 //   One or both Rooms are outside the Labyrinth (invalid_argument)
-void Labyrinth::ConnectRooms( Coordinate rm_1, Coordinate rm_2 )
+void Labyrinth::ConnectRooms( const Coordinate rm_1, const Coordinate rm_2 )
 {
   if( rm_1 == rm_2 )
   {
@@ -161,7 +161,7 @@ void Labyrinth::ConnectRooms( Coordinate rm_1, Coordinate rm_2 )
 //   Inhabitant inh is a null Inhabitant (i.e. Inhabitant::kNone)
 //     (invalid_argument)
 //   The Room is outside the Labyrinth (invalid_argument)
-void Labyrinth::SetInhabitant( Coordinate rm, Inhabitant inh )
+void Labyrinth::SetInhabitant( const Coordinate rm, const Inhabitant inh )
 {
   if( RoomAt(rm).GetInhabitant() != Inhabitant::kNone )
   {
@@ -189,7 +189,7 @@ void Labyrinth::SetInhabitant( Coordinate rm, Inhabitant inh )
 //   The Item of the Room has already been set (logic_error)
 //   Item itm is a null Item (i.e. Item::kNone) (invalid_argument)
 //   The Room is outside the Labyrinth (invalid_argument)
-void Labyrinth::SetItem( Coordinate rm, Item itm )
+void Labyrinth::SetItem( const Coordinate rm, const Item itm )
 {
   if( RoomAt(rm).GetItem() != Item::kNone )
   {
@@ -215,7 +215,7 @@ void Labyrinth::SetItem( Coordinate rm, Item itm )
 // This method returns the current Inhabitant of the Room.
 // An exception is thrown if:
 //   The Room is outside the Labyrinth (invalid_argument)
-Inhabitant Labyrinth::GetInhabitant( Coordinate rm ) const
+Inhabitant Labyrinth::GetInhabitant( const Coordinate rm ) const
 {
   if( !WithinBounds(rm) )
   {
@@ -229,7 +229,7 @@ Inhabitant Labyrinth::GetInhabitant( Coordinate rm ) const
 // change it.
 // An exception is thrown if:
 //   The Room is outside the Labyrinth (invalid_argument)
-Item Labyrinth::GetItem( Coordinate rm ) const
+Item Labyrinth::GetItem( const Coordinate rm ) const
 {
   if( !WithinBounds(rm) )
   {
@@ -243,7 +243,8 @@ Item Labyrinth::GetItem( Coordinate rm ) const
 // An exception is thrown if:
 //   The Room is outside the Labyrinth (invalid_argument)
 //   Direction d is kNone (invalid_argument)
-RoomBorder Labyrinth::DirectionCheck( Coordinate rm, Direction d ) const
+RoomBorder Labyrinth::DirectionCheck( const Coordinate rm,
+                                      const Direction d ) const
 {
   if( !WithinBounds(rm) )
   {
@@ -265,7 +266,7 @@ RoomBorder Labyrinth::DirectionCheck( Coordinate rm, Direction d ) const
 // coordinate.
 // An exception is thrown if:
 //   The Room is outside the Labyrinth (invalid_argument)
-Room& Labyrinth::RoomAt( Coordinate rm ) const
+Room& Labyrinth::RoomAt( const Coordinate rm ) const
 {
   if( !WithinBounds(rm) )
   {
@@ -277,7 +278,7 @@ Room& Labyrinth::RoomAt( Coordinate rm ) const
 
 // This private method returns true if the Room is within the bounds of
 // the Labyrinth, and false otherwise.
-bool Labyrinth::WithinBounds( Coordinate rm ) const
+bool Labyrinth::WithinBounds( const Coordinate rm ) const
 {
   return( rm.x < x_size_ && rm.y < y_size_ );
 }
@@ -287,7 +288,7 @@ bool Labyrinth::WithinBounds( Coordinate rm ) const
 // An exception is thrown if:
 //   One or both Rooms are outside the Labyrinth (invalid_argument)
 //   The same Room is given twice (logic_error)
-bool Labyrinth::IsAdjacent( Coordinate rm_1, Coordinate rm_2 ) const
+bool Labyrinth::IsAdjacent( const Coordinate rm_1, const Coordinate rm_2 ) const
 {
   if( !WithinBounds(rm_1) )
   {

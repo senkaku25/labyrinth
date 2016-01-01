@@ -23,8 +23,8 @@ struct Coordinate
   }
 
   // Parameterized constructor
-  Coordinate( size_t x_coordinate,
-              size_t y_coordinate )
+  Coordinate( const size_t x_coordinate,
+              const size_t y_coordinate )
   {
     x = x_coordinate;
     y = y_coordinate;
