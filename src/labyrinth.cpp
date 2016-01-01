@@ -153,6 +153,63 @@ void Labyrinth::ConnectRooms( Coordinate rm_1, Coordinate rm_2 )
   return;
 }
 
+// This method places an Inhabitant in a Room.
+// Cannot change an existing Inhabitant; use the EnemyAttacked() method
+// for that.
+// An exception is thrown if:
+//   The Inhabitant of the Room has already been set (logic_error)
+//   Inhabitant inh is a null Inhabitant (i.e. Inhabitant::kNone)
+//     (invalid_argument)
+//   The Room is outside the Labyrinth (invalid_argument)
+void Labyrinth::SetInhabitant( Coordinate rm, Inhabitant inh )
+{
+  if( RoomAt(rm).GetInhabitant() != Inhabitant::kNone )
+  {
+    throw std::logic_error( "Error: SetInhabitant() cannot replace an "\
+      "existing Inhabitant; EnemyAttacked() should be used instead.\n" );
+  }
+  else if( inh == Inhabitant::kNone )
+  {
+    throw std::invalid_argument( "Error: SetInhabitant() was given a null "\
+      "Inhabitant.\n" );
+  }
+  else if( !WithinBounds(rm) )
+  {
+    throw std::invalid_argument( "Error: SetInhabitant() was given an "\
+      "invalid Coordinate.\n" );
+  }
+
+  RoomAt(rm).SetInhabitant(inh);
+  return;
+}
+
+// This method places an Item in a Room.
+// Cannot change an existing Item; use the TakeItem() method for that.
+// An exception is thrown if:
+//   The Item of the Room has already been set (logic_error)
+//   Item itm is a null Item (i.e. Item::kNone) (invalid_argument)
+//   The Room is outside the Labyrinth (invalid_argument)
+void Labyrinth::SetItem( Coordinate rm, Item itm )
+{
+  if( RoomAt(rm).GetItem() != Item::kNone )
+  {
+    throw std::logic_error( "Error: SetItem() cannot replace an existing "\
+      "Item.\n" );
+  }
+  else if( itm == Item::kNone )
+  {
+    throw std::invalid_argument( "Error: SetItem() was given an invalid "\
+      "Item.\n" );
+  }
+  else if( !WithinBounds(rm) )
+  {
+    throw std::invalid_argument( "Error: SetItem() was given an invalid "\
+      "Coordinate.\n" );
+  }
+
+  RoomAt(rm).SetItem(itm);
+}
+
 // PLAY:
 
 // This method returns the current Inhabitant of the Room.
