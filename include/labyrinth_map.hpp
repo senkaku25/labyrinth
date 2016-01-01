@@ -74,7 +74,7 @@ class LabyrinthMapCoordinate
 
     // Room-only methods:
 
-    virtual Inhabitant HasInhabitant() const
+    virtual Inhabitant GetInhabitant() const
     {
       throw std::logic_error( "Error: A LabyrinthMapCoordinateBorder "\
         "attempted to call HasInhabitant(), which is a Room-only method.\n"\
@@ -90,7 +90,7 @@ class LabyrinthMapCoordinate
         "Border or Room.\n" );
     }
 
-    virtual bool HasTreasure() const
+    virtual bool GetTreasure() const
     {
       throw std::logic_error( "Error: A LabyrinthMapCoordinateBorder "\
         "attempted to call HasTreasure(), which is a Room-only method.\n"\
