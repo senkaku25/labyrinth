@@ -1,7 +1,7 @@
 /*
  *
  * Author: Jeffrey Leung
- * Last edited: 2015-12-31
+ * Last edited: 2016-01-01
  *
  * This C++ header file contains classes related to creating a LabyrinthMap
  * which creates, updates, and displays a map of a given Labyrinth.
@@ -186,8 +186,8 @@ class LabyrinthMap
     // An exception is thrown if:
     //   l is null (invalid_argument)
     LabyrinthMap( Labyrinth* l,
-                  const unsigned int x_size,
-                  const unsigned int y_size );
+                  const size_t x_size,
+                  const size_t y_size );
 
     // Destructor
     ~LabyrinthMap();
@@ -198,13 +198,13 @@ class LabyrinthMap
   private:
 
     Labyrinth* l_;
-    unsigned int x_size_;
-    unsigned int y_size_;
+    size_t x_size_;
+    size_t y_size_;
 
     // 2-d array of LabyrinthMapCoordinate pointers
     LabyrinthMapCoordinate*** map_;
-    unsigned int map_x_size_;
-    unsigned int map_y_size_;
+    size_t map_x_size_;
+    size_t map_y_size_;
 
     // This private method returns true if the Coordinate is within the bounds
     // of the Map, and false otherwise.
@@ -269,7 +269,7 @@ class LabyrinthMap
     // if the row has no Rooms.
     // Only to be used by Display().
     // Should be called every time a row of the Map is printed.
-    void LabelYAxis( const unsigned int y ) const;
+    void LabelYAxis( const size_t y ) const;
 
     // This private method returns characters with the contents of the
     // given Room Coordinate.

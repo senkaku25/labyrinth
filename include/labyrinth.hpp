@@ -1,7 +1,7 @@
 /*
  *
  * Author: Jeffrey Leung
- * Last edited: 2015-12-28
+ * Last edited: 2016-01-01
  *
  * This C++ header file contains the implementation of the Labyrinth class,
  * which uses the Room class to create a 2-d mapping for a game.
@@ -27,7 +27,7 @@ class Labyrinth
       // Parameterized constructor
       // An exception is thrown if:
       //   A size of 0 is given (invalid_argument)
-      Labyrinth( unsigned int x_size, unsigned int y_size );
+      Labyrinth( size_t x_size, size_t y_size );
 
       // Destructor
       ~Labyrinth();
@@ -124,8 +124,8 @@ class Labyrinth
   private:
 
     Room** rooms_;
-    unsigned int x_size_;
-    unsigned int y_size_;
+    size_t x_size_;
+    size_t y_size_;
 
     // Special rooms:
     //   Must be set before the game begins

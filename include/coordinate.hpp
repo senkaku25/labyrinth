@@ -1,7 +1,7 @@
 /*
  *
  * Author: Jeffrey Leung
- * Last edited: 2015-12-27
+ * Last edited: 2016-01-01
  *
  * This C++ header file contains the implementation of a Coordinate struct
  * used by the Labyrinth and LabyrinthMap classes.
@@ -12,8 +12,8 @@
 
 struct Coordinate
 {
-  unsigned int x;
-  unsigned int y;
+  size_t x;
+  size_t y;
 
   // Default constructor
   Coordinate()
@@ -23,8 +23,8 @@ struct Coordinate
   }
 
   // Parameterized constructor
-  Coordinate( unsigned int x_coordinate,
-              unsigned int y_coordinate )
+  Coordinate( size_t x_coordinate,
+              size_t y_coordinate )
   {
     x = x_coordinate;
     y = y_coordinate;

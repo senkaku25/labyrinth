@@ -1,7 +1,7 @@
 /*
  *
  * Author: Jeffrey Leung
- * Last edited: 2015-12-31
+ * Last edited: 2016-01-01
  *
  * This C++ file contains the implementation of the Labyrinth class, which uses
  * the Room class to create a 2-d mapping for a game.
@@ -22,7 +22,7 @@
 // Parameterized constructor
 // An exception is thrown if:
 //   A size of 0 is given (invalid_argument)
-Labyrinth::Labyrinth( unsigned int x_size, unsigned int y_size )
+Labyrinth::Labyrinth( size_t x_size, size_t y_size )
 {
   if( x_size == 0 )
   {
@@ -44,7 +44,7 @@ Labyrinth::Labyrinth( unsigned int x_size, unsigned int y_size )
   }
 
   rooms_ = new Room*[ y_size ];
-  for( unsigned int i = 0; i < y_size; ++i )
+  for( size_t i = 0; i < y_size; ++i )
   {
     rooms_[i] = new Room[ x_size ];
   }
@@ -56,7 +56,7 @@ Labyrinth::Labyrinth( unsigned int x_size, unsigned int y_size )
 // Destructor
 Labyrinth::~Labyrinth()
 {
-  for( unsigned int i = 0; i < y_size_; ++i )
+  for( size_t i = 0; i < y_size_; ++i )
   {
     delete [] rooms_[i];
   }
@@ -314,7 +314,7 @@ bool Labyrinth::IsAdjacent( Coordinate rm_1, Coordinate rm_2 ) const
       "coordinate for the Rooms.\n" );
   }
 
-  unsigned int x_distance;
+  size_t x_distance;
   if( rm_1.x > rm_2.x )
   {
     x_distance = rm_1.x - rm_2.x;
@@ -324,7 +324,7 @@ bool Labyrinth::IsAdjacent( Coordinate rm_1, Coordinate rm_2 ) const
     x_distance = rm_2.x - rm_1.x;
   }
 
-  unsigned int y_distance;
+  size_t y_distance;
   if( rm_1.y > rm_2.y )
   {
     y_distance = rm_1.y - rm_2.y;

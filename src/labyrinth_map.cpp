@@ -1,7 +1,7 @@
 /*
  *
  * Author: Jeffrey Leung
- * Last edited: 2015-12-31
+ * Last edited: 2016-01-01
  *
  * This C++ header file contains the LabyrinthMap class which creates, updates,
  * and displays a map of a given Labyrinth.
@@ -113,8 +113,8 @@ void LabyrinthMapCoordinateRoom::SetItem( const Item i )
 // An exception is thrown if:
 //   l is null (invalid_argument)
 LabyrinthMap::LabyrinthMap( Labyrinth* l,
-                            const unsigned int x_size,
-                            const unsigned int y_size )
+                            const size_t x_size,
+                            const size_t y_size )
 {
   if( l == nullptr )
   {
@@ -132,10 +132,10 @@ LabyrinthMap::LabyrinthMap( Labyrinth* l,
   // Creation of the map array
   map_ = new LabyrinthMapCoordinate**[ map_y_size_ ];
   Coordinate c;
-  for( unsigned int y = 0; y < map_y_size_; ++y )
+  for( size_t y = 0; y < map_y_size_; ++y )
   {
     map_[y] = new LabyrinthMapCoordinate*[ map_x_size_ ];
-    for( unsigned int x = 0; x < map_x_size_; ++x )
+    for( size_t x = 0; x < map_x_size_; ++x )
     {
       c.x = x;
       c.y = y;
@@ -158,9 +158,9 @@ LabyrinthMap::LabyrinthMap( Labyrinth* l,
 // Destructor
 LabyrinthMap::~LabyrinthMap()
 {
-  for( unsigned int y = 0; y < map_y_size_; ++y )
+  for( size_t y = 0; y < map_y_size_; ++y )
   {
-    for( unsigned int x = 0; x < map_x_size_; ++x )
+    for( size_t x = 0; x < map_x_size_; ++x )
     {
       delete map_[y][x];
     }
@@ -177,10 +177,10 @@ void LabyrinthMap::Display()
 
   LabelXAxis();
 
-  for( unsigned int y = 0; y < map_y_size_; ++y )
+  for( size_t y = 0; y < map_y_size_; ++y )
   {
     LabelYAxis( y );
-    for( unsigned int x = 0; x < map_x_size_; ++x )
+    for( size_t x = 0; x < map_x_size_; ++x )
     {
       Coordinate c(x, y);
       if( IsRoom(c) )
@@ -305,21 +305,21 @@ void LabyrinthMap::MapToLabyrinth( Coordinate& c ) const
 void LabyrinthMap::CleanBorders()
 {
   // Removing excess bounds on the exterior of the Labyrinth
-  for( unsigned int x = 0; x < map_x_size_; ++x )
+  for( size_t x = 0; x < map_x_size_; ++x )
   {
     map_[0][x]->SetWall( Direction::kNorth, false );
     map_[map_y_size_-1][x]->SetWall( Direction::kSouth, false );
   }
-  for( unsigned int y = 0; y < map_y_size_; ++y )
+  for( size_t y = 0; y < map_y_size_; ++y )
   {
     map_[y][0]->SetWall( Direction::kWest, false );
     map_[y][map_x_size_-1]->SetWall( Direction::kEast, false );
   }
 
   // Removing excess bounds directly adjacent to Rooms
-  for( unsigned int y = 0; y < map_y_size_; ++y )
+  for( size_t y = 0; y < map_y_size_; ++y )
   {
-    for( unsigned int x = 0; x < map_x_size_; ++x )
+    for( size_t x = 0; x < map_x_size_; ++x )
     {
       Coordinate c(x, y);
       if( !IsRoom(c) )
@@ -348,9 +348,9 @@ void LabyrinthMap::CleanBorders()
 void LabyrinthMap::UpdateBorders()
 {
   // Loops through the Labyrinth, not the Map
-  for( unsigned int y = 0; y < y_size_; ++y )
+  for( size_t y = 0; y < y_size_; ++y )
   {
-    for( unsigned int x = 0; x < x_size_; ++x )
+    for( size_t x = 0; x < x_size_; ++x )
     {
       Coordinate c_laby(x, y);
       Coordinate c_map = c_laby;
@@ -437,9 +437,9 @@ void LabyrinthMap::UpdateBorders()
 // of the Labyrinth.
 void LabyrinthMap::UpdateRooms()
 {
-  for( unsigned int y = 0; y < y_size_; ++y )
+  for( size_t y = 0; y < y_size_; ++y )
   {
-    for( unsigned int x = 0; x < x_size_; ++x )
+    for( size_t x = 0; x < x_size_; ++x )
     {
       Coordinate c_laby(x, y);
       Coordinate c_map = c_laby;
@@ -486,8 +486,8 @@ void LabyrinthMap::LabelXAxis() const
   // Final length of the displayed map is around 3 times the labyrinth length
   // because the final map consists of Rooms which have 1 Border character
   // and 2 space characters.
-  const unsigned int kXMiddle = (x_size_ * 3)/2 + 1;
-  for( unsigned int i = 0; i < kXMiddle; ++i )
+  const size_t kXMiddle = (x_size_ * 3)/2 + 1;
+  for( size_t i = 0; i < kXMiddle; ++i )
   {
     std::cout << " ";
   }
@@ -496,7 +496,7 @@ void LabyrinthMap::LabelXAxis() const
 
   // X-axis marks
   std::cout << "     ";  // Alignment with y-axis label
-  for( unsigned int i = 0; i < x_size_; ++i )
+  for( size_t i = 0; i < x_size_; ++i )
   {
     if( i < 10 )  // Correcting for digit positions
     {
@@ -514,10 +514,10 @@ void LabyrinthMap::LabelXAxis() const
 // if the row has no Rooms.
 // Only to be used by Display().
 // Should be called every time a row of the Map is printed.
-void LabyrinthMap::LabelYAxis( const unsigned int y ) const
+void LabyrinthMap::LabelYAxis( const size_t y ) const
 {
   // Y-axis label position
-  const unsigned int kYMiddle = (y_size_)/2 + 1;
+  const size_t kYMiddle = (y_size_)/2 + 1;
 
   // Y label
   if( y == kYMiddle )
