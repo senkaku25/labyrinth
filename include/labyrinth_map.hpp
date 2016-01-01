@@ -272,6 +272,13 @@ class LabyrinthMap
     // Should be called every time a row of the Map is printed.
     void LabelYAxis( const unsigned int y ) const;
 
+    // This private method returns characters with the contents of the
+    // given Room Coordinate.
+    // An exception is thrown if:
+    //   The Coordinate is outside of the Labyrinth (domain_error)
+    //   The Coordinate designates a Border (logic_error)
+    std::string DisplayRoom( const Coordinate c ) const;
+
     // This private method returns a character representing the given
     // Border Coordinate.
     // An exception is thrown if:
