@@ -27,6 +27,7 @@ class Labyrinth
       // Parameterized constructor
       // An exception is thrown if:
       //   A size of 0 is given (domain_error)
+      //   An x or y size greater than the maximum is given (domain_error)
       Labyrinth( const size_t x_size, const size_t y_size );
 
       // Destructor
@@ -132,6 +133,8 @@ class Labyrinth
     Room** rooms_;
     size_t x_size_;
     size_t y_size_;
+    const size_t MAX_X_SIZE_ = 20;
+    const size_t MAX_Y_SIZE_ = 20;
 
     // Special rooms:
     //   Must be set before the game begins

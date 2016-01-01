@@ -22,6 +22,7 @@
 // Parameterized constructor
 // An exception is thrown if:
 //   A size of 0 is given (domain_error)
+//   An x or y size greater than the maximum is given (domain_error)
 Labyrinth::Labyrinth( const size_t x_size, const size_t y_size )
 {
   if( x_size == 0 )
@@ -41,6 +42,25 @@ Labyrinth::Labyrinth( const size_t x_size, const size_t y_size )
   {
     throw std::domain_error( "Error: Labyrinth() was given an empty "\
       "y size.\n" );
+  }
+
+  if( x_size > MAX_X_SIZE_ )
+  {
+    if( y_size > MAX_Y_SIZE_ )
+    {
+      throw std::domain_error( "Error: Labyrinth() was given x and y sizes "\
+        "greater than the maximum (20).\n" );
+    }
+    else
+    {
+      throw std::domain_error( "Error: Labyrinth() was given an x size "\
+        "greater than the maximum (20).\n" );
+    }
+  }
+  else if( y_size > MAX_Y_SIZE_ )
+  {
+    throw std::domain_error( "Error: Labyrinth() was given a y size "\
+      "greater than the maximum (20).\n" );
   }
 
   rooms_ = new Room*[ y_size ];
