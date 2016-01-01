@@ -182,7 +182,7 @@ void LabyrinthMap::Display()
       Coordinate c(x, y);
       if( IsRoom(c) )
       {
-        std::cout << "  ";
+        std::cout << DisplayRoom(c);
       }
       else
       {
@@ -539,6 +539,90 @@ void LabyrinthMap::LabelYAxis( const unsigned int y ) const
   {
     std::cout << "    ";  // Alignment
   }
+}
+
+// This private method returns characters with the contents of the
+// given Room Coordinate.
+// Legend of symbols:
+//   Inhabitants:
+//     None:
+//     Minotaur (live):  M
+//     Minotaur (dead):  m
+//     Mirror (intact):  O
+//     Mirror (cracked): 0
+//   Items:
+//     None:
+//     Bullet:   •
+//     Treasure: T
+// An exception is thrown if:
+//   The Coordinate is outside of the Labyrinth (domain_error)
+//   The Coordinate designates a Border (logic_error)
+std::string LabyrinthMap::DisplayRoom( const Coordinate c ) const
+{
+  if( !WithinBoundsOfMap(c) )
+  {
+    throw std::domain_error( "Error: DisplayRoom() was given an invalid "\
+      "Coordinate.\n" );
+  }
+  else if( !IsRoom(c) )
+  {
+    throw std::logic_error( "Error: DisplayRoom() was given a "\
+      "Border Coordinate.\n" );
+  }
+
+  std::string s;
+
+  Inhabitant inh = Inhabitant::kNone;
+  try
+  {
+    inh = MapCoordinateAt(c).GetInhabitant();
+  }
+  catch( const std::exception& e )
+  {
+    std::cout << e.what();
+  }
+  switch( inh )
+  {
+    case Inhabitant::kMinotaur:
+      s += "M";
+      break;
+    case Inhabitant::kMinotaurDead:
+      s += "m";
+      break;
+    case Inhabitant::kMirror:
+      s += "O";
+      break;
+    case Inhabitant::kMirrorCracked:
+      s += "0";
+      break;
+    default:
+      s += " ";
+      break;
+  }
+
+  Item itm = Item::kNone;
+  try
+  {
+    itm = MapCoordinateAt(c).GetItem();
+  }
+  catch( const std::exception& e )
+  {
+    std::cout << e.what();
+  }
+  switch( itm )
+  {
+    case Item::kBullet:
+      s += "•";
+      break;
+    case Item::kTreasure:
+      s += "T";
+      break;
+    default:
+      s += " ";
+      break;
+  }
+
+  return s;
 }
 
 // This private method returns a character representing the given
