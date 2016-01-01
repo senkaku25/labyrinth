@@ -152,7 +152,7 @@ LabyrinthMap::LabyrinthMap( Labyrinth* l,
 
   CleanBorders();
   UpdateBorders();
-  //UpdateRooms();  //TODO Uncomment when UpdateRooms() is implemented
+  UpdateRooms();
 }
 
 // Destructor
@@ -172,6 +172,9 @@ LabyrinthMap::~LabyrinthMap()
 // This method displays a map of the current Labyrinth.
 void LabyrinthMap::Display()
 {
+  UpdateBorders();
+  UpdateRooms();
+
   LabelXAxis();
 
   for( unsigned int y = 0; y < map_y_size_; ++y )

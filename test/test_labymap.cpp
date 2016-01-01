@@ -36,6 +36,22 @@ int main()
   std::cout << std::endl;
 
 
+  std::cout << "Creating and displaying a Map from the Labyrinth." << std::endl;
+  try
+  {
+    LabyrinthMap l1_map( &l1, l1_xsize, l1_ysize );
+    std::cout << "Creation completed." << std::endl;
+
+    l1_map.Display();
+  }
+  catch( const std::exception& e )
+  {
+    std::cout << e.what();
+  }
+  std::cout << "Completed." << std::endl;
+  std::cout << std::endl;
+
+
 
   std::cout << "Setting the Labyrinth to be a snake from the top left "
             << "to the bottom right." << std::endl;
