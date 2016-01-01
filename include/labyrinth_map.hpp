@@ -90,18 +90,18 @@ class LabyrinthMapCoordinate
         "Border or Room.\n" );
     }
 
-    virtual bool GetTreasure() const
+    virtual Item GetItem() const
     {
       throw std::logic_error( "Error: A LabyrinthMapCoordinateBorder "\
-        "attempted to call HasTreasure(), which is a Room-only method.\n"\
+        "attempted to call GetItem(), which is a Room-only method.\n"\
         "Consider using IsRoom() to check whether the Coordinate is a" \
         "Border or Room.\n" );
     }
 
-    virtual void SetTreasure( const bool b )
+    virtual void SetItem( const Item i )
     {
       throw std::logic_error( "Error: A LabyrinthMapCoordinateBorder "\
-        "attempted to call SetInhabitant(), which is a Room-only method.\n"\
+        "attempted to call SetItem(), which is a Room-only method.\n"\
         "Consider using IsRoom() to check whether the Coordinate is a" \
         "Border or Room.\n" );
     }
@@ -164,17 +164,16 @@ class LabyrinthMapCoordinateRoom : public LabyrinthMapCoordinate
     // no inhabitant.
     void SetInhabitant( const Inhabitant inh );
 
-    // This method returns whether the treasure is in a given Room.
-    bool GetTreasure() const;
+    // This method returns the item in a given Room.
+    Item GetItem() const;
 
-    // This method sets whether or not the treasure is in the given map's Room.
-    // May be used to set the treasure when there is already a treasure in
-    // the Room, or to remove the treasure when there is no treasure already.
-    void SetTreasure( const bool b );
+    // This method sets the item in a given map's Room.
+    // May be used to set the same item or remove a non-existent item.
+    void SetItem( const Item i );
 
   private:
     Inhabitant i_ = Inhabitant::kNone;
-    bool treasure_ = false;
+    Item itm_ = Item::kNone;
 };
 
 // This class contains a map of a Labyrinth.

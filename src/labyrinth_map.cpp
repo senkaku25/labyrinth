@@ -96,18 +96,17 @@ void LabyrinthMapCoordinateRoom::SetInhabitant( const Inhabitant inh )
   i_ = inh;
 }
 
-// This method returns whether the treasure is in a given Room.
-bool LabyrinthMapCoordinateRoom::GetTreasure() const
+// This method returns the item in a given Room.
+Item LabyrinthMapCoordinateRoom::GetItem() const
 {
-  return treasure_;
+  return itm_;
 }
 
-// This method sets whether or not the treasure is in the given map's Room.
-// May be used to set the treasure when there is already a treasure in
-// the Room, or to remove the treasure when there is no treasure already.
-void LabyrinthMapCoordinateRoom::SetTreasure( const bool b )
+// This method sets the item in a given map's Room.
+// May be used to set the same item or remove a non-existent item.
+void LabyrinthMapCoordinateRoom::SetItem( const Item i )
 {
-  treasure_ = b;
+  itm_ = i;
 }
 
 // Parameterized constructor
@@ -459,9 +458,7 @@ void LabyrinthMap::UpdateRooms()
 
       try
       {
-        Item i = l_->GetItem(c_laby);
-        const bool treasure = ( i == Item::kTreasure ) ? true : false;
-        MapCoordinateAt(c_map).SetTreasure(treasure);
+        MapCoordinateAt(c_map).SetItem( l_->GetItem(c_laby) );
       }
       catch( const std::exception& e )
       {
