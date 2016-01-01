@@ -429,6 +429,50 @@ void LabyrinthMap::UpdateBorders()
 
 }
 
+// This private method updates the Map Rooms by checking the contents
+// of the Labyrinth.
+void LabyrinthMap::UpdateRooms()
+{
+  for( unsigned int y = 0; y < y_size_; ++y )
+  {
+    for( unsigned int x = 0; x < x_size_; ++x )
+    {
+      Coordinate c_laby(x, y);
+      Coordinate c_map = c_laby;
+      try
+      {
+        LabyrinthToMap(c_map);
+      }
+      catch( const std::exception& e )
+      {
+        std::cout << e.what();
+      }
+
+      try
+      {
+        MapCoordinateAt(c_map).SetInhabitant( l_->GetInhabitant(c_laby) );
+      }
+      catch( const std::exception& e )
+      {
+        std::cout << e.what();
+      }
+
+      try
+      {
+        Item i = l_->GetItem(c_laby);
+        const bool treasure = ( i == Item::kTreasure ) ? true : false;
+        MapCoordinateAt(c_map).SetTreasure(treasure);
+      }
+      catch( const std::exception& e )
+      {
+        std::cout << e.what();
+      }
+    }
+  }
+
+  return;
+}
+
 // This private method displays the x-axis label as well as numbering
 // of the x-coordinates of Rooms.
 // Only to be used by Display().
