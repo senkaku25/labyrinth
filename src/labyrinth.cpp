@@ -21,25 +21,25 @@
 
 // Parameterized constructor
 // An exception is thrown if:
-//   A size of 0 is given (invalid_argument)
+//   A size of 0 is given (domain_error)
 Labyrinth::Labyrinth( const size_t x_size, const size_t y_size )
 {
   if( x_size == 0 )
   {
     if( y_size == 0 )
     {
-      throw std::invalid_argument( "Error: Labyrinth() was given empty x and "\
+      throw std::domain_error( "Error: Labyrinth() was given empty x and "\
         "y sizes.\n" );
     }
     else
     {
-      throw std::invalid_argument( "Error: Labyrinth() was given an empty "\
+      throw std::domain_error( "Error: Labyrinth() was given an empty "\
         "x size.\n" );
     }
   }
   else if( y_size == 0 )
   {
-    throw std::invalid_argument( "Error: Labyrinth() was given an empty "\
+    throw std::domain_error( "Error: Labyrinth() was given an empty "\
       "y size.\n" );
   }
 
@@ -70,7 +70,7 @@ Labyrinth::~Labyrinth()
 //   The Rooms are already connected (logic_error)
 //   The Rooms are the same (logic_error)
 //   The Rooms are not adjacent (logic_error)
-//   One or both Rooms are outside the Labyrinth (invalid_argument)
+//   One or both Rooms are outside the Labyrinth (domain_error)
 void Labyrinth::ConnectRooms( const Coordinate rm_1, const Coordinate rm_2 )
 {
   if( rm_1 == rm_2 )
@@ -85,19 +85,19 @@ void Labyrinth::ConnectRooms( const Coordinate rm_1, const Coordinate rm_2 )
     {
       if( !WithinBounds(rm_2) )
       {
-        throw std::invalid_argument( "Error: ConnectRooms() was given invalid "\
+        throw std::domain_error( "Error: ConnectRooms() was given invalid "\
           "coordinates for both rm_1 and rm_2.\n" );
       }
       else
       {
-        throw std::invalid_argument( "Error: ConnectRooms() was given "\
+        throw std::domain_error( "Error: ConnectRooms() was given "\
           "an invalid coordinate for rm_1.\n" );
       }
     }
 
     else
     {
-      throw std::invalid_argument( "Error: ConnectRooms() was given an "\
+      throw std::domain_error( "Error: ConnectRooms() was given an "\
         "invalid coordinate for rm_2.\n" );
     }
   }
@@ -160,7 +160,7 @@ void Labyrinth::ConnectRooms( const Coordinate rm_1, const Coordinate rm_2 )
 //   The Inhabitant of the Room has already been set (logic_error)
 //   Inhabitant inh is a null Inhabitant (i.e. Inhabitant::kNone)
 //     (invalid_argument)
-//   The Room is outside the Labyrinth (invalid_argument)
+//   The Room is outside the Labyrinth (domain_error)
 void Labyrinth::SetInhabitant( const Coordinate rm, const Inhabitant inh )
 {
   if( RoomAt(rm).GetInhabitant() != Inhabitant::kNone )
@@ -175,7 +175,7 @@ void Labyrinth::SetInhabitant( const Coordinate rm, const Inhabitant inh )
   }
   else if( !WithinBounds(rm) )
   {
-    throw std::invalid_argument( "Error: SetInhabitant() was given an "\
+    throw std::domain_error( "Error: SetInhabitant() was given an "\
       "invalid Coordinate.\n" );
   }
 
@@ -188,7 +188,7 @@ void Labyrinth::SetInhabitant( const Coordinate rm, const Inhabitant inh )
 // An exception is thrown if:
 //   The Item of the Room has already been set (logic_error)
 //   Item itm is a null Item (i.e. Item::kNone) (invalid_argument)
-//   The Room is outside the Labyrinth (invalid_argument)
+//   The Room is outside the Labyrinth (domain_error)
 void Labyrinth::SetItem( const Coordinate rm, const Item itm )
 {
   if( RoomAt(rm).GetItem() != Item::kNone )
@@ -203,7 +203,7 @@ void Labyrinth::SetItem( const Coordinate rm, const Item itm )
   }
   else if( !WithinBounds(rm) )
   {
-    throw std::invalid_argument( "Error: SetItem() was given an invalid "\
+    throw std::domain_error( "Error: SetItem() was given an invalid "\
       "Coordinate.\n" );
   }
 
@@ -214,12 +214,12 @@ void Labyrinth::SetItem( const Coordinate rm, const Item itm )
 
 // This method returns the current Inhabitant of the Room.
 // An exception is thrown if:
-//   The Room is outside the Labyrinth (invalid_argument)
+//   The Room is outside the Labyrinth (domain_error)
 Inhabitant Labyrinth::GetInhabitant( const Coordinate rm ) const
 {
   if( !WithinBounds(rm) )
   {
-    throw std::invalid_argument( "Error: GetInhabitant() was given a "\
+    throw std::domain_error( "Error: GetInhabitant() was given a "\
       "Coordinate outside of the Labyrinth.\n" );
   }
   return RoomAt(rm).GetInhabitant();
@@ -228,12 +228,12 @@ Inhabitant Labyrinth::GetInhabitant( const Coordinate rm ) const
 // This method returns the current Item in the room, but does not
 // change it.
 // An exception is thrown if:
-//   The Room is outside the Labyrinth (invalid_argument)
+//   The Room is outside the Labyrinth (domain_error)
 Item Labyrinth::GetItem( const Coordinate rm ) const
 {
   if( !WithinBounds(rm) )
   {
-    throw std::invalid_argument( "Error: GetItem() was given a "\
+    throw std::domain_error( "Error: GetItem() was given a "\
       "Coordinate outside of the Labyrinth.\n" );
   }
   return RoomAt(rm).GetItem();
@@ -241,14 +241,14 @@ Item Labyrinth::GetItem( const Coordinate rm ) const
 
 // This method returns the type of RoomBorder in the given direction.
 // An exception is thrown if:
-//   The Room is outside the Labyrinth (invalid_argument)
+//   The Room is outside the Labyrinth (domain_error)
 //   Direction d is kNone (invalid_argument)
 RoomBorder Labyrinth::DirectionCheck( const Coordinate rm,
                                       const Direction d ) const
 {
   if( !WithinBounds(rm) )
   {
-    throw std::invalid_argument( "Error: DirectionCheck() was given a "\
+    throw std::domain_error( "Error: DirectionCheck() was given a "\
       "Coordinate outside of the Labyrinth.\n" );
   }
   else if( d == Direction::kNone )
@@ -265,12 +265,12 @@ RoomBorder Labyrinth::DirectionCheck( const Coordinate rm,
 // This private method returns a reference to the Room at the given
 // coordinate.
 // An exception is thrown if:
-//   The Room is outside the Labyrinth (invalid_argument)
+//   The Room is outside the Labyrinth (domain_error)
 Room& Labyrinth::RoomAt( const Coordinate rm ) const
 {
   if( !WithinBounds(rm) )
   {
-    throw std::invalid_argument( "Error: RoomAt() was given an invalid "\
+    throw std::domain_error( "Error: RoomAt() was given an invalid "\
       "coordinate for rm.\n" );
   }
   return rooms_[rm.y][rm.x];
@@ -286,7 +286,7 @@ bool Labyrinth::WithinBounds( const Coordinate rm ) const
 // This private method returns true if the two Rooms are adjacent, and
 // false otherwise.
 // An exception is thrown if:
-//   One or both Rooms are outside the Labyrinth (invalid_argument)
+//   One or both Rooms are outside the Labyrinth (domain_error)
 //   The same Room is given twice (logic_error)
 bool Labyrinth::IsAdjacent( const Coordinate rm_1, const Coordinate rm_2 ) const
 {
@@ -294,18 +294,18 @@ bool Labyrinth::IsAdjacent( const Coordinate rm_1, const Coordinate rm_2 ) const
   {
     if( !WithinBounds(rm_2) )
     {
-      throw std::invalid_argument( "Error: IsAdjacent() was given invalid "\
+      throw std::domain_error( "Error: IsAdjacent() was given invalid "\
       "coordinates for both rm_1 and rm_2.\n" );
     }
     else
     {
-      throw std::invalid_argument( "Error: IsAdjacent() was given an invalid "\
+      throw std::domain_error( "Error: IsAdjacent() was given an invalid "\
       "coordinate for rm_1.\n" );
     }
   }
   else if( !WithinBounds(rm_2) )
   {
-    throw std::invalid_argument( "Error: IsAdjacent() was given an invalid "\
+    throw std::domain_error( "Error: IsAdjacent() was given an invalid "\
       "coordinate for rm_2.\n" );
   }
 

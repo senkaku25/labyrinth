@@ -26,7 +26,7 @@ class Labyrinth
 
       // Parameterized constructor
       // An exception is thrown if:
-      //   A size of 0 is given (invalid_argument)
+      //   A size of 0 is given (domain_error)
       Labyrinth( const size_t x_size, const size_t y_size );
 
       // Destructor
@@ -39,29 +39,29 @@ class Labyrinth
       //   The Rooms are already connected (logic_error)
       //   The Rooms are the same (logic_error)
       //   The Rooms are not adjacent (logic_error)
-      //   One or both Rooms are outside the Labyrinth (invalid_argument)
+      //   One or both Rooms are outside the Labyrinth (domain_error)
       void ConnectRooms( const Coordinate rm_1, const Coordinate rm_2 );
 
       // This method sets the primary (initial) spawn Room.
-      //   The Room is outside the Labyrinth (invalid_argument)
+      //   The Room is outside the Labyrinth (domain_error)
       void SetSpawn1( const Coordinate rm );
 
       // This method sets the secondary spawn Room.
-      //   The Room is outside the Labyrinth (invalid_argument)
+      //   The Room is outside the Labyrinth (domain_error)
       void SetSpawn2( const Coordinate rm );
 
       // This method sets the exit of the Labyrinth on a Wall.
       // An exception is thrown if:
       //   The Direction has another Room (invalid_argument)
       //   The Exit has already been set (logic_error)
-      //   The Room is outside the Labyrinth (invalid_argument)
+      //   The Room is outside the Labyrinth (domain_error)
       void SetExit( const Coordinate rm, const Direction d );
 
       // This method places the Labyrinth treasure in a Room.
       // May be used to drop the Treasure if a Player is dead.
       // An exception is thrown if:
       //   The Treasure has already been placed in another Room (logic_error)
-      //   The Room is outside the Labyrinth (invalid_argument)
+      //   The Room is outside the Labyrinth (domain_error)
       void SetTreasure( const Coordinate rm );
 
       // This method places an Inhabitant in a Room.
@@ -71,7 +71,7 @@ class Labyrinth
       //   The Inhabitant of the Room has already been set (logic_error)
       //   Inhabitant inh is a null Inhabitant (i.e. Inhabitant::kNone)
       //     (invalid_argument)
-      //   The Room is outside the Labyrinth (invalid_argument)
+      //   The Room is outside the Labyrinth (domain_error)
       void SetInhabitant( const Coordinate rm, const Inhabitant inh );
 
       // This method places an Item in a Room.
@@ -79,14 +79,14 @@ class Labyrinth
       // An exception is thrown if:
       //   The Item of the Room has already been set (logic_error)
       //   Item itm is a null Item (i.e. Item::kNone) (invalid_argument)
-      //   The Room is outside the Labyrinth (invalid_argument)
+      //   The Room is outside the Labyrinth (domain_error)
       void SetItem( Coordinate rm, Item itm );
 
     // PLAY:
 
       // This method returns the current Inhabitant of the Room.
       // An exception is thrown if:
-      //   The Room is outside the Labyrinth (invalid_argument)
+      //   The Room is outside the Labyrinth (domain_error)
       Inhabitant GetInhabitant( const Coordinate rm ) const;
 
       // This method attacks the Inhabitant of the Room, and sets the resultant
@@ -99,30 +99,30 @@ class Labyrinth
       // An exception is thrown if:
       //   There is no enemy to attack (i.e. Inhabitant::kNone, dead Minotaur,
       //     or cracked Mirror) (invalid_argument)
-      //   The Room is outside the Labyrinth (invalid_argument)
+      //   The Room is outside the Labyrinth (domain_error)
       bool EnemyAttacked( const Coordinate rm );
 
       // This method returns the current Item in the room, but does not
       // change it.
       // An exception is thrown if:
-      //   The Room is outside the Labyrinth (invalid_argument)
+      //   The Room is outside the Labyrinth (domain_error)
       Item GetItem( const Coordinate rm ) const;
 
       // This method takes the Item from the Room.
       // An exception is thrown if:
       //   There is no Item to take (i.e. Item::kNone or Item taken already)
       //     (logic_error)
-      //   The Room is outside the Labyrinth (invalid_argument)
+      //   The Room is outside the Labyrinth (domain_error)
       void TakeItem( const Coordinate rm );
 
       // This method drops the Treasure in the given room.
       // An exception is thrown if:
-      //   The Room is outside the Labyrinth (invalid_argument)
+      //   The Room is outside the Labyrinth (domain_error)
       void DropTreasure( const Coordinate rm );
 
       // This method returns the type of RoomBorder in the given direction.
       // An exception is thrown if:
-      //   The Room is outside the Labyrinth (invalid_argument)
+      //   The Room is outside the Labyrinth (domain_error)
       //   Direction d is kNone (invalid_argument)
       RoomBorder DirectionCheck( const Coordinate rm,
                                  const Direction d ) const;
@@ -144,7 +144,7 @@ class Labyrinth
     // This private method returns a reference to the Room at the given
     // coordinate.
     // An exception is thrown if:
-    //   The Room is outside the Labyrinth (invalid_argument)
+    //   The Room is outside the Labyrinth (domain_error)
     Room& RoomAt( const Coordinate rm ) const;
 
     // This private method returns true if the Room is within the bounds of
@@ -154,7 +154,7 @@ class Labyrinth
     // This private method returns true if the two Rooms are adjacent, and
     // false otherwise.
     // An exception is thrown if:
-    //   One or both Rooms are outside the Labyrinth (invalid_argument)
+    //   One or both Rooms are outside the Labyrinth (domain_error)
     //   The same Room is given twice (logic_error)
     bool IsAdjacent( const Coordinate rm_1, const Coordinate rm_2 ) const;
 
