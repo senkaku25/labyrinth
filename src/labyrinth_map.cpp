@@ -739,5 +739,3 @@ void LabyrinthMap::DisplayLegend() const
 
   std::cout << "└─────────────────────┘" << std::endl;
 }
-
-//TODO Implementation of labyrinth_map.hpp

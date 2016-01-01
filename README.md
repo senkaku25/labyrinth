@@ -4,11 +4,6 @@ C++ template for a mappable set of connected rooms for playing a game.
 The Room class contains a template for creating a single room and its contents.
 The Labyrinth class contains a template for creating and playing a maze according to the rules of the game Labyrinth (see the file _Instructions_), and uses the Room class.
 
-### LabyrinthMap TODO:
-1. Implement displaying of Room contents.
-1. Implement UpdateRooms().
-1. Test UpdateRooms().
-
 ### Labyrinth TODO:
 1. Set a maximum Labyrinth size.
 1. Test ConnectRooms().
