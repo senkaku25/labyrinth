@@ -157,7 +157,7 @@ class LabyrinthMapCoordinateRoom : public LabyrinthMapCoordinate
   public:
 
     // This method returns the inhabitant of the current Room.
-    Inhabitant HasInhabitant() const;
+    Inhabitant GetInhabitant() const;
 
     // This method sets the current inhabitant of the map's Room.
     // May be used to set the inhabitant to the same inhabitant, or to
@@ -165,7 +165,7 @@ class LabyrinthMapCoordinateRoom : public LabyrinthMapCoordinate
     void SetInhabitant( const Inhabitant inh );
 
     // This method returns whether the treasure is in a given Room.
-    bool HasTreasure() const;
+    bool GetTreasure() const;
 
     // This method sets whether or not the treasure is in the given map's Room.
     // May be used to set the treasure when there is already a treasure in
