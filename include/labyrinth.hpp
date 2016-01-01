@@ -115,6 +115,11 @@ class Labyrinth
       //   The Room is outside the Labyrinth (invalid_argument)
       void TakeItem( const Coordinate rm );
 
+      // This method drops the Treasure in the given room.
+      // An exception is thrown if:
+      //   The Room is outside the Labyrinth (invalid_argument)
+      void DropTreasure( const Coordinate rm );
+
       // This method returns the type of RoomBorder in the given direction.
       // An exception is thrown if:
       //   The Room is outside the Labyrinth (invalid_argument)
