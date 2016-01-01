@@ -1,7 +1,7 @@
 /*
  *
  * Author: Jeffrey Leung
- * Last edited: 2015-12-28
+ * Last edited: 2015-12-31
  *
  * This C++ file tests the Labyrinth Map class implementation.
  *
@@ -35,23 +35,27 @@ int main()
   std::cout << "Completed." << std::endl;
   std::cout << std::endl;
 
+  std::cout << "________________________________________________"
+            << std::endl
+            << std::endl;
 
-  std::cout << "Creating and displaying a Map from the Labyrinth." << std::endl;
+  std::cout << "Creating and displaying a Map from the Labyrinth:" << std::endl;
+  LabyrinthMap l1_map( &l1, l1_xsize, l1_ysize );
+  std::cout << "Creation completed." << std::endl << std::endl;
   try
   {
-    LabyrinthMap l1_map( &l1, l1_xsize, l1_ysize );
-    std::cout << "Creation completed." << std::endl;
-
     l1_map.Display();
   }
   catch( const std::exception& e )
   {
     std::cout << e.what();
   }
-  std::cout << "Completed." << std::endl;
+  std::cout << "Display completed." << std::endl;
   std::cout << std::endl;
 
-
+  std::cout << "________________________________________________"
+            << std::endl
+            << std::endl;
 
   std::cout << "Setting the Labyrinth to be a snake from the top left "
             << "to the bottom right." << std::endl;
@@ -77,13 +81,54 @@ int main()
   std::cout << std::endl;
 
 
-
-  std::cout << "Creating and displaying a Map from the Labyrinth." << std::endl;
+  std::cout << "Displaying the Map of the Labyrinth:" << std::endl << std::endl;
   try
   {
-    LabyrinthMap l1_map( &l1, l1_xsize, l1_ysize );
-    std::cout << "Creation completed." << std::endl;
+    l1_map.Display();
+  }
+  catch( const std::exception& e )
+  {
+    std::cout << e.what();
+  }
+  std::cout << "Completed." << std::endl;
+  std::cout << std::endl;
 
+
+  std::cout << "________________________________________________"
+            << std::endl
+            << std::endl;
+
+  std::cout << "Setting the following items and inhabitants:" << std::endl;
+  std::cout << "  Top left Coordinate has a Minotaur (live) and a bullet"
+            << std::endl
+            << "  Bottom left Coordinate has a Minotaur (dead)"
+            << std::endl
+            << "  Bottom center Coordinate has a Treasure"
+            << std::endl
+            << "  Top right Coordinate has a mirror (intact)"
+            << std::endl
+            << "  Bottom right Coordinate has a mirror (cracked)"
+            << std::endl;
+
+  try
+  {
+    l1.SetInhabitant( c1, Inhabitant::kMinotaur );
+    l1.SetInhabitant( c2, Inhabitant::kMinotaurDead );
+    l1.SetInhabitant( c5, Inhabitant::kMirror );
+    l1.SetInhabitant( c6, Inhabitant::kMirrorCracked );
+
+    l1.SetItem( c1, Item::kBullet );
+    l1.SetItem( c3, Item::kTreasure );
+  }
+  catch( const std::exception& e )
+  {
+    std::cout << e.what();
+  }
+  std::cout << "Completed." << std::endl;
+
+  std::cout << "Displaying the Map of the Labyrinth:" << std::endl << std::endl;
+  try
+  {
     l1_map.Display();
   }
   catch( const std::exception& e )
