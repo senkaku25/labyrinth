@@ -153,6 +153,36 @@ void Labyrinth::ConnectRooms( Coordinate rm_1, Coordinate rm_2 )
   return;
 }
 
+// This method places an Inhabitant in a Room.
+// Cannot change an existing Inhabitant; use the EnemyAttacked() method
+// for that.
+// An exception is thrown if:
+//   The Inhabitant of the Room has already been set (logic_error)
+//   Inhabitant inh is a null Inhabitant (i.e. Inhabitant::kNone)
+//     (invalid_argument)
+//   The Room is outside the Labyrinth (invalid_argument)
+void Labyrinth::SetInhabitant( Coordinate rm, Inhabitant inh )
+{
+  if( RoomAt(rm).GetInhabitant() != Inhabitant::kNone )
+  {
+    throw std::logic_error( "Error: SetInhabitant() cannot replace an "\
+      "existing Inhabitant; EnemyAttacked() should be used instead.\n" );
+  }
+  else if( inh == Inhabitant::kNone )
+  {
+    throw std::invalid_argument( "Error: SetInhabitant() was given a null "\
+      "Inhabitant.\n" );
+  }
+  else if( !WithinBounds(rm) )
+  {
+    throw std::invalid_argument( "Error: SetInhabitant() was given an "\
+      "invalid Coordinate.\n" );
+  }
+
+  RoomAt(rm).SetInhabitant(inh);
+  return;
+}
+
 // PLAY:
 
 // This method returns the current Inhabitant of the Room.
