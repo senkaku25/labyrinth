@@ -43,6 +43,9 @@ class LabyrinthMapCoordinate
 
     virtual bool IsWall( const Direction d ) const
     {
+      // Avoiding unused parameter warning
+      (void)(d);
+
       throw std::logic_error( "Error: A LabyrinthMapCoordinateRoom "\
         "attempted to call IsWall(), which is a Border-only method.\n"\
         "Consider using IsRoom() to check whether the Coordinate is a" \
@@ -51,6 +54,10 @@ class LabyrinthMapCoordinate
 
     virtual void SetWall( const Direction d, const bool exists )
     {
+      // Avoiding unused parameter warning
+      (void)(d);
+      (void)(exists);
+
       throw std::logic_error( "Error: A LabyrinthMapCoordinateRoom "\
         "attempted to call SetWall(), which is a Border-only method.\n"\
         "Consider using IsRoom() to check whether the Coordinate is a" \
@@ -67,6 +74,9 @@ class LabyrinthMapCoordinate
 
     virtual void SetExit( const bool b )
     {
+      // Avoiding unused parameter warning
+      (void)(b);
+
       throw std::logic_error( "Error: A LabyrinthMapCoordinateRoom "\
         "attempted to call SetExit(), which is a Border-only method.\n"\
         "Consider using IsRoom() to check whether the Coordinate is a" \
@@ -85,6 +95,9 @@ class LabyrinthMapCoordinate
 
     virtual void SetInhabitant( const Inhabitant inh )
     {
+      // Avoiding unused parameter warning
+      (void)(inh);
+
       throw std::logic_error( "Error: A LabyrinthMapCoordinateBorder "\
         "attempted to call SetInhabitant(), which is a Room-only method.\n"\
         "Consider using IsRoom() to check whether the Coordinate is a" \
@@ -101,6 +114,9 @@ class LabyrinthMapCoordinate
 
     virtual void SetItem( const Item i )
     {
+      // Avoiding unused parameter warning
+      (void)(i);
+      
       throw std::logic_error( "Error: A LabyrinthMapCoordinateBorder "\
         "attempted to call SetItem(), which is a Room-only method.\n"\
         "Consider using IsRoom() to check whether the Coordinate is a" \
