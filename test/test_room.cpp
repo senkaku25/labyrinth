@@ -1,13 +1,14 @@
 /*
  *
  * Author: Jeffrey Leung
- * Last edited: 2016-01-07
+ * Last edited: 2016-01-08
  *
  * This C++ file tests the functionality of room.cpp.
  *
  */
 
 #include <iostream>
+#include <string>
 
 #include "../include/room_properties.hpp"
 #include "../include/room.hpp"
