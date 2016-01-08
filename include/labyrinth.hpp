@@ -1,7 +1,7 @@
 /*
  *
  * Author: Jeffrey Leung
- * Last edited: 2016-01-01
+ * Last edited: 2016-01-07
  *
  * This C++ header file contains the implementation of the Labyrinth class,
  * which uses the Room class to create a 2-d mapping for a game.
@@ -9,6 +9,8 @@
  */
 
 #pragma once
+
+#include <memory>
 
 #include "room_properties.hpp"
 #include "room.hpp"
@@ -29,9 +31,6 @@ class Labyrinth
       //   A size of 0 is given (domain_error)
       //   An x or y size greater than the maximum is given (domain_error)
       Labyrinth( const size_t x_size, const size_t y_size );
-
-      // Destructor
-      ~Labyrinth();
 
     // SETUP:
 
@@ -130,7 +129,7 @@ class Labyrinth
 
   private:
 
-    Room** rooms_;
+    std::unique_ptr< std::unique_ptr<Room[]>[] > rooms_;
     size_t x_size_;
     size_t y_size_;
     const size_t MAX_X_SIZE_ = 20;

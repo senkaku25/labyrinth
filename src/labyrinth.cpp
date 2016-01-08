@@ -1,7 +1,7 @@
 /*
  *
  * Author: Jeffrey Leung
- * Last edited: 2016-01-01
+ * Last edited: 2016-01-07
  *
  * This C++ file contains the implementation of the Labyrinth class, which uses
  * the Room class to create a 2-d mapping for a game.
@@ -10,6 +10,7 @@
 
 #include <cmath>
 #include <iostream>
+#include <memory>
 #include <stdexcept>
 
 #include "../include/room_properties.hpp"
@@ -63,24 +64,17 @@ Labyrinth::Labyrinth( const size_t x_size, const size_t y_size )
       "greater than the maximum (20).\n" );
   }
 
-  rooms_ = new Room*[ y_size ];
+  std::unique_ptr< std::unique_ptr<Room[]>[]> rooms_temp_1
+    ( new std::unique_ptr<Room[]>[y_size] );
+  rooms_ = std::move( rooms_temp_1 );
   for( size_t i = 0; i < y_size; ++i )
   {
-    rooms_[i] = new Room[ x_size ];
+    std::unique_ptr<Room[]> rooms_temp_2( new Room[ x_size ] );
+    rooms_[i] = std::move( rooms_temp_2 );
   }
 
   x_size_ = x_size;
   y_size_ = y_size;
-}
-
-// Destructor
-Labyrinth::~Labyrinth()
-{
-  for( size_t i = 0; i < y_size_; ++i )
-  {
-    delete [] rooms_[i];
-  }
-  delete [] rooms_;
 }
 
 // SETUP:
