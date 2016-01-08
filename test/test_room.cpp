@@ -12,7 +12,19 @@
 #include "../include/room_properties.hpp"
 #include "../include/room.hpp"
 
-// This function returns the given type of room border as a string.
+namespace
+{
+
+// This local function returns the given type of room border as a string.
+std::string RoomBorderPrint( RoomBorder r );
+
+// This local function returns the given type of inhabitant as a string.
+std::string InhabitantPrint( Inhabitant inh );
+
+// This local function returns the given type of item as a string.
+std::string ItemPrint( Item itm );
+
+// This local function returns the given type of room border as a string.
 std::string RoomBorderPrint( RoomBorder r )
 {
   switch( r )
@@ -28,7 +40,7 @@ std::string RoomBorderPrint( RoomBorder r )
          "could not be detected.";
 }
 
-// This function returns the given type of inhabitant as a string.
+// This local function returns the given type of inhabitant as a string.
 std::string InhabitantPrint( Inhabitant inh )
 {
   switch( inh )
@@ -48,7 +60,7 @@ std::string InhabitantPrint( Inhabitant inh )
          "could not be detected.";
 }
 
-// This function returns the given type of item as a string.
+// This local function returns the given type of item as a string.
 std::string ItemPrint( Item itm )
 {
   switch( itm )
@@ -65,6 +77,8 @@ std::string ItemPrint( Item itm )
   return "Error: ItemPrint() was given a type of Item which "\
          "could not be detected.";
 }
+
+}  // Local namespace
 
 int main()
 {
