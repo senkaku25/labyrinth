@@ -1,7 +1,7 @@
 /*
  *
  * Author: Jeffrey Leung
- * Last edited: 2016-01-01
+ * Last edited: 2016-01-07
  *
  * This C++ header file contains classes related to creating a LabyrinthMap
  * which creates, updates, and displays a map of a given Labyrinth.
@@ -12,6 +12,7 @@
 
 #include <cstring>
 #include <iostream>
+#include <memory>
 
 #include "coordinate.hpp"
 #include "room_properties.hpp"
@@ -178,6 +179,8 @@ class LabyrinthMapCoordinateRoom : public LabyrinthMapCoordinate
 
 // This class contains a map of a Labyrinth.
 // Rooms are indexed first with the y-coordinate, then with the x-coordinate.
+// l_ does not use a smart pointer because it is simply a pointer to the
+// related Labyrinth, not a heap allocation.
 class LabyrinthMap
 {
   public:
@@ -189,9 +192,6 @@ class LabyrinthMap
                   const size_t x_size,
                   const size_t y_size );
 
-    // Destructor
-    ~LabyrinthMap();
-
     // This method displays a map of the current Labyrinth.
     void Display();
 
@@ -202,7 +202,11 @@ class LabyrinthMap
     size_t y_size_;
 
     // 2-d array of LabyrinthMapCoordinate pointers
-    LabyrinthMapCoordinate*** map_;
+    std::unique_ptr<
+      std::unique_ptr<
+        std::unique_ptr<LabyrinthMapCoordinate>
+      []>
+    []> map_;
     size_t map_x_size_;
     size_t map_y_size_;
 

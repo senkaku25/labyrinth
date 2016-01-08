@@ -1,7 +1,7 @@
 /*
  *
  * Author: Jeffrey Leung
- * Last edited: 2016-01-01
+ * Last edited: 2016-01-07
  *
  * This C++ header file contains the LabyrinthMap class which creates, updates,
  * and displays a map of a given Labyrinth.
@@ -130,22 +130,38 @@ LabyrinthMap::LabyrinthMap( Labyrinth* l,
   map_y_size_ = y_size * 2 + 1;
 
   // Creation of the map array
-  map_ = new LabyrinthMapCoordinate**[ map_y_size_ ];
+  std::unique_ptr<
+    std::unique_ptr<std::unique_ptr<LabyrinthMapCoordinate>[]>
+  []> map_temp_1 (new
+    std::unique_ptr<std::unique_ptr<LabyrinthMapCoordinate>[]>[map_y_size_] );
+
+  map_ = std::move( map_temp_1 );
+
   Coordinate c;
   for( size_t y = 0; y < map_y_size_; ++y )
   {
-    map_[y] = new LabyrinthMapCoordinate*[ map_x_size_ ];
+    std::unique_ptr<
+      std::unique_ptr<LabyrinthMapCoordinate>
+    []> map_temp_2 (new
+      std::unique_ptr<LabyrinthMapCoordinate>[map_x_size_] );
+
+    map_[y] = std::move( map_temp_2 );
+
     for( size_t x = 0; x < map_x_size_; ++x )
     {
       c.x = x;
       c.y = y;
       if( IsRoom(c) )
       {
-        map_[y][x] = new LabyrinthMapCoordinateRoom;
+        std::unique_ptr<LabyrinthMapCoordinate> map_temp_3
+          (new LabyrinthMapCoordinateRoom);
+        map_[y][x] = std::move( map_temp_3 );
       }
       else
       {
-        map_[y][x] = new LabyrinthMapCoordinateBorder;
+        std::unique_ptr<LabyrinthMapCoordinate> map_temp_3
+          (new LabyrinthMapCoordinateBorder);
+        map_[y][x] = std::move( map_temp_3 );
       }
     }
   }
@@ -153,20 +169,6 @@ LabyrinthMap::LabyrinthMap( Labyrinth* l,
   CleanBorders();
   UpdateBorders();
   UpdateRooms();
-}
-
-// Destructor
-LabyrinthMap::~LabyrinthMap()
-{
-  for( size_t y = 0; y < map_y_size_; ++y )
-  {
-    for( size_t x = 0; x < map_x_size_; ++x )
-    {
-      delete map_[y][x];
-    }
-    delete [] map_[y];
-  }
-  delete [] map_;
 }
 
 // This method displays a map of the current Labyrinth.
