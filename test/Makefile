@@ -13,7 +13,7 @@ HSOURCES = ../include/room_properties.hpp \
            ../include/labyrinth_map.hpp \
 
 # Compiler options
-CFLAGS = -std=c++11 -g -Wall
+CFLAGS = -std=c++11 -g -Wall -Wextra -Wmissing-declarations -Werror
 
 #####
 ###
