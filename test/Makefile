@@ -15,6 +15,9 @@ HSOURCES = ../include/room_properties.hpp \
 # Compiler options
 CFLAGS = -std=c++11 -g -Wall -Wextra -Wmissing-declarations -Werror
 
+# Output filename
+OUTPUT = output
+
 #####
 ###
 #
@@ -35,24 +38,24 @@ help:
 
 # $ make room
 room: $(ROOMSOURCES) $(HSOURCES)
-	g++ $(CFLAGS) $(ROOMSOURCES) test_room.cpp -o output
+	g++ $(CFLAGS) $(ROOMSOURCES) test_room.cpp -o $(OUTPUT)
 	# To execute the program, run: ./output
 
 # $ make laby
 laby: $(ROOMSOURCES) $(LABYRINTHSOURCES) $(HSOURCES)
-	g++ $(CFLAGS) $(ROOMSOURCES) $(LABYRINTHSOURCES) test_laby.cpp -o output
+	g++ $(CFLAGS) $(ROOMSOURCES) $(LABYRINTHSOURCES) test_laby.cpp -o $(OUTPUT)
 	# To execute the program, run: ./output
 
 # $ make labymap
 labymap: $(ROOMSOURCES) $(LABYRINTHSOURCES) $(HSOURCES)
-	g++ $(CFLAGS) $(ROOMSOURCES) $(LABYRINTHSOURCES) test_labymap.cpp -o output
+	g++ $(CFLAGS) $(ROOMSOURCES) $(LABYRINTHSOURCES) test_labymap.cpp -o $(OUTPUT)
 	# To execute the program, run: ./output
 
 # $ make mem_chk
 mem_chk: $(SOURCES) $(HSOURCES)
-	valgrind --leak-check=full ./output
+	valgrind --leak-check=full ./$(OUTPUT)
 
 # $ make clean
 # Removes created files
 clean:
-	rm -f output *.o *~
+	rm -f $(OUTPUT) *.o *~
