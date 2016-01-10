@@ -32,14 +32,17 @@ OUTPUT = output
 # $ 'make' or 'make help'
 help:
 	# INSTRUCTIONS:
-	#   Either -gpp (to compile using g++) or -clang (to compile using Clang)
-	#   must be used at the end of a make command.
 	#
 	#   Testing:
+	#     Either -gpp (to compile using g++) or -clang (to compile using Clang)
+	#     must be used in place of <compiler>.
+	#
 	#     To test class Room, run:         make test-room<compiler>
 	#     To test class Labyrinth, run:    make test-laby<compiler>
 	#     To test class LabyrinthMap, run: make test-labymap<compiler>
+	#
 	#     To test compilation of everything with g++ and Clang, run: make test-compile
+	#
 	#   To remove compiled output files, run: make clean
 
 # $ make test-room-gpp
