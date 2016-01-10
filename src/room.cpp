@@ -79,40 +79,46 @@ void Room::SetItem( Item itm )
 //   Direction d is null (i.e. Direction::kNone) (invalid_argument)
 void Room::BreakWall( Direction d )
 {
-  if( d == Direction::kNone )
-  {
-    throw std::invalid_argument( "Error: BreakWall() was given an "\
-      "invalid Direction (kNone).\n");
-  }
-
-  try
-  {
-    if( DirectionCheck(d) == RoomBorder::kRoom )
-    {
-      throw std::logic_error( "Error: BreakWall() was given an "\
-        "already-removed Wall.\n" );
-    }
-  }
-  catch( const std::exception& e )
-  {
-    std::cout << e.what();
-  }
-
   switch( d )
   {
+    case( Direction::kNone ):
+      throw std::invalid_argument( "Error: BreakWall() was given an "\
+        "invalid Direction (kNone).\n");
+
     case( Direction::kNorth ):
+      if( !wall_north_ )  // Wall already removed
+      {
+        throw std::logic_error( "Error: BreakWall() was given an "\
+          "already-removed Wall.\n" );
+      }
       wall_north_ = false;
       break;
+
     case( Direction::kEast ):
+      if( !wall_east_ )
+      {
+        throw std::logic_error( "Error: BreakWall() was given an "\
+          "already-removed Wall.\n" );
+      }
       wall_east_ = false;
       break;
+
     case( Direction::kSouth ):
+      if( !wall_south_ )
+      {
+        throw std::logic_error( "Error: BreakWall() was given an "\
+          "already-removed Wall.\n" );
+      }
       wall_south_ = false;
       break;
+
     case( Direction::kWest ):
+      if( !wall_west_ )
+      {
+        throw std::logic_error( "Error: BreakWall() was given an "\
+          "already-removed Wall.\n" );
+      }
       wall_west_ = false;
-      break;
-    default:
       break;
   }
   return;
