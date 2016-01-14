@@ -13,10 +13,10 @@ HSOURCES = ../include/room_properties.hpp \
            ../include/labyrinth_map.hpp \
 
 # g++ compilation options
-GPP = g++ -std=c++11 -g -Wall -Wextra -Wmissing-declarations -Werror
+GPP = g++ -std=c++14 -g -Wall -Wextra -Wmissing-declarations -Werror
 
 # Clang compilation options
-CLANG = clang++-3.5 -std=c++11 -Werror -fshow-source-location -fshow-column -fcaret-diagnostics -fcolor-diagnostics -fdiagnostics-show-option
+CLANG = clang++-3.5 -std=c++14 -Werror -fshow-source-location -fshow-column -fcaret-diagnostics -fcolor-diagnostics -fdiagnostics-show-option
 
 # Output filename
 OUTPUT = output
