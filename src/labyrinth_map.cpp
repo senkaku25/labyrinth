@@ -1,7 +1,7 @@
 /*
  *
  * Author: Jeffrey Leung
- * Last edited: 2016-01-08
+ * Last edited: 2016-01-13
  *
  * This C++ header file contains the LabyrinthMap class which creates, updates,
  * and displays a map of a given Labyrinth.
@@ -131,20 +131,18 @@ LabyrinthMap::LabyrinthMap( Labyrinth* l,
   map_y_size_ = y_size * 2 + 1;
 
   // Creation of the map array
-  std::unique_ptr<
-    std::unique_ptr<std::unique_ptr<LabyrinthMapCoordinate>[]>
-  []> map_temp_1 (new
-    std::unique_ptr<std::unique_ptr<LabyrinthMapCoordinate>[]>[map_y_size_] );
+  auto map_temp_1 = std::make_unique<
+    std::unique_ptr<std::unique_ptr<LabyrinthMapCoordinate>[]>[]
+  >(map_y_size_);
 
   map_ = std::move( map_temp_1 );
 
   Coordinate c;
   for( size_t y = 0; y < map_y_size_; ++y )
   {
-    std::unique_ptr<
-      std::unique_ptr<LabyrinthMapCoordinate>
-    []> map_temp_2 (new
-      std::unique_ptr<LabyrinthMapCoordinate>[map_x_size_] );
+    auto map_temp_2 = std::make_unique<
+      std::unique_ptr<LabyrinthMapCoordinate>[]
+    >(map_x_size_);
 
     map_[y] = std::move( map_temp_2 );
 
@@ -154,12 +152,14 @@ LabyrinthMap::LabyrinthMap( Labyrinth* l,
       c.y = y;
       if( IsRoom(c) )
       {
+        // Longer form necessary to use a pointer to a superclass of Room
         std::unique_ptr<LabyrinthMapCoordinate> map_temp_3
           (new LabyrinthMapCoordinateRoom);
         map_[y][x] = std::move( map_temp_3 );
       }
       else
       {
+        // Longer form necessary to use a pointer to a superclass of Border
         std::unique_ptr<LabyrinthMapCoordinate> map_temp_3
           (new LabyrinthMapCoordinateBorder);
         map_[y][x] = std::move( map_temp_3 );
