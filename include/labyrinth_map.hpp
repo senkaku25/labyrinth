@@ -1,7 +1,7 @@
 /*
  *
  * Author: Jeffrey Leung
- * Last edited: 2016-01-07
+ * Last edited: 2016-01-20
  *
  * This C++ header file contains classes related to creating a LabyrinthMap
  * which creates, updates, and displays a map of a given Labyrinth.
@@ -116,7 +116,7 @@ class LabyrinthMapCoordinate
     {
       // Avoiding unused parameter warning
       (void)(i);
-      
+
       throw std::logic_error( "Error: A LabyrinthMapCoordinateBorder "\
         "attempted to call SetItem(), which is a Room-only method.\n"\
         "Consider using IsRoom() to check whether the Coordinate is a" \
@@ -204,6 +204,7 @@ class LabyrinthMap
     // Parameterized constructor
     // An exception is thrown if:
     //   l is null (invalid_argument)
+    //   A size of 0 is given (domain_error)
     LabyrinthMap( Labyrinth* l,
                   const size_t x_size,
                   const size_t y_size );

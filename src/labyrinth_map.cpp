@@ -1,7 +1,7 @@
 /*
  *
  * Author: Jeffrey Leung
- * Last edited: 2016-01-13
+ * Last edited: 2016-01-20
  *
  * This C++ header file contains the LabyrinthMap class which creates, updates,
  * and displays a map of a given Labyrinth.
@@ -113,6 +113,7 @@ void LabyrinthMapCoordinateRoom::SetItem( const Item i )
 // Parameterized constructor
 // An exception is thrown if:
 //   l is null (invalid_argument)
+//   A size of 0 is given (domain_error)
 LabyrinthMap::LabyrinthMap( Labyrinth* l,
                             const size_t x_size,
                             const size_t y_size )
@@ -121,6 +122,24 @@ LabyrinthMap::LabyrinthMap( Labyrinth* l,
   {
     throw std::invalid_argument( "Error: LabyrinthMap() was given an "\
       "invalid (null) pointer for the Labyrinth.\n" );
+  }
+  else if( x_size == 0 )
+  {
+    if( y_size == 0 )
+    {
+      throw std::domain_error( "Error: LabyrinthMap() was given empty x and "\
+        "y sizes.\n" );
+    }
+    else
+    {
+      throw std::domain_error( "Error: LabyrinthMap() was given an empty "\
+        "x size.\n" );
+    }
+  }
+  else if( y_size == 0 )
+  {
+    throw std::domain_error( "Error: LabyrinthMap() was given an empty "\
+      "y size.\n" );
   }
 
   l_ = l;
