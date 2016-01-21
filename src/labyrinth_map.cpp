@@ -116,7 +116,11 @@ void LabyrinthMapCoordinateRoom::SetItem( const Item i )
 //   A size of 0 is given (domain_error)
 LabyrinthMap::LabyrinthMap( Labyrinth* l,
                             const size_t x_size,
-                            const size_t y_size )
+                            const size_t y_size ) :
+  x_size_(x_size),
+  y_size_(y_size),
+  map_x_size_(x_size * 2 + 1),
+  map_y_size_(y_size * 2 + 1)
 {
   if( l == nullptr )
   {
@@ -143,11 +147,6 @@ LabyrinthMap::LabyrinthMap( Labyrinth* l,
   }
 
   l_ = l;
-  x_size_ = x_size;
-  y_size_ = y_size;
-
-  map_x_size_ = x_size * 2 + 1;
-  map_y_size_ = y_size * 2 + 1;
 
   // Creation of the map array
   auto map_temp_1 = std::make_unique<

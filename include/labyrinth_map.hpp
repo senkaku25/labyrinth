@@ -215,8 +215,8 @@ class LabyrinthMap
   private:
 
     Labyrinth* l_;
-    size_t x_size_;
-    size_t y_size_;
+    const size_t x_size_;
+    const size_t y_size_;
 
     // 2-d array of LabyrinthMapCoordinate pointers
     std::unique_ptr<
@@ -224,8 +224,8 @@ class LabyrinthMap
         std::unique_ptr<LabyrinthMapCoordinate>
       []>
     []> map_;
-    size_t map_x_size_;
-    size_t map_y_size_;
+    const size_t map_x_size_;
+    const size_t map_y_size_;
 
     // This private method returns true if the Coordinate is within the bounds
     // of the Map, and false otherwise.
