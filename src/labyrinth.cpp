@@ -1,7 +1,7 @@
 /*
  *
  * Author: Jeffrey Leung
- * Last edited: 2016-01-13
+ * Last edited: 2016-01-20
  *
  * This C++ file contains the implementation of the Labyrinth class, which uses
  * the Room class to create a 2-d mapping for a game.
@@ -24,7 +24,8 @@
 // An exception is thrown if:
 //   A size of 0 is given (domain_error)
 //   An x or y size greater than the maximum is given (domain_error)
-Labyrinth::Labyrinth( const size_t x_size, const size_t y_size )
+Labyrinth::Labyrinth( const size_t x_size, const size_t y_size ) :
+  x_size_(x_size), y_size_(y_size)
 {
   if( x_size == 0 )
   {
@@ -73,8 +74,6 @@ Labyrinth::Labyrinth( const size_t x_size, const size_t y_size )
     rooms_[i] = std::move( rooms_temp_2 );
   }
 
-  x_size_ = x_size;
-  y_size_ = y_size;
 }
 
 // SETUP:

@@ -1,7 +1,7 @@
 /*
  *
  * Author: Jeffrey Leung
- * Last edited: 2016-01-07
+ * Last edited: 2016-01-20
  *
  * This C++ header file contains the implementation of the Labyrinth class,
  * which uses the Room class to create a 2-d mapping for a game.
@@ -130,8 +130,8 @@ class Labyrinth
   private:
 
     std::unique_ptr< std::unique_ptr<Room[]>[] > rooms_;
-    size_t x_size_;
-    size_t y_size_;
+    const size_t x_size_;
+    const size_t y_size_;
     const size_t MAX_X_SIZE_ = 20;
     const size_t MAX_Y_SIZE_ = 20;
 
