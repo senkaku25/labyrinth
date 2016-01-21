@@ -166,6 +166,37 @@ void Labyrinth::ConnectRooms( const Coordinate rm_1, const Coordinate rm_2 )
   return;
 }
 
+// This method sets the primary (initial) spawn Room.
+// An exception is thrown if:
+//   The Room is outside the Labyrinth (domain_error)
+void Labyrinth::SetSpawn1( const Coordinate rm )
+{
+  if( !WithinBounds(rm) )
+  {
+    throw std::domain_error( "Error: SetSpawn1() was given an "\
+      "invalid Coordinate.\n" );
+  }
+
+  spawn_1_ = rm;
+  return;
+}
+
+
+// This method sets the secondary spawn Room.
+// An exception is thrown if:
+//   The Room is outside the Labyrinth (domain_error)
+void Labyrinth::SetSpawn2( const Coordinate rm )
+{
+  if( !WithinBounds(rm) )
+  {
+    throw std::domain_error( "Error: SetSpawn2() was given an "\
+      "invalid Coordinate.\n" );
+  }
+
+  spawn_2_ = rm;
+  return;
+}
+
 // This method places an Inhabitant in a Room.
 // Cannot change an existing Inhabitant; use the EnemyAttacked() method
 // for that.
