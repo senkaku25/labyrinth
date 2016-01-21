@@ -43,10 +43,12 @@ class Labyrinth
       void ConnectRooms( const Coordinate rm_1, const Coordinate rm_2 );
 
       // This method sets the primary (initial) spawn Room.
+      // An exception is thrown if:
       //   The Room is outside the Labyrinth (domain_error)
       void SetSpawn1( const Coordinate rm );
 
       // This method sets the secondary spawn Room.
+      // An exception is thrown if:
       //   The Room is outside the Labyrinth (domain_error)
       void SetSpawn2( const Coordinate rm );
 
