@@ -1,14 +1,19 @@
 # labyrinth
-C++ template for a mappable set of connected rooms for playing a game.
+C++ implementation of a game played with a mappable set of connected rooms.
 
-The Room class contains a template for creating a single room and its contents.
-The Labyrinth class contains a template for creating and playing a maze according to the rules of the game Labyrinth (see the file _Instructions_), and uses the Room class.
+### Object Structure:
+The **Room** class is a single room and its contents.
+The **Labyrinth** class is a 2-d maze of Rooms, and uses the Room class.
+The **LabyrinthMap** class is a 2-d depiction of a given Labyrinth which can be updated, and uses the Labyrinth class.
+The **Player class** is a description of the inventory, location, and status of the given player.
+The **PlayLabyrinth** class is the implementation of the game Labyrinth according to the file *GameInstructions.txt*, and uses the Labyrinth, LabyrinthMap, and Player classes.
 
-### Labyrinth TODO:
-1. Test ConnectRooms().
+### TODO:
 
-###TODO:
-1. Branch out and implement the Labyrinth class, using a 2-d array to store the rooms.
+#### Labyrinth:
+1. Implement remaining methods.
+
+#### Miscellaneous:
 1. Implement the Player class with inventory and location.
 1. Implement the PlayLabyrinth class to execute the game.
 1. Use [NCurses](http://hughm.cs.ukzn.ac.za/~murrellh/os/notes/ncurses.html) to play the game in an isolated terminal.
