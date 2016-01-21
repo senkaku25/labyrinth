@@ -136,7 +136,8 @@ class Labyrinth
     const size_t MAX_Y_SIZE_ = 20;
 
     // Special rooms:
-    //   Must be set before the game begins
+    //   Should be set before the game begins
+    //   Spawns will default to (0, 0) otherwise
     Coordinate spawn_1_;
     Coordinate spawn_2_;
     bool exit_set_ = false;
