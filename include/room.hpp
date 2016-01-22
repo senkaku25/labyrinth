@@ -52,9 +52,9 @@ class Room
     // This method creates an exit in the given direction. The Wall
     // should be intact (BreakWall() not called on it beforehand).
     // An exception is thrown if:
-    //   The Wall has already been removed (logic_error)
-    //   The Exit has already been created (logic_error)
     //   Direction d is null (i.e. Direction::kNone) (invalid_argument)
+    //   The Exit has already been created (logic_error)
+    //   The Wall has already been removed (logic_error)
     void CreateExit( Direction d );
 
     // This method returns the type of RoomBorder in the given direction.
@@ -64,11 +64,11 @@ class Room
 
   private:
     // The exit direction does not count as a wall.
-    Inhabitant dark_thing_;
-    Item object_;
-    Direction exit_;
-    bool wall_north_;
-    bool wall_east_;
-    bool wall_south_;
-    bool wall_west_;
+    Inhabitant dark_thing_ = Inhabitant::kNone;
+    Item object_ = Item::kNone;
+    Direction exit_  = Direction::kNone;
+    bool wall_north_ = true;
+    bool wall_east_  = true;
+    bool wall_south_ = true;
+    bool wall_west_  = true;
 };

@@ -1,7 +1,7 @@
 /*
  *
  * Author: Jeffrey Leung
- * Last edited: 2015-12-28
+ * Last edited: 2016-01-22
  *
  * This program contains implementations of a Room class, which is a template
  * to create a Labyrinth.
@@ -18,13 +18,6 @@
 // This constructor sets a basic, walled, empty Room.
 Room::Room()
 {
-  dark_thing_ = Inhabitant::kNone;
-  object_     = Item::kNone;
-  exit_       = Direction::kNone;
-  wall_north_ = true;
-  wall_east_  = true;
-  wall_south_ = true;
-  wall_west_ = true;
 }
 
 // Parameterized constructor
