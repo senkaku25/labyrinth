@@ -197,6 +197,59 @@ void Labyrinth::SetSpawn2( const Coordinate rm )
   return;
 }
 
+// This method sets the exit of the Labyrinth on a Wall.
+// An exception is thrown if:
+//   The Exit has already been set (logic_error)
+//   The Direction is invalid (kNone) (invalid_argument)
+//   The Direction has another Room (invalid_argument)
+//   The Room is outside the Labyrinth (domain_error)
+void Labyrinth::SetExit( const Coordinate rm, const Direction d )
+{
+  if( exit_set_ )
+  {
+    throw std::logic_error( "Error: SetExit() cannot create an exit; "\
+      "one already exists.\n" );
+  }
+  else if( d == Direction::kNone )
+  {
+    throw std::invalid_argument( "Error: SetExit() was given an invalid "\
+      "direction (kNone).\n" );
+  }
+
+  auto rb = RoomBorder::kRoom;
+  try
+  {
+    rb = RoomAt(rm).DirectionCheck(d);
+  }
+  catch( const std::exception& e )
+  {
+    std::cout << e.what();
+    return;
+  }
+
+  if (rb == RoomBorder::kRoom)
+  {
+    throw std::invalid_argument( "Error: SetExit() was given a "\
+      "direction with a Room, not a Wall.\n" );
+  }
+  else if( !WithinBounds(rm) )
+  {
+    throw std::invalid_argument( "Error: SetExit() was given a "\
+      "Coordinate outside of the Labyrinth.\n" );
+  }
+
+  try
+  {
+    RoomAt(rm).CreateExit(d);
+  }
+  catch( const std::exception& e )
+  {
+    std::cout << e.what();
+  }
+  exit_set_ = true;
+  return;
+}
+
 // This method places an Inhabitant in a Room.
 // Cannot change an existing Inhabitant; use the EnemyAttacked() method
 // for that.
