@@ -1,7 +1,7 @@
 /*
  *
  * Author: Jeffrey Leung
- * Last edited: 2015-09-19
+ * Last edited: 2016-01-22
  *
  * This C++ header file contains implementations of a Room class, which is a
  * template to create a Labyrinth.
@@ -48,6 +48,14 @@ class Room
     //   The Wall has already been removed (logic_error)
     //   Direction d is null (i.e. Direction::kNone) (invalid_argument)
     void BreakWall( Direction d );
+
+    // This method creates an exit in the given direction. The Wall
+    // should be intact (BreakWall() not called on it beforehand).
+    // An exception is thrown if:
+    //   The Wall has already been removed (logic_error)
+    //   The Exit has already been created (logic_error)
+    //   Direction d is null (i.e. Direction::kNone) (invalid_argument)
+    void CreateExit( Direction d );
 
     // This method returns the type of RoomBorder in the given direction.
     // An exception is thrown if:
