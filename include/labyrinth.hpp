@@ -1,7 +1,7 @@
 /*
  *
  * Author: Jeffrey Leung
- * Last edited: 2016-01-20
+ * Last edited: 2016-01-22
  *
  * This C++ header file contains the implementation of the Labyrinth class,
  * which uses the Room class to create a 2-d mapping for a game.
@@ -54,8 +54,9 @@ class Labyrinth
 
       // This method sets the exit of the Labyrinth on a Wall.
       // An exception is thrown if:
-      //   The Direction has another Room (invalid_argument)
       //   The Exit has already been set (logic_error)
+      //   The Direction is invalid (kNone) (invalid_argument)
+      //   The Direction has another Room (invalid_argument)
       //   The Room is outside the Labyrinth (domain_error)
       void SetExit( const Coordinate rm, const Direction d );
 
