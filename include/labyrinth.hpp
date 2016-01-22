@@ -60,13 +60,6 @@ class Labyrinth
       //   The Room is outside the Labyrinth (domain_error)
       void SetExit( const Coordinate rm, const Direction d );
 
-      // This method places the Labyrinth treasure in a Room.
-      // May be used to drop the Treasure if a Player is dead.
-      // An exception is thrown if:
-      //   The Treasure has already been placed in another Room (logic_error)
-      //   The Room is outside the Labyrinth (domain_error)
-      void SetTreasure( const Coordinate rm );
-
       // This method places an Inhabitant in a Room.
       // Cannot change an existing Inhabitant; use the EnemyAttacked() method
       // for that.
@@ -82,6 +75,8 @@ class Labyrinth
       // An exception is thrown if:
       //   The Item of the Room has already been set (logic_error)
       //   Item itm is a null Item (i.e. Item::kNone) (invalid_argument)
+      //   Item itm is a Treasure but the Treasure has already been placed
+      //     in another room (logic_error)
       //   The Room is outside the Labyrinth (domain_error)
       void SetItem( Coordinate rm, Item itm );
 
