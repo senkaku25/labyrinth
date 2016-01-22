@@ -117,6 +117,41 @@ void Room::BreakWall( Direction d )
   return;
 }
 
+// This method creates an exit in the given direction. The Wall
+// should be intact (BreakWall() not called on it beforehand).
+// An exception is thrown if:
+//   Direction d is null (i.e. Direction::kNone) (invalid_argument)
+//   The Exit has already been created (logic_error)
+//   The Wall has already been removed (logic_error)
+void Room::CreateExit( Direction d )
+{
+  if( d == Direction::kNone )
+  {
+    throw std::invalid_argument( "Error: CreateExit() was given the "\
+      "direction kNone.\n" );
+  }
+  else if( exit_ != Direction::kNone )
+  {
+    throw std::logic_error( "Error: CreateExit() was given a Room "\
+      "which already has an exit created.\n" );
+  }
+  else if (DirectionCheck(d) != RoomBorder::kWall)
+  {
+    throw std::logic_error( "Error: CreateExit() was given a Wall "\
+      "which has already been broken." );
+  }
+
+  try
+  {
+    BreakWall(d);
+  }
+  catch( const std::exception& e )
+  {
+    std::cout << e.what();
+  }
+  exit_ = d;
+}
+
 // This method returns:
 //   RoomBorder::kExit if the direction has the exit,
 //   RoomBorder::kRoom if the direction has another room, or
