@@ -2,10 +2,10 @@
 C++ implementation of a game played with a mappable set of connected rooms.
 
 ### Object Structure:
-The **Room** class is a single room and its contents.
-The **Labyrinth** class is a 2-d maze of Rooms, and uses the Room class.
-The **LabyrinthMap** class is a 2-d depiction of a given Labyrinth which can be updated, and uses the Labyrinth class.
-The **Player class** is a description of the inventory, location, and status of the given player.
+The **Room** class is a single room and its contents.  
+The **Labyrinth** class is a 2-d maze of Rooms, and uses the Room class.  
+The **LabyrinthMap** class is a 2-d depiction of a given Labyrinth which can be updated, and uses the Labyrinth class.  
+The **Player class** is a description of the inventory, location, and status of the given player.  
 The **PlayLabyrinth** class is the implementation of the game Labyrinth according to the file *GameInstructions.txt*, and uses the Labyrinth, LabyrinthMap, and Player classes.
 
 ### TODO:
