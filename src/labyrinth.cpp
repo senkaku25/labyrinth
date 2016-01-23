@@ -286,14 +286,16 @@ void Labyrinth::SetInhabitant( const Coordinate rm, const Inhabitant inh )
 //   The Room is outside the Labyrinth (domain_error)
 //   The Item of the Room has already been set (logic_error)
 //   Item itm is a null Item (i.e. Item::kNone) (invalid_argument)
+//   Item itm is a Treasure but the Treasure has already been placed
+//     in another room (logic_error)
 void Labyrinth::SetItem( const Coordinate rm, const Item itm )
 {
-  if (!WithinBounds(rm))
+  if( !WithinBounds(rm) )
   {
     throw std::domain_error("Error: SetItem() was given an invalid "\
       "Coordinate.\n");
   }
-  else if (RoomAt(rm).GetItem() != Item::kNone)
+  else if( RoomAt(rm).GetItem() != Item::kNone )
   {
     throw std::logic_error("Error: SetItem() cannot replace an existing "\
       "Item.\n");
@@ -303,8 +305,25 @@ void Labyrinth::SetItem( const Coordinate rm, const Item itm )
     throw std::invalid_argument( "Error: SetItem() was given an invalid "\
       "Item.\n" );
   }
+  else if( itm == Item::kTreasure && treasure_set_ )
+  {
+    throw std::logic_error( "Error: SetItem() was given a Treasure, "\
+      "but the Treasure has already been set in the Labyrinth.\n" );
+  }
 
-  RoomAt(rm).SetItem(itm);
+  try
+  {
+    RoomAt(rm).SetItem(itm);
+  }
+  catch( const std::exception& e )
+  {
+    std::cout << e.what();
+  }
+
+  if( itm == Item::kTreasure )
+  {
+    treasure_set_ = true;
+  }
 }
 
 // PLAY:

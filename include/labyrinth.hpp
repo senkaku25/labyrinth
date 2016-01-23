@@ -73,11 +73,11 @@ class Labyrinth
       // This method places an Item in a Room.
       // Cannot change an existing Item; use the TakeItem() method for that.
       // An exception is thrown if:
+      //   The Room is outside the Labyrinth (domain_error)
       //   The Item of the Room has already been set (logic_error)
       //   Item itm is a null Item (i.e. Item::kNone) (invalid_argument)
       //   Item itm is a Treasure but the Treasure has already been placed
       //     in another room (logic_error)
-      //   The Room is outside the Labyrinth (domain_error)
       void SetItem( Coordinate rm, Item itm );
 
     // PLAY:
@@ -139,7 +139,7 @@ class Labyrinth
     Coordinate spawn_1_;
     Coordinate spawn_2_;
     bool exit_set_ = false;
-    bool treasure_set_ = false;  // Changed to false when the treasure is held
+    bool treasure_set_ = false;  // Is also false when the treasure is held
                                  // by a Player
 
     // This private method returns a reference to the Room at the given
