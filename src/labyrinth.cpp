@@ -283,25 +283,25 @@ void Labyrinth::SetInhabitant( const Coordinate rm, const Inhabitant inh )
 // This method places an Item in a Room.
 // Cannot change an existing Item; use the TakeItem() method for that.
 // An exception is thrown if:
+//   The Room is outside the Labyrinth (domain_error)
 //   The Item of the Room has already been set (logic_error)
 //   Item itm is a null Item (i.e. Item::kNone) (invalid_argument)
-//   The Room is outside the Labyrinth (domain_error)
 void Labyrinth::SetItem( const Coordinate rm, const Item itm )
 {
-  if( RoomAt(rm).GetItem() != Item::kNone )
+  if (!WithinBounds(rm))
   {
-    throw std::logic_error( "Error: SetItem() cannot replace an existing "\
-      "Item.\n" );
+    throw std::domain_error("Error: SetItem() was given an invalid "\
+      "Coordinate.\n");
+  }
+  else if (RoomAt(rm).GetItem() != Item::kNone)
+  {
+    throw std::logic_error("Error: SetItem() cannot replace an existing "\
+      "Item.\n");
   }
   else if( itm == Item::kNone )
   {
     throw std::invalid_argument( "Error: SetItem() was given an invalid "\
       "Item.\n" );
-  }
-  else if( !WithinBounds(rm) )
-  {
-    throw std::domain_error( "Error: SetItem() was given an invalid "\
-      "Coordinate.\n" );
   }
 
   RoomAt(rm).SetItem(itm);
