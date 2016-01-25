@@ -45,16 +45,16 @@ class Room
     // This method removes the Wall in the given direction so that the Room
     // may be connected to another, or to set the exit.
     // An exception is thrown if:
-    //   The Wall has already been removed (logic_error)
     //   Direction d is null (i.e. Direction::kNone) (invalid_argument)
+    //   The Wall has already been removed (logic_error)
     void BreakWall( const Direction d );
 
     // This method creates an exit in the given direction. The Wall
     // should be intact (BreakWall() not called on it beforehand).
     // An exception is thrown if:
     //   Direction d is null (i.e. Direction::kNone) (invalid_argument)
-    //   The Exit has already been created (logic_error)
     //   The Wall has already been removed (logic_error)
+    //   The Exit has already been created (logic_error)
     void CreateExit( const Direction d );
 
     // This method returns the type of RoomBorder in the given direction.

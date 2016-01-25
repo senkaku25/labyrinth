@@ -68,8 +68,8 @@ void Room::SetItem( const Item itm )
 // This method removes the Wall in the given direction so that the Room
 // may be connected to another, or to set the exit.
 // An exception is thrown if:
-//   The Wall has already been removed (logic_error)
 //   Direction d is null (i.e. Direction::kNone) (invalid_argument)
+//   The Wall has already been removed (logic_error)
 void Room::BreakWall( const Direction d )
 {
   switch( d )
@@ -121,8 +121,8 @@ void Room::BreakWall( const Direction d )
 // should be intact (BreakWall() not called on it beforehand).
 // An exception is thrown if:
 //   Direction d is null (i.e. Direction::kNone) (invalid_argument)
-//   The Exit has already been created (logic_error)
 //   The Wall has already been removed (logic_error)
+//   The Exit has already been created (logic_error)
 void Room::CreateExit( const Direction d )
 {
   if( d == Direction::kNone )
@@ -130,15 +130,15 @@ void Room::CreateExit( const Direction d )
     throw std::invalid_argument( "Error: CreateExit() was given the "\
       "direction kNone.\n" );
   }
-  else if( exit_ != Direction::kNone )
-  {
-    throw std::logic_error( "Error: CreateExit() was given a Room "\
-      "which already has an exit created.\n" );
-  }
   else if (DirectionCheck(d) != RoomBorder::kWall)
   {
     throw std::logic_error( "Error: CreateExit() was given a Wall "\
       "which has already been broken." );
+  }
+  else if( exit_ != Direction::kNone )
+  {
+    throw std::logic_error( "Error: CreateExit() was given a Room "\
+      "which already has an exit.\n" );
   }
 
   try
