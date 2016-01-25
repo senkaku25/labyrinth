@@ -1,7 +1,7 @@
 /*
  *
  * Author: Jeffrey Leung
- * Last edited: 2016-01-22
+ * Last edited: 2016-01-25
  *
  * This program contains implementations of a Room class, which is a template
  * to create a Labyrinth.
@@ -22,13 +22,13 @@ Room::Room()
 
 // Parameterized constructor
 // This constructor sets the necessary properties of a Room.
-Room::Room( Inhabitant dark_thing,
-            Item object,
-            Direction exit,
-            bool wall_north,
-            bool wall_east,
-            bool wall_south,
-            bool wall_west )
+Room::Room( const Inhabitant dark_thing,
+            const Item object,
+            const Direction exit,
+            const bool wall_north,
+            const bool wall_east,
+            const bool wall_south,
+            const bool wall_west )
 {
   dark_thing_ = dark_thing;
   object_     = object;
@@ -46,7 +46,7 @@ Inhabitant Room::GetInhabitant() const
 }
 
 // This method changes the current inhabitant of the Room.
-void Room::SetInhabitant( Inhabitant inh )
+void Room::SetInhabitant( const Inhabitant inh )
 {
   dark_thing_ = inh;
   return;
@@ -59,7 +59,7 @@ Item Room::GetItem() const
 }
 
 // This method changes the current item in the Room.
-void Room::SetItem( Item itm )
+void Room::SetItem( const Item itm )
 {
   object_ = itm;
   return;
@@ -70,7 +70,7 @@ void Room::SetItem( Item itm )
 // An exception is thrown if:
 //   The Wall has already been removed (logic_error)
 //   Direction d is null (i.e. Direction::kNone) (invalid_argument)
-void Room::BreakWall( Direction d )
+void Room::BreakWall( const Direction d )
 {
   switch( d )
   {
@@ -123,7 +123,7 @@ void Room::BreakWall( Direction d )
 //   Direction d is null (i.e. Direction::kNone) (invalid_argument)
 //   The Exit has already been created (logic_error)
 //   The Wall has already been removed (logic_error)
-void Room::CreateExit( Direction d )
+void Room::CreateExit( const Direction d )
 {
   if( d == Direction::kNone )
   {
@@ -158,7 +158,7 @@ void Room::CreateExit( Direction d )
 //   RoomBorder::kWall if the direction has a wall.
 // An exception is thrown if:
 //   Direction d is kNone (invalid_argument)
-RoomBorder Room::DirectionCheck( Direction d ) const
+RoomBorder Room::DirectionCheck( const Direction d ) const
 {
   if( d == Direction::kNone )
   {
