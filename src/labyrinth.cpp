@@ -197,6 +197,59 @@ void Labyrinth::SetSpawn2( const Coordinate rm )
   return;
 }
 
+// This method sets the exit of the Labyrinth on a Wall.
+// An exception is thrown if:
+//   The Exit has already been set (logic_error)
+//   The Direction is invalid (kNone) (invalid_argument)
+//   The Direction has another Room (invalid_argument)
+//   The Room is outside the Labyrinth (domain_error)
+void Labyrinth::SetExit( const Coordinate rm, const Direction d )
+{
+  if( exit_set_ )
+  {
+    throw std::logic_error( "Error: SetExit() cannot create an exit; "\
+      "one already exists.\n" );
+  }
+  else if( d == Direction::kNone )
+  {
+    throw std::invalid_argument( "Error: SetExit() was given an invalid "\
+      "direction (kNone).\n" );
+  }
+
+  auto rb = RoomBorder::kRoom;
+  try
+  {
+    rb = RoomAt(rm).DirectionCheck(d);
+  }
+  catch( const std::exception& e )
+  {
+    std::cout << e.what();
+    return;
+  }
+
+  if (rb == RoomBorder::kRoom)
+  {
+    throw std::invalid_argument( "Error: SetExit() was given a "\
+      "direction with a Room, not a Wall.\n" );
+  }
+  else if( !WithinBounds(rm) )
+  {
+    throw std::invalid_argument( "Error: SetExit() was given a "\
+      "Coordinate outside of the Labyrinth.\n" );
+  }
+
+  try
+  {
+    RoomAt(rm).CreateExit(d);
+  }
+  catch( const std::exception& e )
+  {
+    std::cout << e.what();
+  }
+  exit_set_ = true;
+  return;
+}
+
 // This method places an Inhabitant in a Room.
 // Cannot change an existing Inhabitant; use the EnemyAttacked() method
 // for that.
@@ -230,28 +283,47 @@ void Labyrinth::SetInhabitant( const Coordinate rm, const Inhabitant inh )
 // This method places an Item in a Room.
 // Cannot change an existing Item; use the TakeItem() method for that.
 // An exception is thrown if:
+//   The Room is outside the Labyrinth (domain_error)
 //   The Item of the Room has already been set (logic_error)
 //   Item itm is a null Item (i.e. Item::kNone) (invalid_argument)
-//   The Room is outside the Labyrinth (domain_error)
+//   Item itm is a Treasure but the Treasure has already been placed
+//     in another room (logic_error)
 void Labyrinth::SetItem( const Coordinate rm, const Item itm )
 {
-  if( RoomAt(rm).GetItem() != Item::kNone )
+  if( !WithinBounds(rm) )
   {
-    throw std::logic_error( "Error: SetItem() cannot replace an existing "\
-      "Item.\n" );
+    throw std::domain_error("Error: SetItem() was given an invalid "\
+      "Coordinate.\n");
+  }
+  else if( RoomAt(rm).GetItem() != Item::kNone )
+  {
+    throw std::logic_error("Error: SetItem() cannot replace an existing "\
+      "Item.\n");
   }
   else if( itm == Item::kNone )
   {
     throw std::invalid_argument( "Error: SetItem() was given an invalid "\
       "Item.\n" );
   }
-  else if( !WithinBounds(rm) )
+  else if( itm == Item::kTreasure && treasure_set_ )
   {
-    throw std::domain_error( "Error: SetItem() was given an invalid "\
-      "Coordinate.\n" );
+    throw std::logic_error( "Error: SetItem() was given a Treasure, "\
+      "but the Treasure has already been set in the Labyrinth.\n" );
   }
 
-  RoomAt(rm).SetItem(itm);
+  try
+  {
+    RoomAt(rm).SetItem(itm);
+  }
+  catch( const std::exception& e )
+  {
+    std::cout << e.what();
+  }
+
+  if( itm == Item::kTreasure )
+  {
+    treasure_set_ = true;
+  }
 }
 
 // PLAY:

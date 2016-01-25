@@ -1,7 +1,7 @@
 /*
  *
  * Author: Jeffrey Leung
- * Last edited: 2015-12-28
+ * Last edited: 2016-01-22
  *
  * This program contains implementations of a Room class, which is a template
  * to create a Labyrinth.
@@ -18,13 +18,6 @@
 // This constructor sets a basic, walled, empty Room.
 Room::Room()
 {
-  dark_thing_ = Inhabitant::kNone;
-  object_     = Item::kNone;
-  exit_       = Direction::kNone;
-  wall_north_ = true;
-  wall_east_  = true;
-  wall_south_ = true;
-  wall_west_ = true;
 }
 
 // Parameterized constructor
@@ -122,6 +115,41 @@ void Room::BreakWall( Direction d )
       break;
   }
   return;
+}
+
+// This method creates an exit in the given direction. The Wall
+// should be intact (BreakWall() not called on it beforehand).
+// An exception is thrown if:
+//   Direction d is null (i.e. Direction::kNone) (invalid_argument)
+//   The Exit has already been created (logic_error)
+//   The Wall has already been removed (logic_error)
+void Room::CreateExit( Direction d )
+{
+  if( d == Direction::kNone )
+  {
+    throw std::invalid_argument( "Error: CreateExit() was given the "\
+      "direction kNone.\n" );
+  }
+  else if( exit_ != Direction::kNone )
+  {
+    throw std::logic_error( "Error: CreateExit() was given a Room "\
+      "which already has an exit created.\n" );
+  }
+  else if (DirectionCheck(d) != RoomBorder::kWall)
+  {
+    throw std::logic_error( "Error: CreateExit() was given a Wall "\
+      "which has already been broken." );
+  }
+
+  try
+  {
+    BreakWall(d);
+  }
+  catch( const std::exception& e )
+  {
+    std::cout << e.what();
+  }
+  exit_ = d;
 }
 
 // This method returns:
