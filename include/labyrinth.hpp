@@ -54,9 +54,10 @@ class Labyrinth
 
       // This method sets the exit of the Labyrinth on a Wall.
       // An exception is thrown if:
+      //   The Room is outside the Labyrinth (domain_error)
+      //   The Direction is invalid (kNone) (invalid_argument)
       //   The Direction has another Room (invalid_argument)
       //   The Exit has already been set (logic_error)
-      //   The Room is outside the Labyrinth (domain_error)
       void SetExit( const Coordinate rm, const Direction d );
 
       // This method places the Labyrinth treasure in a Room.
