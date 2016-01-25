@@ -199,21 +199,21 @@ void Labyrinth::SetSpawn2( const Coordinate rm )
 
 // This method sets the exit of the Labyrinth on a Wall.
 // An exception is thrown if:
-//   The Exit has already been set (logic_error)
+//   The Room is outside the Labyrinth (domain_error)
 //   The Direction is invalid (kNone) (invalid_argument)
 //   The Direction has another Room (invalid_argument)
-//   The Room is outside the Labyrinth (domain_error)
+//   The Exit has already been set (logic_error)
 void Labyrinth::SetExit( const Coordinate rm, const Direction d )
 {
-  if( exit_set_ )
+  if( !WithinBounds(rm) )
   {
-    throw std::logic_error( "Error: SetExit() cannot create an exit; "\
-      "one already exists.\n" );
+    throw std::domain_error( "Error: SetExit() was given an "\
+      "invalid Coordinate.\n" );
   }
   else if( d == Direction::kNone )
   {
-    throw std::invalid_argument( "Error: SetExit() was given an invalid "\
-      "direction (kNone).\n" );
+    throw std::invalid_argument( "Error: SetExit() was given an "\
+      "invalid direction (kNone).\n" );
   }
 
   auto rb = RoomBorder::kRoom;
@@ -226,16 +226,16 @@ void Labyrinth::SetExit( const Coordinate rm, const Direction d )
     std::cout << e.what();
     return;
   }
-
   if (rb == RoomBorder::kRoom)
   {
     throw std::invalid_argument( "Error: SetExit() was given a "\
       "direction with a Room, not a Wall.\n" );
   }
-  else if( !WithinBounds(rm) )
+
+  if( exit_set_ )
   {
-    throw std::invalid_argument( "Error: SetExit() was given a "\
-      "Coordinate outside of the Labyrinth.\n" );
+    throw std::logic_error( "Error: SetExit() was called when an exit "\
+      "already exists.\n" );
   }
 
   try
@@ -245,7 +245,9 @@ void Labyrinth::SetExit( const Coordinate rm, const Direction d )
   catch( const std::exception& e )
   {
     std::cout << e.what();
+    return;
   }
+
   exit_set_ = true;
   return;
 }
