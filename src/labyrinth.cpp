@@ -80,19 +80,13 @@ Labyrinth::Labyrinth( const size_t x_size, const size_t y_size ) :
 
 // This method connects two Rooms by breaking their walls.
 // An exception is thrown if:
-//   The Rooms are already connected (logic_error)
-//   The Rooms are the same (logic_error)
-//   The Rooms are not adjacent (logic_error)
 //   One or both Rooms are outside the Labyrinth (domain_error)
+//   The Rooms are not adjacent (logic_error)
+//   The Rooms are the same (logic_error)
+//   The Rooms are already connected (logic_error)
 void Labyrinth::ConnectRooms( const Coordinate rm_1, const Coordinate rm_2 )
 {
-  if( rm_1 == rm_2 )
-  {
-    throw std::logic_error( "Error: ConnectRooms() was given the same "\
-      "coordinate for the two Rooms.\n" );
-  }
-
-  else if( !WithinBounds(rm_1) || !WithinBounds(rm_2) )
+  if( !WithinBounds(rm_1) || !WithinBounds(rm_2) )
   {
     if( !WithinBounds(rm_1) )
     {
@@ -114,11 +108,15 @@ void Labyrinth::ConnectRooms( const Coordinate rm_1, const Coordinate rm_2 )
         "invalid coordinate for rm_2.\n" );
     }
   }
-
   else if( !IsAdjacent(rm_1, rm_2) )
   {
     throw std::logic_error( "Error: ConnectRooms() was given two coordinates "\
       "which are not adjacent, and therefore cannot be connected.\n" );
+  }
+  else if( rm_1 == rm_2 )
+  {
+    throw std::logic_error( "Error: ConnectRooms() was given the same "\
+      "coordinate for the two Rooms.\n" );
   }
 
   int x_distance = (int)(rm_2.x) - (int)(rm_1.x);
@@ -155,10 +153,10 @@ void Labyrinth::ConnectRooms( const Coordinate rm_1, const Coordinate rm_2 )
     }
   }
 
-  else
+  if( RoomAt(rm_1).DirectionCheck(break_wall_1) == RoomBorder::kRoom )
   {
-    throw std::logic_error( "Error: ConnectRooms() called IsAdjacent(), "\
-      "which should have evaluated to false, but did not.\n" );
+    throw std::logic_error( "Error: ConnectRooms() was given two Rooms "\
+      "which are already connected.\n" );
   }
 
   RoomAt(rm_1).BreakWall(break_wall_1);
@@ -256,26 +254,26 @@ void Labyrinth::SetExit( const Coordinate rm, const Direction d )
 // Cannot change an existing Inhabitant; use the EnemyAttacked() method
 // for that.
 // An exception is thrown if:
-//   The Inhabitant of the Room has already been set (logic_error)
+//   The Room is outside the Labyrinth (domain_error)
 //   Inhabitant inh is a null Inhabitant (i.e. Inhabitant::kNone)
 //     (invalid_argument)
-//   The Room is outside the Labyrinth (domain_error)
+//   The Inhabitant of the Room has already been set (logic_error)
 void Labyrinth::SetInhabitant( const Coordinate rm, const Inhabitant inh )
 {
-  if( RoomAt(rm).GetInhabitant() != Inhabitant::kNone )
+  if( !WithinBounds(rm) )
   {
-    throw std::logic_error( "Error: SetInhabitant() cannot replace an "\
-      "existing Inhabitant; EnemyAttacked() should be used instead.\n" );
+    throw std::domain_error( "Error: SetInhabitant() was given an "\
+      "invalid Coordinate.\n" );
   }
   else if( inh == Inhabitant::kNone )
   {
     throw std::invalid_argument( "Error: SetInhabitant() was given a null "\
       "Inhabitant.\n" );
   }
-  else if( !WithinBounds(rm) )
+  else if( RoomAt(rm).GetInhabitant() != Inhabitant::kNone )
   {
-    throw std::domain_error( "Error: SetInhabitant() was given an "\
-      "invalid Coordinate.\n" );
+    throw std::logic_error( "Error: SetInhabitant() cannot replace an "\
+      "existing Inhabitant; EnemyAttacked() should be used instead.\n" );
   }
 
   RoomAt(rm).SetInhabitant(inh);
@@ -286,8 +284,8 @@ void Labyrinth::SetInhabitant( const Coordinate rm, const Inhabitant inh )
 // Cannot change an existing Item; use the TakeItem() method for that.
 // An exception is thrown if:
 //   The Room is outside the Labyrinth (domain_error)
-//   The Item of the Room has already been set (logic_error)
 //   Item itm is a null Item (i.e. Item::kNone) (invalid_argument)
+//   The Item of the Room has already been set (logic_error)
 //   Item itm is a Treasure but the Treasure has already been placed
 //     in another room (logic_error)
 void Labyrinth::SetItem( const Coordinate rm, const Item itm )
@@ -297,15 +295,15 @@ void Labyrinth::SetItem( const Coordinate rm, const Item itm )
     throw std::domain_error("Error: SetItem() was given an invalid "\
       "Coordinate.\n");
   }
-  else if( RoomAt(rm).GetItem() != Item::kNone )
-  {
-    throw std::logic_error("Error: SetItem() cannot replace an existing "\
-      "Item.\n");
-  }
   else if( itm == Item::kNone )
   {
     throw std::invalid_argument( "Error: SetItem() was given an invalid "\
       "Item.\n" );
+  }
+  else if( RoomAt(rm).GetItem() != Item::kNone )
+  {
+    throw std::logic_error("Error: SetItem() cannot replace an existing "\
+      "Item.\n");
   }
   else if( itm == Item::kTreasure && treasure_set_ )
   {

@@ -36,10 +36,10 @@ class Labyrinth
 
       // This method connects two Rooms by breaking their walls.
       // An exception is thrown if:
-      //   The Rooms are already connected (logic_error)
-      //   The Rooms are the same (logic_error)
-      //   The Rooms are not adjacent (logic_error)
       //   One or both Rooms are outside the Labyrinth (domain_error)
+      //   The Rooms are not adjacent (logic_error)
+      //   The Rooms are the same (logic_error)
+      //   The Rooms are already connected (logic_error)
       void ConnectRooms( const Coordinate rm_1, const Coordinate rm_2 );
 
       // This method sets the primary (initial) spawn Room.
@@ -64,18 +64,18 @@ class Labyrinth
       // Cannot change an existing Inhabitant; use the EnemyAttacked() method
       // for that.
       // An exception is thrown if:
-      //   The Inhabitant of the Room has already been set (logic_error)
+      //   The Room is outside the Labyrinth (domain_error)
       //   Inhabitant inh is a null Inhabitant (i.e. Inhabitant::kNone)
       //     (invalid_argument)
-      //   The Room is outside the Labyrinth (domain_error)
+      //   The Inhabitant of the Room has already been set (logic_error)
       void SetInhabitant( const Coordinate rm, const Inhabitant inh );
 
       // This method places an Item in a Room.
       // Cannot change an existing Item; use the TakeItem() method for that.
       // An exception is thrown if:
       //   The Room is outside the Labyrinth (domain_error)
-      //   The Item of the Room has already been set (logic_error)
       //   Item itm is a null Item (i.e. Item::kNone) (invalid_argument)
+      //   The Item of the Room has already been set (logic_error)
       //   Item itm is a Treasure but the Treasure has already been placed
       //     in another room (logic_error)
       void SetItem( Coordinate rm, Item itm );
@@ -95,9 +95,9 @@ class Labyrinth
       // False is returned if:
       //   The Inhabitant was a Mirror
       // An exception is thrown if:
+      //   The Room is outside the Labyrinth (domain_error)
       //   There is no enemy to attack (i.e. Inhabitant::kNone, dead Minotaur,
       //     or cracked Mirror) (invalid_argument)
-      //   The Room is outside the Labyrinth (domain_error)
       bool EnemyAttacked( const Coordinate rm );
 
       // This method returns the current Item in the room, but does not
@@ -108,9 +108,9 @@ class Labyrinth
 
       // This method takes the Item from the Room.
       // An exception is thrown if:
+      //   The Room is outside the Labyrinth (domain_error)
       //   There is no Item to take (i.e. Item::kNone or Item taken already)
       //     (logic_error)
-      //   The Room is outside the Labyrinth (domain_error)
       void TakeItem( const Coordinate rm );
 
       // This method drops the Treasure in the given room.
