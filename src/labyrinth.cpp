@@ -1,7 +1,7 @@
 /*
  *
  * Author: Jeffrey Leung
- * Last edited: 2016-01-20
+ * Last edited: 2016-01-27
  *
  * This C++ file contains the implementation of the Labyrinth class, which uses
  * the Room class to create a 2-d mapping for a game.
@@ -339,6 +339,76 @@ Inhabitant Labyrinth::GetInhabitant( const Coordinate rm ) const
       "Coordinate outside of the Labyrinth.\n" );
   }
   return RoomAt(rm).GetInhabitant();
+}
+
+// This method attacks the Inhabitant of the Room, and sets the resultant
+// Inhabitant.
+// The bullet is not removed from the Player.
+// An exception is thrown if:
+//   The Room is outside the Labyrinth (domain_error)
+//   There is no enemy to attack (i.e. Inhabitant::kNone, dead Minotaur,
+//     or cracked Mirror) (invalid_argument)
+void Labyrinth::AttackEnemy( const Coordinate rm )
+{
+  if( !WithinBounds(rm) )
+  {
+    throw std::domain_error( "Error: AttackEnemy() was given an invalid "\
+      "Coordinate.\n" );
+  }
+
+  auto inh = Inhabitant::kNone;
+  try
+  {
+    inh = RoomAt(rm).GetInhabitant();
+  }
+  catch( const std::exception& e )
+  {
+    std::cout << e.what();
+    return;
+  }
+
+  switch( inh )
+  {
+    case Inhabitant::kNone:
+      throw std::invalid_argument( "Error: AttackEnemy() was given a "\
+        "Coordinate with an invalid Inhabitant (kNone).\n" );
+      break;
+
+    case Inhabitant::kMinotaurDead:
+      throw std::invalid_argument( "Error: AttackEnemy() was given a "\
+        "Coordinate with an invalid Inhabitant (a dead Minotaur).\n" );
+      break;
+
+    case Inhabitant::kMirrorCracked:
+      throw std::invalid_argument( "Error: AttackEnemy() was given a "\
+        "Coordinate with an invalid Inhabitant (a cracked mirror).\n" );
+      break;
+
+    // Actual code, not error-checking
+    case Inhabitant::kMinotaur:
+      try
+      {
+        RoomAt(rm).SetInhabitant(Inhabitant::kMinotaurDead);
+      }
+      catch( const std::exception& e )
+      {
+        std::cout << e.what();
+        return;
+      }
+      break;
+
+    case Inhabitant::kMirror:
+      try
+      {
+        RoomAt(rm).SetInhabitant(Inhabitant::kMirrorCracked);
+      }
+      catch( const std::exception& e )
+      {
+        std::cout << e.what();
+        return;
+      }
+      break;
+  }
 }
 
 // This method returns the current Item in the room, but does not
