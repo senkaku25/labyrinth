@@ -1,7 +1,7 @@
 /*
  *
  * Author: Jeffrey Leung
- * Last edited: 2016-01-22
+ * Last edited: 2016-01-27
  *
  * This C++ header file contains the implementation of the Labyrinth class,
  * which uses the Room class to create a 2-d mapping for a game.
@@ -90,15 +90,11 @@ class Labyrinth
       // This method attacks the Inhabitant of the Room, and sets the resultant
       // Inhabitant.
       // The bullet is not removed from the Player.
-      // True is returned if:
-      //   The Inhabitant was a Minotaur
-      // False is returned if:
-      //   The Inhabitant was a Mirror
       // An exception is thrown if:
       //   The Room is outside the Labyrinth (domain_error)
       //   There is no enemy to attack (i.e. Inhabitant::kNone, dead Minotaur,
       //     or cracked Mirror) (invalid_argument)
-      bool EnemyAttacked( const Coordinate rm );
+      void AttackEnemy( const Coordinate rm );
 
       // This method returns the current Item in the room, but does not
       // change it.
