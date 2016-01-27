@@ -148,6 +148,7 @@ void Room::CreateExit( const Direction d )
   catch( const std::exception& e )
   {
     std::cout << e.what();
+    return;
   }
   exit_ = d;
 }
