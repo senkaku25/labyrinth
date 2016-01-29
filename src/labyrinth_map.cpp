@@ -1,7 +1,7 @@
 /*
  *
  * Author: Jeffrey Leung
- * Last edited: 2016-01-20
+ * Last edited: 2016-01-29
  *
  * This C++ header file contains the LabyrinthMap class which creates, updates,
  * and displays a map of a given Labyrinth.
@@ -114,9 +114,10 @@ void LabyrinthMapCoordinateRoom::SetItem( const Item i )
 // An exception is thrown if:
 //   l is null (invalid_argument)
 //   A size of 0 is given (domain_error)
-LabyrinthMap::LabyrinthMap( Labyrinth* l,
+LabyrinthMap::LabyrinthMap( const Labyrinth* const l,
                             const size_t x_size,
                             const size_t y_size ) :
+  l_(l),
   x_size_(x_size),
   y_size_(y_size),
   map_x_size_(x_size * 2 + 1),
@@ -145,8 +146,6 @@ LabyrinthMap::LabyrinthMap( Labyrinth* l,
     throw std::domain_error( "Error: LabyrinthMap() was given an empty "\
       "y size.\n" );
   }
-
-  l_ = l;
 
   // Creation of the map array
   auto map_temp_1 = std::make_unique<

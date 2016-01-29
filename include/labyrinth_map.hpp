@@ -1,7 +1,7 @@
 /*
  *
  * Author: Jeffrey Leung
- * Last edited: 2016-01-20
+ * Last edited: 2016-01-29
  *
  * This C++ header file contains classes related to creating a LabyrinthMap
  * which creates, updates, and displays a map of a given Labyrinth.
@@ -205,7 +205,7 @@ class LabyrinthMap
     // An exception is thrown if:
     //   l is null (invalid_argument)
     //   A size of 0 is given (domain_error)
-    LabyrinthMap( Labyrinth* l,
+    LabyrinthMap( const Labyrinth* const l,
                   const size_t x_size,
                   const size_t y_size );
 
@@ -214,7 +214,7 @@ class LabyrinthMap
 
   private:
 
-    Labyrinth* l_;
+    const Labyrinth* const l_;
     const size_t x_size_;
     const size_t y_size_;
 
