@@ -482,6 +482,12 @@ void Labyrinth::TakeItem( const Coordinate rm )
     std::cout << e.what();
     return;
   }
+
+  // treasure_set_ is not changed upon failure in the try/catch block.
+  if( itm_new == Item::kTreasureGone )
+  {
+    treasure_set_ = false;
+  }
 }
 
 // This method returns the type of RoomBorder in the given direction.
