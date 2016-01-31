@@ -11,7 +11,7 @@ The **PlayLabyrinth** class is the implementation of the game Labyrinth accordin
 ### TODO:
 
 #### Labyrinth:
-1. Implement remaining methods.
+1. Test all methods (Currently underway in the laby-testing branch)
 
 #### Miscellaneous:
 1. Implement the Player class with inventory and location.
