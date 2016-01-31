@@ -490,6 +490,36 @@ void Labyrinth::TakeItem( const Coordinate rm )
   }
 }
 
+// This method drops the Treasure in the given Room.
+// An exception is thrown if:
+//   The Room is outside the Labyrinth (domain_error)
+//   The Treasure has already been set in another Room (logic_error)
+void Labyrinth::DropTreasure( const Coordinate rm )
+{
+  if( !WithinBounds(rm) )
+  {
+    throw std::domain_error( "Error: DropTreasure() was given an "\
+      "invalid Coordinate\n." );
+  }
+  else if( treasure_set_ )
+  {
+    throw std::logic_error( "Error: DropTreasure() was called when the "
+      "Treasure was already set in a Room of the Labyrinth.\n" );
+  }
+
+  try
+  {
+    RoomAt(rm).SetItem(Item::kTreasure);
+  }
+  catch( const std::exception& e )
+  {
+    std::cout << e.what();
+    return;
+  }
+
+  treasure_set_ = true;  // Not modified upon failure of try/catch block
+}
+
 // This method returns the type of RoomBorder in the given direction.
 // An exception is thrown if:
 //   The Room is outside the Labyrinth (domain_error)

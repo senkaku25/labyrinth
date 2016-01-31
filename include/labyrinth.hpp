@@ -109,9 +109,10 @@ class Labyrinth
       //     (logic_error)
       void TakeItem( const Coordinate rm );
 
-      // This method drops the Treasure in the given room.
+      // This method drops the Treasure in the given Room.
       // An exception is thrown if:
       //   The Room is outside the Labyrinth (domain_error)
+      //   The Treasure has already been set in another Room (logic_error)
       void DropTreasure( const Coordinate rm );
 
       // This method returns the type of RoomBorder in the given direction.
