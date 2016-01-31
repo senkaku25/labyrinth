@@ -425,6 +425,65 @@ Item Labyrinth::GetItem( const Coordinate rm ) const
   return RoomAt(rm).GetItem();
 }
 
+// This method takes the Item from the Room.
+// An exception is thrown if:
+//   The Room is outside the Labyrinth (domain_error)
+//   There is no Item to take (i.e. Item::kNone or Item taken already)
+//     (logic_error)
+void Labyrinth::TakeItem( const Coordinate rm )
+{
+  if( !WithinBounds(rm) )
+  {
+    throw std::domain_error( "Error: TakeItem() was given an "\
+      "invalid Coordinate.\n" );
+  }
+
+  auto itm = Item::kNone;
+
+  try
+  {
+    itm = RoomAt(rm).GetItem();
+  }
+  catch( const std::exception& e )
+  {
+    std::cout << e.what();
+    return;
+  }
+
+  auto itm_new = Item::kNone;
+
+  switch( itm )
+  {
+    case Item::kNone:
+      throw std::logic_error( "Error: TakeItem() cannot take "\
+        "no item (kNone).\n" );
+      break;
+
+    case Item::kTreasureGone:
+      throw std::logic_error( "Error: TakeItem() attempted to take "\
+        "the Treasure, but the Treasure is gone from this Room.\n" );
+      break;
+
+    case Item::kBullet:
+      itm_new = Item::kNone;
+      break;
+
+    case Item::kTreasure:
+      itm_new = Item::kTreasureGone;
+      break;
+  }
+
+  try
+  {
+    RoomAt(rm).SetItem(itm_new);
+  }
+  catch( const std::exception& e )
+  {
+    std::cout << e.what();
+    return;
+  }
+}
+
 // This method returns the type of RoomBorder in the given direction.
 // An exception is thrown if:
 //   The Room is outside the Labyrinth (domain_error)
