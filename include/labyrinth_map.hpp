@@ -1,7 +1,7 @@
 /*
  *
  * Author: Jeffrey Leung
- * Last edited: 2016-01-29
+ * Last edited: 2016-02-01
  *
  * This C++ header file contains classes related to creating a LabyrinthMap
  * which creates, updates, and displays a map of a given Labyrinth.
@@ -104,10 +104,10 @@ class LabyrinthMapCoordinate
         "Border or Room.\n" );
     }
 
-    virtual Item GetItem() const
+    virtual Item ItemAt() const
     {
       throw std::logic_error( "Error: A LabyrinthMapCoordinateBorder "\
-        "attempted to call GetItem(), which is a Room-only method.\n"\
+        "attempted to call ItemAt(), which is a Room-only method.\n"\
         "Consider using IsRoom() to check whether the Coordinate is a" \
         "Border or Room.\n" );
     }
@@ -182,7 +182,7 @@ class LabyrinthMapCoordinateRoom : public LabyrinthMapCoordinate
     void SetInhabitant( const Inhabitant inh );
 
     // This method returns the item in a given Room.
-    Item GetItem() const;
+    Item ItemAt() const;
 
     // This method sets the item in a given map's Room.
     // May be used to set the same item or remove a non-existent item.

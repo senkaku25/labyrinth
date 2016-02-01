@@ -98,7 +98,7 @@ void LabyrinthMapCoordinateRoom::SetInhabitant( const Inhabitant inh )
 }
 
 // This method returns the item in a given Room.
-Item LabyrinthMapCoordinateRoom::GetItem() const
+Item LabyrinthMapCoordinateRoom::ItemAt() const
 {
   return itm_;
 }
@@ -628,7 +628,7 @@ std::string LabyrinthMap::DisplayRoom( const Coordinate c ) const
   Item itm = Item::kNone;
   try
   {
-    itm = MapCoordinateAt(c).GetItem();
+    itm = MapCoordinateAt(c).ItemAt();
   }
   catch( const std::exception& e )
   {
