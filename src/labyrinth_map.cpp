@@ -1,7 +1,7 @@
 /*
  *
  * Author: Jeffrey Leung
- * Last edited: 2016-01-29
+ * Last edited: 2016-02-01
  *
  * This C++ header file contains the LabyrinthMap class which creates, updates,
  * and displays a map of a given Labyrinth.
@@ -483,7 +483,7 @@ void LabyrinthMap::UpdateRooms()
 
       try
       {
-        MapCoordinateAt(c_map).SetItem( l_->GetItem(c_laby) );
+        MapCoordinateAt(c_map).SetItem( l_->ItemAt(c_laby) );
       }
       catch( const std::exception& e )
       {

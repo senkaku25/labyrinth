@@ -1,7 +1,7 @@
 /*
  *
  * Author: Jeffrey Leung
- * Last edited: 2016-01-27
+ * Last edited: 2016-02-01
  *
  * This C++ file contains the implementation of the Labyrinth class, which uses
  * the Room class to create a 2-d mapping for a game.
@@ -411,15 +411,15 @@ void Labyrinth::AttackEnemy( const Coordinate rm )
   }
 }
 
-// This method returns the current Item in the room, but does not
+// This method returns the current Item in the given Room, but does not
 // change it.
 // An exception is thrown if:
 //   The Room is outside the Labyrinth (domain_error)
-Item Labyrinth::GetItem( const Coordinate rm ) const
+Item Labyrinth::ItemAt( const Coordinate rm ) const
 {
   if( !WithinBounds(rm) )
   {
-    throw std::domain_error( "Error: GetItem() was given a "\
+    throw std::domain_error( "Error: ItemAt() was given a "\
       "Coordinate outside of the Labyrinth.\n" );
   }
   return RoomAt(rm).GetItem();

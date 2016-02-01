@@ -1,7 +1,7 @@
 /*
  *
  * Author: Jeffrey Leung
- * Last edited: 2016-01-27
+ * Last edited: 2016-02-01
  *
  * This C++ header file contains the implementation of the Labyrinth class,
  * which uses the Room class to create a 2-d mapping for a game.
@@ -96,11 +96,11 @@ class Labyrinth
       //     or cracked Mirror) (invalid_argument)
       void AttackEnemy( const Coordinate rm );
 
-      // This method returns the current Item in the room, but does not
+      // This method returns the current Item in the given Room, but does not
       // change it.
       // An exception is thrown if:
       //   The Room is outside the Labyrinth (domain_error)
-      Item GetItem( const Coordinate rm ) const;
+      Item ItemAt( const Coordinate rm ) const;
 
       // This method takes the Item from the Room.
       // An exception is thrown if:
