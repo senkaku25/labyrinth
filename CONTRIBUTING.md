@@ -41,3 +41,8 @@ At coordinate (0, 1) is a dead minotaur.
 At coordinate (1, 1) is a Treasure.  
 At coordinate (2, 0) is an intact mirror.  
 At coordinate (2, 1) is a broken mirror.
+
+## Design Decisions/Constraints
+
+* PlayLabyrinth:
+  * Items are automatically picked up by the player since a Room can currently only hold a single item, so a Treasure cannot be dropped in the same Room in which another Item already exists
