@@ -27,27 +27,27 @@ The Makefile compiles using either **g++** or **Clang++**. When submitting code,
 Provide your root password when prompted.
 
 Add the repository with the latest version of g++:
-> sudo add-apt-repository ppa:ubuntu-toolchain-r/test
+> $ sudo add-apt-repository ppa:ubuntu-toolchain-r/test
 
 Update the repository's version list:
-> sudo apt-get update
+> $ sudo apt-get update
 
 Install the latest version of g++:
-> sudo apt-get install g++-4.9
+> $ sudo apt-get install g++-4.9
 
 #### Install or Update Clang++ <a id="clang++">
 
 Provide your root password when prompted.
 
 Add the repositories with the latest version of Clang++:
-> sudo apt-get install llvm  
-> sudo apt-get install build-essential
+> $ sudo apt-get install llvm  
+> $ sudo apt-get install build-essential
 
 Update your repository's version list:
-> sudo apt-get update
+> $ sudo apt-get update
 
 Install the latest version of Clang++:
-> sudo apt-get install clang-3.5
+> $ sudo apt-get install clang-3.5
 
 ### Executing the code <a id="executing-the-code">
 
