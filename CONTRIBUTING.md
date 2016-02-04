@@ -1,12 +1,28 @@
 # How to Contribute
 
-## Setup
+## Table of Contents
 
-### Dependencies
+1. [Setup](#setup)
+  1. [Dependencies](#dependencies)
+    1. [Install or Update g++](#g++)
+    1. [Install or Update Clang++](#clang++)
+  1. [Executing the Code](#executing-the-code)
+1. [File Structure](#file-structure)
+1. [Object Structure](#object-structure)
+1. [LabyrinthMap](#labyrinthmap)
+  1. [Example](#labyrinthmap-example)
+1. [Design Decisions/Constraints](#design-decisions-constraints)
+1. [Task List](#todo)
+  1. [Labyrinth](#todo-labyrinth)
+  1. [Miscellaneous](#todo-miscellaneous)
+
+## Setup <a id="setup">
+
+### Dependencies <a id="dependencies">
 
 The Makefile compiles using either **g++** or **Clang++**. When submitting code, please make sure it is warning-free and error-free with both compilers.
 
-#### Install or Update g++
+#### Install or Update g++ <a id="g++">
 
 Provide your root password when prompted.
 
@@ -19,7 +35,7 @@ Update the repository's version list:
 Install the latest version of g++:
 > sudo apt-get install g++-4.9
 
-#### Install or Update Clang++
+#### Install or Update Clang++ <a id="clang++">
 
 Provide your root password when prompted.
 
@@ -33,7 +49,7 @@ Update your repository's version list:
 Install the latest version of Clang++:
 > sudo apt-get install clang-3.5
 
-### Executing the code
+### Executing the code <a id="executing-the-code">
 
 Fork the repository through GitHub.  
 
@@ -50,7 +66,7 @@ Make sure the all test cases compile without warnings or errors on both g++ and 
 Well done, you've set up your development environment successfully!  
 Now you can make changes, test them, check that it compiles cleanly on both g++ and Clang, then commit them to your repository. If you think you've got
 
-## File Structure
+## File Structure <a id="file-structure">
 * *src/* contains the C++ source files.
 * *include/* contains the C++ header files.
 * *test/* contains all tools needed for testing and compilation.
@@ -64,10 +80,10 @@ Now you can make changes, test them, check that it compiles cleanly on both g++ 
 * The **Player class** is a description of the inventory, location, and status of the given player.
 * The **PlayLabyrinth** class is the implementation of the game Labyrinth according to the file *GameInstructions.txt*, and uses the Labyrinth, LabyrinthMap, and Player classes.
 
-## LabyrinthMap
+## LabyrinthMap <a id="labyrinthmap">
 This is a 2-d mapping of a Labyrinth which is updated and printed whenever Display() is called.
 
-### Example
+### Example <a id="labyrinthmap-example">
 ```
          X
        0  1  2
@@ -86,17 +102,17 @@ At coordinate (1, 1) is a Treasure.
 At coordinate (2, 0) is an intact mirror.  
 At coordinate (2, 1) is a broken mirror.
 
-## Design Decisions/Constraints
+## Design Decisions/Constraints <a id="design-decisions-constraints">
 
 * PlayLabyrinth:
   * Items are automatically picked up by the player since a Room can currently only hold a single item, so a Treasure cannot be dropped in the same Room in which another Item already exists
 
-## Task List
+## Task List <a id="todo">
 
-### Labyrinth
+### Labyrinth <a id="todo-labyrinth">
 1. Test all methods (Currently underway in the laby-testing branch)
 
-### Miscellaneous
+### Miscellaneous <a id="todo-miscellaneous">
 1. Implement the Player class with inventory and location.
 1. Implement the PlayLabyrinth class to execute the game.
 1. Use [NCurses](http://hughm.cs.ukzn.ac.za/~murrellh/os/notes/ncurses.html) to play the game in an isolated terminal.
