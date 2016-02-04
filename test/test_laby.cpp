@@ -1,7 +1,7 @@
 /*
  *
  * Author: Jeffrey Leung
- * Last edited: 2016-01-15
+ * Last edited: 2016-02-04
  *
  * This C++ file tests the Labyrinth class implementation.
  *
@@ -15,14 +15,16 @@
 #include "../include/coordinate.hpp"
 #include "../include/labyrinth.hpp"
 
-int main()
+namespace  // Local functions
 {
-  std::cout << std::endl
-            << "TESTING LABYRINTH.CPP IMPLEMENTATION" << std::endl
-            << "________________________________________________" << std::endl
-            << std::endl;
 
-
+// This local function runs tests for the Labyrinth constructor.
+void TestLabyrinthConstructor()
+{
+  std::cout << "________________________________________________"
+            << std::endl << std::endl
+            << "TESTING CONSTRUCTOR:"
+            << std::endl << std::endl;
 
   std::cout << "Creating a basic, empty Labyrinth with:" << std::endl
             << "  x size = 3" << std::endl
@@ -31,8 +33,6 @@ int main()
   Labyrinth l1( 3, 5 );
   std::cout << "Completed." << std::endl;
   std::cout << std::endl;
-
-
 
   std::cout << "Type 1 to attempt to create a Labyrinth with x size = 0."
             << std::endl
@@ -94,13 +94,24 @@ int main()
     }
   }
   std::cout << std::endl;
+  return;
+}
 
-
-  
+// This local function runs tests for the Labyrinth method ConnectRooms().
+void TestLabyrinthConnectRooms()
+{
   std::cout << "________________________________________________"
             << std::endl << std::endl
             << "TESTING CONNECTROOMS():"
             << std::endl << std::endl;
+
+  std::cout << "Creating a basic, empty Labyrinth with:" << std::endl
+            << "  x size = 3" << std::endl
+            << "  y size = 2" << std::endl;
+
+  Labyrinth l1( 3, 2 );
+  std::cout << "Completed." << std::endl;
+  std::cout << std::endl;
 
   Coordinate c_0_0(0, 0);
   Coordinate c_0_1(0, 1);
@@ -205,19 +216,33 @@ int main()
     l1.ConnectRooms(c_0_0, c_2_1);
   }
   catch (const std::exception& e)
-  { 
+  {
     std::cout << e.what();
   }
-  std::cout << "Done." << std::endl << std::endl;
+  std::cout << "Done." << std::endl;
+  std::cout << std::endl;
+  return;
+}
 
+}  // End of unnamed namespace (for local functions)
 
+int main()
+{
+  std::cout << std::endl
+            << "TESTING LABYRINTH.CPP IMPLEMENTATION" << std::endl
+            << "________________________________________________" << std::endl
+            << std::endl;
+
+  TestLabyrinthConstructor();
+  TestLabyrinthConnectRooms();
 
   std::cout << "________________________________________________" << std::endl;
   std::cout << std::endl;
   std::cout << "All tests completed." << std::endl;
   std::cout << std::endl;
   std::cout << "Press enter to exit.";
-  getchar();getchar();
+  getchar();
+  getchar();
   std::cout << std::endl;
 
   return 0;
