@@ -8,10 +8,6 @@ ROOMHEADERS = \
 ROOMSOURCES = \
   ../src/room.cpp
 
-# Room object files
-ROOMOBJ = \
-  room.o
-
 # Labyrinth header files
 LABYRINTHHEADERS = \
   ../include/coordinate.hpp \
@@ -22,10 +18,6 @@ LABYRINTHHEADERS = \
 # Labyrinth source files
 LABYRINTHSOURCES = \
   ../src/labyrinth.cpp
-
-# Labyrinth object files
-LABYRINTHOBJ = \
-  labyrinth.o
 
 # Labyrinth map header files
 LABYRINTHMAPHEADERS = \
@@ -38,10 +30,6 @@ LABYRINTHMAPHEADERS = \
 # Labyrinth map source files
 LABYRINTHMAPSOURCES = \
   ../src/labyrinth_map.cpp
-
-# Labyrinth map object files
-LABYRINTHMAPOBJ = \
-  labyrinth_map.o
 
 # g++ options
 GCC = g++ -std=c++14
