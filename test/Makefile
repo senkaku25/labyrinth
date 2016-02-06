@@ -1,19 +1,49 @@
+# Room header files
+ROOMHEADERS = \
+  ../include/coordinate.hpp \
+  ../include/room_properties.hpp \
+  ../include/room.hpp \
+
 # Room source files
-ROOMSOURCES  = ../src/room.cpp \
+ROOMSOURCES = \
+  ../src/room.cpp
+
+# Room object files
+ROOMOBJ = \
+  room.o
+
+# Labyrinth header files
+LABYRINTHHEADERS = \
+  ../include/labyrinth.hpp
 
 # Labyrinth source files
-LABYRINTHSOURCES = ../src/labyrinth.cpp \
-                   ../src/labyrinth_map.cpp \
+LABYRINTHSOURCES = \
+  ../src/labyrinth.cpp
 
-# Header files
-HSOURCES = ../include/room_properties.hpp \
-           ../include/room.hpp \
-           ../include/coordinate.hpp \
-           ../include/labyrinth.hpp \
-           ../include/labyrinth_map.hpp \
+# Labyrinth object files
+LABYRINTHOBJ = \
+  labyrinth.o
 
-# g++ compilation options
-GCC = g++ -std=c++14 -g -Wall -Wextra -Wmissing-declarations -Werror
+# Labyrinth map header files
+LABYRINTHMAPHEADERS = \
+  ../include/labyrinth_map.hpp
+
+# Labyrinth map source files
+LABYRINTHMAPSOURCES = \
+  ../src/labyrinth_map.cpp
+
+# Labyrinth map object files
+LABYRINTHMAPOBJ = \
+  labyrinth_map.o
+
+# g++ options
+GCC = g++ -std=c++14
+
+# g++ compiling flags
+GCC-CFLAGS = -c -Wall -Wextra -Wmissing-declarations -Werror
+
+# g++ linking flags
+GCC-LFLAGS = -Wall -Wextra -Wmissing-declarations -Werror
 
 # Clang compilation options
 CLANG = clang++-3.5 -std=c++14 -Werror -fshow-source-location -fshow-column -fcaret-diagnostics -fcolor-diagnostics -fdiagnostics-show-option
@@ -45,47 +75,49 @@ help:
 	#
 	#   To remove compiled output files, run: make clean
 
+# Executed whenever room.o is out of date
+room.o: $(ROOMHEADERS) $(ROOMSOURCES)
+	$(GCC) $(GCC-CFLAGS) $(ROOMSOURCES)
+
+# Executed whenever labyrinth.o is out of date
+labyrinth.o: $(ROOMHEADERS) $(ROOMSOURCES) $(LABYRINTHHEADERS) $(LABYRINTHSOURCES)
+	$(GCC) $(GCC-CFLAGS) $(ROOMSOURCES) $(LABYRINTHSOURCES)
+
+# Executed whenever labyrinth_map.o is out of date
+labyrinth_map.o: $(ROOMHEADERS) $(ROOMSOURCES) $(LABYRINTHHEADERS) $(LABYRINTHSOURCES) $(LABYRINTHMAPHEADERS) $(LABYRINTHMAPSOURCES)
+	$(GCC) $(GCC-CFLAGS) $(ROOMSOURCES) $(LABYRINTHSOURCES) $(LABYRINTHMAPSOURCES)
+
 # $ make test-room-gcc
-test-room-gcc: $(ROOMSOURCES) $(HSOURCES)
-	$(GCC) $(ROOMSOURCES) test_room.cpp -o $(OUTPUT)
+test-room-gcc: room.o
+	$(GCC) $(GCC-LFLAGS) room.o test_room.cpp -o $(OUTPUT)
 	# To execute the program, run: ./output
 
 # $ make test-room-clang
-test-room-clang: $(ROOMSOURCES) $(HSOURCES)
-	$(CLANG) $(ROOMSOURCES) test_room.cpp -o $(OUTPUT)
+test-room-clang: room.o
+	$(CLANG) room.o test_room.cpp -o $(OUTPUT)
 	# To execute the program, run: ./output
 
 # $ make test-laby-gcc
-test-laby-gcc: $(ROOMSOURCES) $(LABYRINTHSOURCES) $(HSOURCES)
-	$(GCC) $(CFLAGS) $(ROOMSOURCES) $(LABYRINTHSOURCES) test_laby.cpp -o $(OUTPUT)
+test-laby-gcc: room.o labyrinth.o
+	$(GCC) $(GCC-LFLAGS) room.o labyrinth.o test_laby.cpp -o $(OUTPUT)
 	# To execute the program, run: ./output
 
 # $ make test-laby-clang
-test-laby-clang: $(ROOMSOURCES) $(LABYRINTHSOURCES) $(HSOURCES)
-	$(CLANG) $(CFLAGS) $(ROOMSOURCES) $(LABYRINTHSOURCES) test_laby.cpp -o $(OUTPUT)
+test-laby-clang: room.o labyrinth.o
+	$(CLANG) room.o labyrinth.o test_laby.cpp -o $(OUTPUT)
 	# To execute the program, run: ./output
 
 # $ make test-labymap-gcc
-test-labymap-gcc: $(ROOMSOURCES) $(LABYRINTHSOURCES) $(HSOURCES)
-	$(GCC) $(ROOMSOURCES) $(LABYRINTHSOURCES) test_labymap.cpp -o $(OUTPUT)
+test-labymap-gcc: room.o labyrinth.o labyrinth_map.o
+	$(GCC) $(GCC-LFLAGS) room.o labyrinth.o labyrinth_map.o test_labymap.cpp -o $(OUTPUT)
 	# To execute the program, run: ./output
 
 # $ make test-labymap-clang
-test-labymap-clang: $(ROOMSOURCES) $(LABYRINTHSOURCES) $(HSOURCES)
-	$(CLANG) $(ROOMSOURCES) $(LABYRINTHSOURCES) test_labymap.cpp -o $(OUTPUT)
+test-labymap-clang: room.o labyrinth.o labyrinth_map.o
+	$(CLANG) room.o labyrinth.o labyrinth_map.o test_labymap.cpp -o $(OUTPUT)
 	# To execute the program, run: ./output
-
-# $ make test-compile
-test-compile: $(ROOMSOURCES) $(LABYRINTHSOURCES) $(HSOURCES)
-	make test-room-gcc
-	make test-room-clang
-	make test-laby-gcc
-	make test-laby-clang
-	make test-labymap-gcc
-	make test-labymap-clang
-	make clean
 
 # $ make clean
 # Removes created files
 clean:
-	rm -f $(OUTPUT) *.o *~
+	rm -f $(OUTPUT) *.o *~ a.out
