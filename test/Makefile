@@ -14,6 +14,9 @@ ROOMOBJ = \
 
 # Labyrinth header files
 LABYRINTHHEADERS = \
+  ../include/coordinate.hpp \
+  ../include/room_properties.hpp \
+  ../include/room.hpp \
   ../include/labyrinth.hpp
 
 # Labyrinth source files
@@ -26,6 +29,10 @@ LABYRINTHOBJ = \
 
 # Labyrinth map header files
 LABYRINTHMAPHEADERS = \
+  ../include/coordinate.hpp \
+  ../include/room_properties.hpp \
+  ../include/room.hpp \
+  ../include/labyrinth.hpp \
   ../include/labyrinth_map.hpp
 
 # Labyrinth map source files
