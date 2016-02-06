@@ -6,25 +6,13 @@ HEADERS = \
   ../include/labyrinth.hpp \
   ../include/labyrinth_map.hpp
 
-# Room files
-ROOMHEADERS = \
-  ../include/room.hpp \
-
 # Room source files
 ROOMSOURCES = \
   ../src/room.cpp
 
-# Labyrinth header files
-LABYRINTHHEADERS = \
-  ../include/labyrinth.hpp
-
 # Labyrinth source files
 LABYRINTHSOURCES = \
   ../src/labyrinth.cpp
-
-# Labyrinth map header files
-LABYRINTHMAPHEADERS = \
-  ../include/labyrinth_map.hpp
 
 # Labyrinth map source files
 LABYRINTHMAPSOURCES = \
@@ -91,7 +79,7 @@ test-map: room.o labyrinth.o labyrinth_map.o
 	# To execute the program, run: ./output
 
 # $ make test-clang
-test-clang: $(ROOMHEADERS) $(ROOMSOURCES) $(LABYRINTHHEADERS) $(LABYRINTHSOURCES) $(LABYRINTHMAPHEADERS)
+test-clang: $(HEADERS) $(LABYRINTHMAPSOURCES)
 	$(CLANG) $(ROOMSOURCES) $(LABYRINTHSOURCES) $(LABYRINTHMAPSOURCES) test_labymap.cpp -o $(OUTPUT)
 	# To execute the program, run: ./output
 
