@@ -1,7 +1,10 @@
-# Room header files
-ROOMHEADERS = \
+# General header files
+HEADERS = \
   ../include/coordinate.hpp \
   ../include/room_properties.hpp \
+
+# Room files
+ROOMHEADERS = \
   ../include/room.hpp \
 
 # Room source files
@@ -10,9 +13,6 @@ ROOMSOURCES = \
 
 # Labyrinth header files
 LABYRINTHHEADERS = \
-  ../include/coordinate.hpp \
-  ../include/room_properties.hpp \
-  ../include/room.hpp \
   ../include/labyrinth.hpp
 
 # Labyrinth source files
@@ -21,10 +21,6 @@ LABYRINTHSOURCES = \
 
 # Labyrinth map header files
 LABYRINTHMAPHEADERS = \
-  ../include/coordinate.hpp \
-  ../include/room_properties.hpp \
-  ../include/room.hpp \
-  ../include/labyrinth.hpp \
   ../include/labyrinth_map.hpp
 
 # Labyrinth map source files
@@ -65,20 +61,20 @@ help:
 	#     To test class Labyrinth, run:    make test-laby
 	#     To test class LabyrinthMap, run: make test-map
 	#
-	#     To test compilation of Labyrinth with Clang, run: make test-clang
+	#     To test compilation of LabyrinthMap with Clang, run: make test-clang
 	#
 	#   To remove compiled files, run: make clean
 
 # Executed whenever room.o is out of date
-room.o: $(ROOMHEADERS) $(ROOMSOURCES)
+room.o: $(HEADERS) $(ROOMSOURCES) $(ROOMHEADERS)
 	$(GCC) $(GCC-CFLAGS) $(ROOMSOURCES)
 
 # Executed whenever labyrinth.o is out of date
-labyrinth.o: $(LABYRINTHHEADERS) $(LABYRINTHSOURCES)
+labyrinth.o: $(HEADERS) $(LABYRINTHHEADERS) $(LABYRINTHSOURCES)
 	$(GCC) $(GCC-CFLAGS) $(LABYRINTHSOURCES)
 
 # Executed whenever labyrinth_map.o is out of date
-labyrinth_map.o: $(LABYRINTHMAPHEADERS) $(LABYRINTHMAPSOURCES)
+labyrinth_map.o: $(HEADERS) $(LABYRINTHMAPHEADERS) $(LABYRINTHMAPSOURCES)
 	$(GCC) $(GCC-CFLAGS) $(LABYRINTHMAPSOURCES)
 
 # $ make test-room
