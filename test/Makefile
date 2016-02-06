@@ -68,7 +68,7 @@ help:
 	#
 	#     To test class Room, run:         make test-room
 	#     To test class Labyrinth, run:    make test-laby
-	#     To test class LabyrinthMap, run: make test-labymap
+	#     To test class LabyrinthMap, run: make test-map
 	#
 	#     To test compilation of Labyrinth with Clang, run: make test-clang
 	#
@@ -96,8 +96,8 @@ test-laby: room.o labyrinth.o
 	$(GCC) $(GCC-LFLAGS) room.o labyrinth.o test_laby.cpp -o $(OUTPUT)
 	# To execute the program, run: ./output
 
-# $ make test-labymap
-test-labymap: room.o labyrinth.o labyrinth_map.o
+# $ make test-map
+test-map: room.o labyrinth.o labyrinth_map.o
 	$(GCC) $(GCC-LFLAGS) room.o labyrinth.o labyrinth_map.o test_labymap.cpp -o $(OUTPUT)
 	# To execute the program, run: ./output
 
