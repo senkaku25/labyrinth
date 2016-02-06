@@ -2,6 +2,9 @@
 HEADERS = \
   ../include/coordinate.hpp \
   ../include/room_properties.hpp \
+  ../include/room.hpp \
+  ../include/labyrinth.hpp \
+  ../include/labyrinth_map.hpp
 
 # Room files
 ROOMHEADERS = \
@@ -65,17 +68,12 @@ help:
 	#
 	#   To remove compiled files, run: make clean
 
-# Executed whenever room.o is out of date
-room.o: $(HEADERS) $(ROOMSOURCES) $(ROOMHEADERS)
-	$(GCC) $(GCC-CFLAGS) $(ROOMSOURCES)
-
-# Executed whenever labyrinth.o is out of date
-labyrinth.o: $(HEADERS) $(LABYRINTHHEADERS) $(LABYRINTHSOURCES)
-	$(GCC) $(GCC-CFLAGS) $(LABYRINTHSOURCES)
-
-# Executed whenever labyrinth_map.o is out of date
-labyrinth_map.o: $(HEADERS) $(LABYRINTHMAPHEADERS) $(LABYRINTHMAPSOURCES)
-	$(GCC) $(GCC-CFLAGS) $(LABYRINTHMAPSOURCES)
+# Executed whenever an object file is out of date
+# Symbols:
+#   % refers to any character(s)
+#   $< refers to the first item in the dependency list
+%.o: ../src/%.cpp $(HEADERS)
+	$(GCC) $(GCC-CFLAGS) $<
 
 # $ make test-room
 test-room: room.o
