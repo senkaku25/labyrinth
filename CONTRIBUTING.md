@@ -27,38 +27,38 @@ The Makefile compiles using either **g++** or **Clang++**. When submitting code,
 Provide your root password when prompted.
 
 Add the repository with the latest version of g++:
-> $ sudo add-apt-repository ppa:ubuntu-toolchain-r/test
+> sudo add-apt-repository ppa:ubuntu-toolchain-r/test
 
 Update the repository's version list:
-> $ sudo apt-get update
+> sudo apt-get update
 
 Install the latest version of g++:
-> $ sudo apt-get install g++-4.9
+> sudo apt-get install g++-4.9
 
 #### Install or Update Clang++ <a id="clang++">
 
 Provide your root password when prompted.
 
 Add the repositories with the latest version of Clang++:
-> $ sudo apt-get install llvm  
-> $ sudo apt-get install build-essential
+> sudo apt-get install llvm  
+> sudo apt-get install build-essential
 
 Update your repository's version list:
-> $ sudo apt-get update
+> sudo apt-get update
 
 Install the latest version of Clang++:
-> $ sudo apt-get install clang-3.5
+> sudo apt-get install clang-3.5
 
 ### Executing the code <a id="executing-the-code">
 
 Fork the repository through GitHub.  
 
 Navigate to the directory in which you want the code to be stored in, and create a local copy by cloning your repository:
-> $ git clone https://github.com/YOUR_USERNAME_HERE/labyrinth.git
+> git clone https://github.com/YOUR_USERNAME_HERE/labyrinth.git
 
 Navigate into the *test/* directory and take a look at the possible make options:
-> $ cd labyrinth/test/  
-> $ make
+> cd labyrinth/test/  
+> make
 
 Run any of the given make commands from the test folder.  
 Make sure the all test cases compile without warnings or errors on both g++ and Clang (see **Dependencies**, above).
@@ -77,7 +77,7 @@ Now you can make changes, test them, check that it compiles cleanly on both g++ 
 * The **LabyrinthMap** class is a 2-d depiction of a given Labyrinth which can be updated, and uses the Labyrinth, LabyrinthMapCoordinateRoom, and LabyrinthMapCoordinateBorder classes.
   * The **LabyrinthMapCoordinateRoom** class is a single coordinate in the map which refers to a Room and its contents.
   * The **LabyrinthMapCoordinateBorder** class is a single coordinate in the map which refers to a Border (which may border 1 or more Rooms).
-* The **Player class** is a description of the inventory, location, and status of the given player.
+* The **Player** class is a description of the inventory, location, and status of the given player.
 * The **PlayLabyrinth** class is the implementation of the game Labyrinth according to the file *GameInstructions.txt*, and uses the Labyrinth, LabyrinthMap, and Player classes.
 
 ## LabyrinthMap <a id="labyrinthmap">
@@ -85,7 +85,7 @@ This is a 2-d mapping of a Labyrinth which is updated and printed whenever Displ
 
 ### Example <a id="labyrinthmap-example">
 ```
-         X
+          X
        0  1  2
      ┌──┬─────┐
    0 │M•│   O │
