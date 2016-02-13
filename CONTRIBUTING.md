@@ -63,8 +63,8 @@ Navigate into the *test/* directory and take a look at the possible make options
 Run any of the given make commands from the test folder.  
 Make sure the all test cases compile without warnings or errors on both g++ and Clang (see **Dependencies**, above).
 
-Well done, you've set up your development environment successfully!  
-Now you can make changes, test them, check that it compiles cleanly on both g++ and Clang, then commit them to your repository. If you think you've got
+Well done, you've set up your development environment successfully! Now you can make changes, test them, check that it compiles cleanly on both g++ and Clang, then commit them to your repository.  
+If you see a possible improvement or find something that's not working right you can create an issue in GitHub, create a new branch from *master*, make your changes, recheck the test cases, then submit a pull request so I can look over (and hopefully integrate) your changes!
 
 ## File Structure <a id="file-structure">
 * *src/* contains the C++ source files.
