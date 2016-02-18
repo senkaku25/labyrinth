@@ -1,7 +1,7 @@
 /*
  *
  * Author: Jeffrey Leung
- * Last edited: 2016-02-04
+ * Last edited: 2016-02-17
  *
  * This C++ file tests the Labyrinth class implementation.
  *
@@ -30,7 +30,14 @@ void TestLabyrinthConstructor()
             << "  x size = 3" << std::endl
             << "  y size = 5" << std::endl;
 
-  Labyrinth l1( 3, 5 );
+  try
+  {
+    Labyrinth l1( 3, 5 );
+  }
+  catch( const std::exception& e )
+  {
+    std::cout << e.what();
+  }
   std::cout << "Completed."
             << std::endl
             << std::endl;
@@ -44,7 +51,7 @@ void TestLabyrinthConstructor()
   {
     Labyrinth l_trycatch( 0, 10 );
   }
-  catch( std::exception& e )
+  catch( const std::exception& e )
   {
     std::cout << e.what();
   }
@@ -58,7 +65,7 @@ void TestLabyrinthConstructor()
   {
     Labyrinth l_trycatch( 10, 0 );
   }
-  catch( std::exception& e )
+  catch( const std::exception& e )
   {
     std::cout << e.what();
   }
@@ -73,7 +80,7 @@ void TestLabyrinthConstructor()
   {
     Labyrinth l_trycatch( 0, 0 );
   }
-  catch( std::exception& e )
+  catch( const std::exception& e )
   {
     std::cout << e.what();
   }
@@ -109,7 +116,7 @@ void TestLabyrinthConnectRooms()
   {
     l1.ConnectRooms( c_0_0, c_1_0 );
   }
-  catch (const std::exception& e)
+  catch( const std::exception& e )
   {
     std::cout << e.what();
   }
@@ -121,7 +128,7 @@ void TestLabyrinthConnectRooms()
   {
     l1.ConnectRooms( c_1_1, c_0_1 );
   }
-  catch (const std::exception& e)
+  catch( const std::exception& e )
   {
     std::cout << e.what();
   }
@@ -133,7 +140,7 @@ void TestLabyrinthConnectRooms()
   {
     l1.ConnectRooms(c_0_0, c_0_1);
   }
-  catch (const std::exception& e)
+  catch( const std::exception& e )
   {
     std::cout << e.what();
   }
@@ -145,7 +152,7 @@ void TestLabyrinthConnectRooms()
   {
     l1.ConnectRooms(c_1_1, c_1_0);
   }
-  catch (const std::exception& e)
+  catch( const std::exception& e )
   {
     std::cout << e.what();
   }
@@ -160,7 +167,7 @@ void TestLabyrinthConnectRooms()
   {
     l1.ConnectRooms(c_0_0, c_1_1);
   }
-  catch (const std::exception& e)
+  catch( const std::exception& e )
   {
     std::cout << e.what();
   }
@@ -173,7 +180,7 @@ void TestLabyrinthConnectRooms()
   {
     l1.ConnectRooms(c_0_1, c_1_0);
   }
-  catch (const std::exception& e)
+  catch( const std::exception& e )
   {
     std::cout << e.what();
   }
@@ -186,7 +193,7 @@ void TestLabyrinthConnectRooms()
   {
     l1.ConnectRooms(c_0_1, c_1_0);
   }
-  catch (const std::exception& e)
+  catch( const std::exception& e )
   {
     std::cout << e.what();
   }
@@ -199,7 +206,7 @@ void TestLabyrinthConnectRooms()
   {
     l1.ConnectRooms(c_0_0, c_2_1);
   }
-  catch (const std::exception& e)
+  catch( const std::exception& e )
   {
     std::cout << e.what();
   }
