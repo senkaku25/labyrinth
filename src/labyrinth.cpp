@@ -165,6 +165,7 @@ void Labyrinth::ConnectRooms( const Coordinate rm_1, const Coordinate rm_2 )
 }
 
 // This method sets the primary (initial) spawn Room.
+// Spawns can be changed at any time.
 // An exception is thrown if:
 //   The Room is outside the Labyrinth (domain_error)
 void Labyrinth::SetSpawn1( const Coordinate rm )
@@ -181,6 +182,7 @@ void Labyrinth::SetSpawn1( const Coordinate rm )
 
 
 // This method sets the secondary spawn Room.
+// Spawns can be changed at any time.
 // An exception is thrown if:
 //   The Room is outside the Labyrinth (domain_error)
 void Labyrinth::SetSpawn2( const Coordinate rm )
