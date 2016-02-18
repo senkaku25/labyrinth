@@ -18,13 +18,15 @@
 namespace  // Local functions
 {
 
-// This local function runs tests for the Labyrinth constructor.
-void TestLabyrinthConstructor()
+// This local function runs tests for the Labyrinth constructor,
+// returning the number of errors found.
+unsigned int TestLabyrinthConstructor()
 {
   std::cout << "________________________________________________"
             << std::endl << std::endl
             << "TESTING CONSTRUCTOR:"
             << std::endl << std::endl;
+  unsigned int error_count = 0;
 
   std::cout << "Creating a basic, empty Labyrinth with:" << std::endl
             << "  x size = 3" << std::endl
@@ -36,6 +38,7 @@ void TestLabyrinthConstructor()
   }
   catch( const std::exception& e )
   {
+    ++error_count;
     std::cout << e.what();
   }
   std::cout << "Completed."
@@ -49,10 +52,12 @@ void TestLabyrinthConstructor()
             << std::endl;
   try
   {
+    ++error_count;
     Labyrinth l_trycatch( 0, 10 );
   }
   catch( const std::exception& e )
   {
+    --error_count;
     std::cout << e.what();
   }
   std::cout << "Completed."
@@ -63,10 +68,12 @@ void TestLabyrinthConstructor()
             << std::endl;
   try
   {
+    ++error_count;
     Labyrinth l_trycatch( 10, 0 );
   }
   catch( const std::exception& e )
   {
+    --error_count;
     std::cout << e.what();
   }
   std::cout << "Completed."
@@ -78,14 +85,21 @@ void TestLabyrinthConstructor()
             << std::endl;
   try
   {
+    ++error_count;
     Labyrinth l_trycatch( 0, 0 );
   }
   catch( const std::exception& e )
   {
+    --error_count;
     std::cout << e.what();
   }
   std::cout << "Completed."
             << std::endl << std::endl;
+
+  std::cout << error_count
+            << " errors found for Labyrinth constructor."
+            << std::endl;
+  return error_count;
 }
 
 // This local function runs tests for the Labyrinth method ConnectRooms().
@@ -303,9 +317,10 @@ int main()
             << std::endl
             << std::endl;
 
+  unsigned int error_count = 0;
   try
   {
-    TestLabyrinthConstructor();
+    error_count += TestLabyrinthConstructor();
     TestLabyrinthConnectRooms();
     TestLabyrinthSetSpawns();
   }
@@ -314,11 +329,15 @@ int main()
     std::cout << e.what();
   }
 
-  std::cout << "________________________________________________" << std::endl;
-  std::cout << std::endl;
-  std::cout << "All tests completed." << std::endl;
-  std::cout << std::endl;
-  std::cout << "Press enter to exit.";
+  std::cout << "________________________________________________"
+            << std::endl
+            << std::endl
+            << "Testing completed; there were "
+            << error_count
+            << " errors found."
+            << std::endl
+            << std::endl
+            << "Press enter to exit.";
   getchar();
   std::cout << std::endl;
 
