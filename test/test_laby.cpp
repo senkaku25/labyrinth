@@ -247,13 +247,15 @@ unsigned int TestLabyrinthConnectRooms()
   return error_count;
 }
 
-// This local function runs tests for the Labyrinth methods SetSpawn1/2().
-void TestLabyrinthSetSpawns()
+// This local function runs tests for the Labyrinth methods SetSpawn1/2(),
+// returning the number of errors found.
+unsigned int TestLabyrinthSetSpawns()
 {
   std::cout << "________________________________________________"
             << std::endl << std::endl
             << "TESTING SETSPAWN1() AND SETSPAWN2():"
             << std::endl << std::endl;
+  unsigned int error_count = 0;
 
   std::cout << "Creating a basic, empty Labyrinth with:" << std::endl
             << "  x size = 2" << std::endl
@@ -280,6 +282,7 @@ void TestLabyrinthSetSpawns()
   }
   catch( const std::exception& e )
   {
+    ++error_count;
     std::cout << e.what();
   }
   std::cout << "Completed."
@@ -294,6 +297,7 @@ void TestLabyrinthSetSpawns()
   }
   catch( const std::exception& e )
   {
+    ++error_count;
     std::cout << e.what();
   }
   std::cout << "Completed."
@@ -307,6 +311,7 @@ void TestLabyrinthSetSpawns()
   }
   catch( const std::exception& e )
   {
+    ++error_count;
     std::cout << e.what();
   }
   std::cout << "Completed."
@@ -320,10 +325,16 @@ void TestLabyrinthSetSpawns()
   }
   catch( const std::exception& e )
   {
+    ++error_count;
     std::cout << e.what();
   }
   std::cout << "Completed."
             << std::endl << std::endl;
+
+  std::cout << error_count
+            << " errors found for Labyrinth SetSpawn1/2()."
+            << std::endl;
+  return error_count;
 }
 
 }  // End of unnamed namespace (for local functions)
@@ -340,10 +351,11 @@ int main()
   {
     error_count += TestLabyrinthConstructor();
     error_count += TestLabyrinthConnectRooms();
-    TestLabyrinthSetSpawns();
+    error_count += TestLabyrinthSetSpawns();
   }
   catch( const std::exception& e )
   {
+    ++error_count;
     std::cout << e.what();
   }
 
@@ -352,7 +364,7 @@ int main()
             << std::endl
             << "Testing completed; there were "
             << error_count
-            << " errors found."
+            << " errors found in total."
             << std::endl
             << std::endl
             << "Press enter to exit.";
