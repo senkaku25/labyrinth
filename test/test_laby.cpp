@@ -102,13 +102,15 @@ unsigned int TestLabyrinthConstructor()
   return error_count;
 }
 
-// This local function runs tests for the Labyrinth method ConnectRooms().
-void TestLabyrinthConnectRooms()
+// This local function runs tests for the Labyrinth method ConnectRooms(),
+// returning the number of errors found.
+unsigned int TestLabyrinthConnectRooms()
 {
   std::cout << "________________________________________________"
             << std::endl << std::endl
             << "TESTING CONNECTROOMS():"
             << std::endl << std::endl;
+  unsigned int error_count = 0;
 
   std::cout << "Creating a basic, empty Labyrinth with:" << std::endl
             << "  x size = 3" << std::endl
@@ -132,6 +134,7 @@ void TestLabyrinthConnectRooms()
   }
   catch( const std::exception& e )
   {
+    ++error_count;
     std::cout << e.what();
   }
   std::cout << "Done." << std::endl << std::endl;
@@ -144,6 +147,7 @@ void TestLabyrinthConnectRooms()
   }
   catch( const std::exception& e )
   {
+    ++error_count;
     std::cout << e.what();
   }
   std::cout << "Done." << std::endl << std::endl;
@@ -156,6 +160,7 @@ void TestLabyrinthConnectRooms()
   }
   catch( const std::exception& e )
   {
+    ++error_count;
     std::cout << e.what();
   }
   std::cout << "Done." << std::endl << std::endl;
@@ -168,6 +173,7 @@ void TestLabyrinthConnectRooms()
   }
   catch( const std::exception& e )
   {
+    ++error_count;
     std::cout << e.what();
   }
   std::cout << "Done." << std::endl << std::endl;
@@ -179,10 +185,12 @@ void TestLabyrinthConnectRooms()
             << std::endl;
   try
   {
+    ++error_count;
     l1.ConnectRooms(c_0_0, c_1_1);
   }
   catch( const std::exception& e )
   {
+    --error_count;
     std::cout << e.what();
   }
   std::cout << "Done." << std::endl << std::endl;
@@ -192,10 +200,12 @@ void TestLabyrinthConnectRooms()
             << std::endl;
   try
   {
+    ++error_count;
     l1.ConnectRooms(c_0_1, c_1_0);
   }
   catch( const std::exception& e )
   {
+    --error_count;
     std::cout << e.what();
   }
   std::cout << "Done." << std::endl << std::endl;
@@ -205,10 +215,12 @@ void TestLabyrinthConnectRooms()
     << std::endl;
   try
   {
+    ++error_count;
     l1.ConnectRooms(c_0_1, c_1_0);
   }
   catch( const std::exception& e )
   {
+    --error_count;
     std::cout << e.what();
   }
   std::cout << "Done." << std::endl << std::endl;
@@ -218,15 +230,21 @@ void TestLabyrinthConnectRooms()
             << std::endl;
   try
   {
+    ++error_count;
     l1.ConnectRooms(c_0_0, c_2_1);
   }
   catch( const std::exception& e )
   {
+    --error_count;
     std::cout << e.what();
   }
   std::cout << "Done." << std::endl;
   std::cout << std::endl;
-  return;
+
+  std::cout << error_count
+            << " errors found for Labyrinth ConnectRooms()."
+            << std::endl;
+  return error_count;
 }
 
 // This local function runs tests for the Labyrinth methods SetSpawn1/2().
@@ -321,7 +339,7 @@ int main()
   try
   {
     error_count += TestLabyrinthConstructor();
-    TestLabyrinthConnectRooms();
+    error_count += TestLabyrinthConnectRooms();
     TestLabyrinthSetSpawns();
   }
   catch( const std::exception& e )
