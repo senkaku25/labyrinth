@@ -64,22 +64,22 @@ help:
 	$(GCC) $(GCC-CFLAGS) $<
 
 # $ make test-room
-test-room: room.o
+test-room: room.o test_room.cpp
 	$(GCC) $(GCC-LFLAGS) room.o test_room.cpp -o $(OUTPUT)
 	# To execute the program, run: ./output
 
 # $ make test-laby
-test-laby: room.o labyrinth.o
+test-laby: room.o labyrinth.o test_laby.cpp
 	$(GCC) $(GCC-LFLAGS) room.o labyrinth.o test_laby.cpp -o $(OUTPUT)
 	# To execute the program, run: ./output
 
 # $ make test-map
-test-map: room.o labyrinth.o labyrinth_map.o
+test-map: room.o labyrinth.o labyrinth_map.o test_labymap.cpp
 	$(GCC) $(GCC-LFLAGS) room.o labyrinth.o labyrinth_map.o test_labymap.cpp -o $(OUTPUT)
 	# To execute the program, run: ./output
 
 # $ make test-clang
-test-clang: $(HEADERS) $(LABYRINTHMAPSOURCES)
+test-clang: $(HEADERS) $(LABYRINTHMAPSOURCES) test_labymap.cpp
 	$(CLANG) $(ROOMSOURCES) $(LABYRINTHSOURCES) $(LABYRINTHMAPSOURCES) test_labymap.cpp -o $(OUTPUT)
 	# To execute the program, run: ./output
 
