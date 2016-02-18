@@ -224,8 +224,15 @@ int main()
             << std::endl
             << std::endl;
 
-  TestLabyrinthConstructor();
-  TestLabyrinthConnectRooms();
+  try
+  {
+    TestLabyrinthConstructor();
+    TestLabyrinthConnectRooms();
+  }
+  catch( const std::exception& e )
+  {
+    std::cout << e.what();
+  }
 
   std::cout << "________________________________________________" << std::endl;
   std::cout << std::endl;
