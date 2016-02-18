@@ -215,6 +215,85 @@ void TestLabyrinthConnectRooms()
   return;
 }
 
+// This local function runs tests for the Labyrinth methods SetSpawn1/2().
+void TestLabyrinthSetSpawns()
+{
+  std::cout << "________________________________________________"
+            << std::endl << std::endl
+            << "TESTING SETSPAWN1() AND SETSPAWN2():"
+            << std::endl << std::endl;
+
+  std::cout << "Creating a basic, empty Labyrinth with:" << std::endl
+            << "  x size = 2" << std::endl
+            << "  y size = 2" << std::endl;
+
+  Labyrinth l1( 2, 2 );
+  std::cout << "Completed."
+            << std::endl
+            << std::endl;
+
+
+
+  Coordinate c_0_0(0, 0);
+  Coordinate c_0_1(0, 1);
+  Coordinate c_1_0(1, 0);
+  Coordinate c_1_1(1, 1);
+
+  std::cout << "Setting Spawn 1 at (0, 0) twice: "
+            << std::endl;
+  try
+  {
+    l1.SetSpawn1(c_0_0);
+    l1.SetSpawn1(c_0_0);
+  }
+  catch( const std::exception& e )
+  {
+    std::cout << e.what();
+  }
+  std::cout << "Completed."
+            << std::endl << std::endl;
+
+  std::cout << "Setting Spawn 2 at (0, 1) twice: "
+            << std::endl;
+  try
+  {
+    l1.SetSpawn2(c_0_1);
+    l1.SetSpawn2(c_0_1);
+  }
+  catch( const std::exception& e )
+  {
+    std::cout << e.what();
+  }
+  std::cout << "Completed."
+            << std::endl << std::endl;
+
+  std::cout << "Setting Spawn 1 at (1, 0): "
+            << std::endl;
+  try
+  {
+    l1.SetSpawn1(c_1_0);
+  }
+  catch( const std::exception& e )
+  {
+    std::cout << e.what();
+  }
+  std::cout << "Completed."
+            << std::endl << std::endl;
+
+  std::cout << "Setting Spawn 2 at (1, 1): "
+            << std::endl;
+  try
+  {
+    l1.SetSpawn2(c_1_1);
+  }
+  catch( const std::exception& e )
+  {
+    std::cout << e.what();
+  }
+  std::cout << "Completed."
+            << std::endl << std::endl;
+}
+
 }  // End of unnamed namespace (for local functions)
 
 int main()
@@ -228,6 +307,7 @@ int main()
   {
     TestLabyrinthConstructor();
     TestLabyrinthConnectRooms();
+    TestLabyrinthSetSpawns();
   }
   catch( const std::exception& e )
   {
