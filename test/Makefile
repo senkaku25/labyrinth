@@ -43,18 +43,18 @@ OUTPUT = output
 
 # $ 'make' or 'make help'
 help:
-	# INSTRUCTIONS:
-	# Compilation is done with g++ unless otherwise specified.
-	#
-	#   Testing:
-	#
-	#     To test class Room, run:         make test-room
-	#     To test class Labyrinth, run:    make test-laby
-	#     To test class LabyrinthMap, run: make test-map
-	#
-	#     To test compilation of LabyrinthMap with Clang, run: make test-clang
-	#
-	#   To remove compiled files, run: make clean
+	@echo "INSTRUCTIONS:"
+	@echo "Compilation is done with g++ unless otherwise specified."
+	@echo ""
+	@echo "Testing:"
+	@echo ""
+	@echo "    To test class Room, run:         make test-room"
+	@echo "    To test class Labyrinth, run:    make test-laby"
+	@echo "    To test class LabyrinthMap, run: make test-map"
+	@echo ""
+	@echo "    To test compilation of LabyrinthMap with Clang, run: make test-clang"
+	@echo ""
+	@echo "  To remove compiled files, run: make clean"
 
 # Executed whenever an object file is out of date
 # Symbols:
@@ -66,22 +66,22 @@ help:
 # $ make test-room
 test-room: room.o test_room.cpp
 	$(GCC) $(GCC-LFLAGS) room.o test_room.cpp -o $(OUTPUT)
-	# To execute the program, run: ./output
+	@echo "To execute the program, run: ./$(OUTPUT)"
 
 # $ make test-laby
 test-laby: room.o labyrinth.o test_laby.cpp
 	$(GCC) $(GCC-LFLAGS) room.o labyrinth.o test_laby.cpp -o $(OUTPUT)
-	# To execute the program, run: ./output
+	@echo "To execute the program, run: ./$(OUTPUT)"
 
 # $ make test-map
 test-map: room.o labyrinth.o labyrinth_map.o test_labymap.cpp
 	$(GCC) $(GCC-LFLAGS) room.o labyrinth.o labyrinth_map.o test_labymap.cpp -o $(OUTPUT)
-	# To execute the program, run: ./output
+	@echo "To execute the program, run: ./$(OUTPUT)"
 
 # $ make test-clang
 test-clang: $(HEADERS) $(LABYRINTHMAPSOURCES) test_labymap.cpp
 	$(CLANG) $(ROOMSOURCES) $(LABYRINTHSOURCES) $(LABYRINTHMAPSOURCES) test_labymap.cpp -o $(OUTPUT)
-	# To execute the program, run: ./output
+	@echo "To execute the program, run: ./$(OUTPUT)"
 
 # $ make clean
 # Removes created files
