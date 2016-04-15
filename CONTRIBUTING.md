@@ -12,9 +12,6 @@
 1. [LabyrinthMap](#labyrinthmap)
   1. [Example](#labyrinthmap-example)
 1. [Design Decisions/Constraints](#design-decisions-constraints)
-1. [Task List](#todo)
-  1. [Labyrinth](#todo-labyrinth)
-  1. [Miscellaneous](#todo-miscellaneous)
 
 ## Setup <a id="setup">
 
@@ -106,13 +103,3 @@ At coordinate (2, 1) is a broken mirror.
 
 * PlayLabyrinth:
   * Items are automatically picked up by the player since a Room can currently only hold a single item, so a Treasure cannot be dropped in the same Room in which another Item already exists
-
-## Task List <a id="todo">
-
-### Labyrinth <a id="todo-labyrinth">
-1. Test all methods (Currently underway in the laby-testing branch)
-
-### Miscellaneous <a id="todo-miscellaneous">
-1. Implement the Player class with inventory and location.
-1. Implement the PlayLabyrinth class to execute the game.
-1. Use [NCurses](http://hughm.cs.ukzn.ac.za/~murrellh/os/notes/ncurses.html) to play the game in an isolated terminal.
