@@ -1,6 +1,6 @@
 # Game Instructions
 
-Below is the instructions for **Labyrinth**
+Below are the instructions for **Labyrinth**
 
 ## General
 
